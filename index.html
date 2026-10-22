@@ -160,7 +160,11 @@
 
     /* Selected founder project: illustration, not a screenshot. */
     .work-section { border-top: 1px solid var(--line); }
-    .project { display: grid; width: 75%; margin-inline: auto; zoom: .75; grid-template-columns: 1.2fr 1fr; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .work-section > .container { width: min(900px, calc(75% - 2.25rem)); }
+    .work-section .section-heading { display: block; margin-bottom: 2rem; }
+    .work-section .section-heading h2 { max-width: none; font-size: clamp(2.3rem, 3.8vw, 3.7rem); text-wrap: balance; }
+    .work-section .section-heading > p { max-width: none; margin-top: 1rem; }
+    .project { display: grid; width: 100%; margin-inline: auto; zoom: .75; grid-template-columns: 1.2fr 1fr; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
     .project-art { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 2.5rem; background: #252D27; }
     .preview-label { align-self: start; margin-bottom: 1.4rem; color: #D2DCD0; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
     .nutrition-window { padding: 1.5rem; border: 1px solid #D4DBCD; border-radius: 8px; background: #F0F3EA; color: #25362A; box-shadow: 10px 12px 0 #141F1770; }
@@ -257,7 +261,7 @@
     .process-step h3 { font-size: 1.3rem; }
     .process-step p { margin-top: 1rem; color: var(--muted); font-size: .85rem; }
     .options { border-block: 1px solid var(--line); }
-    .options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .options-grid { display: grid; width: 90%; margin-inline: auto; zoom: .9; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .option { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 7px; }
     .option.featured { border-color: #8C5AD6; background: #211B2D; }
     .option-label { min-height: 2.5rem; color: #C6A6FF; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; }
@@ -356,6 +360,7 @@
       .service-card-top { margin-bottom: 1.5rem; }
       .service-card h3 { max-width: none; }
       .service-card p { max-width: 35rem; }
+      .work-section > .container { width: calc(100% - 3rem); }
       .project { width: 100%; zoom: 1; grid-template-columns: 1fr 1fr; }
       .project-art { padding: 1.5rem; }
       .nutrition-window { padding: 1rem; }
@@ -366,7 +371,7 @@
       .demo-copy h2, .demo-copy > p { max-width: 38rem; }
       .demo-grid > .chat { margin-top: 0; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
-      .options-grid { grid-template-columns: 1fr; }
+      .options-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
       .option { padding: 2rem; }
       .option h3 { min-height: 0; }
       .option .button { width: auto; }
@@ -387,6 +392,7 @@
       .sample-site-bottom { gap: 1rem; }
       .assistant-float { width: 90%; right: -.25rem; }
       .hero-bottom { flex-direction: column; gap: .5rem; }
+      .work-section > .container { width: calc(100% - 2.25rem); }
       .project { grid-template-columns: 1fr; }
       .project-art { padding: 1.75rem; }
       .project-copy { padding: 2rem 1.5rem; }
