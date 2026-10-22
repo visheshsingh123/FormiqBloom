@@ -70,6 +70,9 @@
 
     /* Navigation: native details also works without JavaScript. */
     .site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--line); background: var(--bg); }
+    @supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
+      .site-header { background: rgb(16 16 20 / 78%); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+    }
     .nav-shell { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 84px; }
     /* Crop transparent asset padding for a clear, consistently sized brand. */
     .wordmark { position: relative; display: inline-flex; width: 225px; height: 44px; overflow: hidden; flex-shrink: 0; }
