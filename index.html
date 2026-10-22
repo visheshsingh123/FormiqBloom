@@ -726,7 +726,15 @@
         if (restoreFocus) menuButton.focus();
       }
       menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+      summary.setAttribute('aria-expanded', String(dropdown.open));
       dropdown.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(dropdown.open)));
+      // Hover opens the native dropdown; touch and keyboard retain native controls.
+      dropdown.addEventListener('pointerenter', event => {
+        if (event.pointerType === 'mouse') dropdown.open = true;
+      });
+      dropdown.addEventListener('pointerleave', event => {
+        if (event.pointerType === 'mouse' && !dropdown.contains(document.activeElement)) dropdown.open = false;
+      });
       dropdown.addEventListener('focusout', event => {
         if (!dropdown.contains(event.relatedTarget)) dropdown.open = false;
       });
