@@ -3,14 +3,18 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { Readable } = require('node:stream');
-const handler = require('../api/chat');
+let handler = require('../api/chat');
 
 let sequence = 0;
 function setup(t) {
+  delete require.cache[require.resolve('../api/chat')];
+  handler = require('../api/chat');
   const names = ['api', 'GROQ_API_KEY', 'API', 'GROQ_MODEL'];
   const previous = Object.fromEntries(names.map(name => [name, process.env[name]]));
   for (const name of names) delete process.env[name];
   process.env.api = 'test-only-not-a-real-key';
+  // Existing relay/error tests target an explicit model; discovery has separate tests.
+  process.env.GROQ_MODEL = 'llama-3.1-8b-instant';
   t.after(() => {
     for (const name of names) {
       if (previous[name] === undefined) delete process.env[name];
@@ -180,11 +184,13 @@ test('distinguishes access, request, and service errors without forwarding provi
   }
 });
 
-test('uses a fallback only when Groq explicitly reports the default model unavailable', async t => {
+test('discovers live chat models and falls back when a listed model is rejected', async t => {
   setup(t);
+  delete process.env.GROQ_MODEL;
   const models = [];
   const signals = [];
-  t.mock.method(globalThis, 'fetch', async (_, options) => {
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    if (url.endsWith('/models')) return { ok: true, json: async () => ({ data: [{ id: 'llama-3.1-8b-instant' }, { id: 'llama-3.3-70b-versatile' }] }) };
     models.push(JSON.parse(options.body).model);
     signals.push(options.signal);
     if (models.length === 1) return { ok: false, status: 400, json: async () => ({ error: { code: 'model_decommissioned' } }) };
@@ -196,6 +202,61 @@ test('uses a fallback only when Groq explicitly reports the default model unavai
   assert.equal(signals[0], signals[1]);
 });
 
+test('selects an advertised text model, filters non-chat models, and caches discovery', async t => {
+  setup(t);
+  delete process.env.GROQ_MODEL;
+  let listings = 0;
+  const models = [];
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    if (url.endsWith('/models')) {
+      listings++;
+      return { ok: true, json: async () => ({ data: [
+        { id: 'whisper-large-v3' }, { id: 'meta-llama/llama-guard-4-12b' },
+        { id: 'llama-3.1-8b-instant', active: false }, { id: 'openai/gpt-oss-20b', active: true }
+      ] }) };
+    }
+    models.push(JSON.parse(options.body).model);
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'Yes, let’s discuss your project.' } }] }) };
+  });
+  assert.equal((await request()).status, 200);
+  assert.equal((await request()).status, 200);
+  assert.equal(listings, 1);
+  assert.deepEqual(models, ['openai/gpt-oss-20b', 'openai/gpt-oss-20b']);
+});
+
+test('reports catalog authentication and absence of chat models without attempting inference', async t => {
+  setup(t);
+  delete process.env.GROQ_MODEL;
+  let mode = 'auth';
+  const upstream = t.mock.method(globalThis, 'fetch', async url => {
+    assert.ok(url.endsWith('/models'));
+    return mode === 'auth'
+      ? { ok: false, status: 401, json: async () => ({ error: { code: 'invalid_api_key' } }) }
+      : { ok: true, json: async () => ({ data: [{ id: 'whisper-large-v3' }] }) };
+  });
+  assert.equal((await request()).body.code, 'AI_AUTH_FAILED');
+  mode = 'audio';
+  assert.equal((await request()).body.code, 'AI_NO_CHAT_MODELS');
+  assert.equal(upstream.mock.callCount(), 2);
+});
+
+test('does not reuse a model catalog across different credentials', async t => {
+  setup(t);
+  delete process.env.GROQ_MODEL;
+  let listings = 0;
+  t.mock.method(globalThis, 'fetch', async url => {
+    if (url.endsWith('/models')) {
+      listings++;
+      return { ok: true, json: async () => ({ data: [{ id: 'openai/gpt-oss-20b' }] }) };
+    }
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'Hello' } }] }) };
+  });
+  await request();
+  process.env.api = 'different-test-only-key';
+  await request();
+  assert.equal(listings, 2);
+});
+
 test('does not retry invalid keys or silently override a configured model', async t => {
   setup(t);
   const upstream = t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status: 401, json: async () => ({ error: { code: 'invalid_api_key' } }) }));
@@ -204,7 +265,7 @@ test('does not retry invalid keys or silently override a configured model', asyn
   process.env.GROQ_MODEL = 'custom-model';
   upstream.mock.mockImplementation(async () => ({ ok: false, status: 404, json: async () => ({ error: { code: 'model_not_found' } }) }));
   const result = await request();
-  assert.equal(result.body.code, 'AI_MODEL_UNAVAILABLE');
+  assert.equal(result.body.code, 'AI_CONFIGURED_MODEL_UNAVAILABLE');
   assert.equal(upstream.mock.callCount(), 2);
 });
 

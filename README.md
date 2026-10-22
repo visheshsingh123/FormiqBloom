@@ -7,7 +7,8 @@ Responsive agency website with a floating chatbot. No build step or runtime npm 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so `api/chat.js` becomes `/api/chat`.
 - Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
 - Redeploy after adding or changing the variable. A Git push starts deployment if the repository is connected to Vercel.
-- The default model is `llama-3.1-8b-instant`, with one retry using `llama-3.3-70b-versatile` only if Groq explicitly reports the default model unavailable. Optional server variable `GROQ_MODEL` selects a specific available chat model; an explicit model is never silently replaced.
+- By default, the server checks Groq's authenticated `/models` catalog and selects an active text chat model actually listed for the key. It prefers `openai/gpt-oss-20b`, followed by other supported text models, and excludes audio and safety-only models. The catalog is cached for five minutes per key fingerprint, without storing the key in the cache. Up to three listed models are attempted only when Groq explicitly rejects a model as unavailable. All calls share an 18-second deadline.
+- Optional server variable `GROQ_MODEL` selects one specific model and bypasses automatic selection. Remove a stale `GROQ_MODEL` override to restore automatic model discovery. If a restricted key cannot list models (HTTP 403), the function attempts up to three known text model IDs instead.
 - `vercel.json` allows the function 30 seconds; the upstream request has an 18-second timeout. Free Groq accounts have usage limits; quota or connection failures show a helpful message and a WhatsApp alternative.
 
 ### If chat says it is not available on this deployment yet
@@ -32,6 +33,8 @@ The chat shows a safe support reference, and the server response includes the up
 | `AI_AUTH_FAILED` | Groq rejected authentication. Check that the selected server variable contains the actual active Groq key, rather than its display name, a revoked key, or another provider's token. Update it securely in Vercel and redeploy. |
 | `AI_ACCESS_DENIED` | Groq refused access from the account or deployment. Check account restrictions, model permissions, and regional availability in Groq. |
 | `AI_MODEL_UNAVAILABLE` | The model is unavailable for this account. Check supported models and any `GROQ_MODEL` override. |
+| `AI_CONFIGURED_MODEL_UNAVAILABLE` | The explicit `GROQ_MODEL` override was rejected. Remove that override and redeploy for automatic discovery, or set a model currently available to the account. |
+| `AI_NO_CHAT_MODELS`, `AI_MODEL_CATALOG_ERROR` | Groq returned no supported active text models, or its model catalog could not be read. Check account model access and retry later. |
 | `AI_REQUEST_REJECTED` | Groq rejected the request format or parameters. Check the corresponding function log and supported model settings. |
 | `AI_RATE_LIMIT` | Groq's current usage allowance is exhausted. Wait for the allowance to reset or contact via WhatsApp. |
 | `AI_PROVIDER_UNAVAILABLE`, `AI_CONNECTION_ERROR`, `AI_TIMEOUT` | Provider availability, connection, or timing failure. Retry later or use WhatsApp. |

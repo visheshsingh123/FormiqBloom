@@ -1,11 +1,46 @@
 'use strict';
 
+const { createHash } = require('node:crypto');
+
 // Vercel runs this file on the server. Never move the key into browser code.
 const visitors = new Map();
 const WINDOW_MS = 60_000;
 const REQUEST_LIMIT = 8;
 const MAX_BODY_BYTES = 65_536;
-const DEFAULT_MODELS = ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile'];
+const MODEL_PREFERENCES = ['openai/gpt-oss-20b', 'llama-3.1-8b-instant', 'llama-3.3-70b-versatile', 'openai/gpt-oss-120b', 'qwen/qwen3-32b'];
+const modelCache = new Map();
+
+function isChatModel(model) {
+  return model && model.active !== false && typeof model.id === 'string'
+    && /^[a-z0-9][a-z0-9._/-]{0,199}$/i.test(model.id)
+    && /^(?:openai\/gpt-oss-|llama-|meta-llama\/llama-|qwen\/qwen|moonshotai\/kimi-|mistral-|gemma|allam-)/i.test(model.id)
+    && !/(?:guard|safety|whisper|tts|orpheus|audio|embedding)/i.test(model.id);
+}
+
+async function discoverModels(key, signal) {
+  // Cache model IDs using a key fingerprint, never the credential itself.
+  const fingerprint = createHash('sha256').update(key).digest('hex');
+  const cached = modelCache.get(fingerprint);
+  if (cached && cached.expires > Date.now()) return { models: [...cached.models], fingerprint };
+  const response = await fetch('https://api.groq.com/openai/v1/models', {
+    headers: { Authorization: `Bearer ${key}` }, signal
+  });
+  let data;
+  try { data = await response.json(); } catch { data = null; }
+  if (!response.ok) {
+    // Some restricted keys may allow chat but not listing models.
+    if (response.status === 403) return { models: MODEL_PREFERENCES.slice(0, 3), fingerprint };
+    return { failure: providerFailure(response.status, data), providerStatus: response.status };
+  }
+  if (!Array.isArray(data?.data)) {
+    return { failure: { code: 'AI_MODEL_CATALOG_ERROR', error: 'The AI model list could not be loaded. Please try again later or use WhatsApp.' }, providerStatus: response.status };
+  }
+  const available = [...new Set(data.data.filter(isChatModel).map(model => model.id))];
+  const ranked = [...MODEL_PREFERENCES.filter(id => available.includes(id)), ...available.filter(id => !MODEL_PREFERENCES.includes(id)).sort()];
+  if (modelCache.size >= 4) modelCache.delete(modelCache.keys().next().value);
+  modelCache.set(fingerprint, { models: ranked, expires: Date.now() + 300_000 });
+  return { models: [...ranked], fingerprint };
+}
 
 function getKey() {
   // Server-only variable names are case-sensitive; prefer the requested `api`.
@@ -153,9 +188,14 @@ module.exports = async function handler(req, res) {
 
   try {
     const configuredModel = (process.env.GROQ_MODEL || '').trim();
-    const models = configuredModel ? [configuredModel] : DEFAULT_MODELS;
     // All attempts share one deadline, within Vercel's 30-second function budget.
     const signal = AbortSignal.timeout(18_000);
+    const catalog = configuredModel ? { models: [configuredModel] } : await discoverModels(key, signal);
+    if (catalog.failure) return respond(res, catalog.providerStatus === 429 ? 429 : 502, { ...catalog.failure, providerStatus: catalog.providerStatus });
+    const models = catalog.models.slice(0, 3);
+    if (!models.length) {
+      return respond(res, 502, { code: 'AI_NO_CHAT_MODELS', error: 'No supported chat model is available for this AI account. Please use WhatsApp to reach Vishesh.' });
+    }
     for (let attempt = 0; attempt < models.length; attempt++) {
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -173,7 +213,12 @@ module.exports = async function handler(req, res) {
       try { data = await response.json(); } catch { data = null; }
       if (!response.ok) {
         const failure = providerFailure(response.status, data);
-        if (failure.code === 'AI_MODEL_UNAVAILABLE' && attempt + 1 < models.length) continue;
+        if (failure.code === 'AI_MODEL_UNAVAILABLE') {
+          const cached = modelCache.get(catalog.fingerprint);
+          if (cached) cached.models = cached.models.filter(id => id !== models[attempt]);
+          if (attempt + 1 < models.length) continue;
+          if (configuredModel) failure.code = 'AI_CONFIGURED_MODEL_UNAVAILABLE';
+        }
         // Log only our fixed classification and HTTP status, never provider payloads or keys.
         console.warn('[FormiqBloom chat]', failure.code, 'upstream status:', response.status);
         return respond(res, response.status === 429 ? 429 : 502, { ...failure, providerStatus: response.status });
