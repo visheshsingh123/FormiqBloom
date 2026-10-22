@@ -73,7 +73,7 @@
     .brand-logo { position: absolute; width: 133.52%; max-width: none; height: auto; left: -16.15%; top: 50%; transform: translateY(-50%); }
     .brand-icon { position: relative; display: block; width: 28px; height: 28px; overflow: hidden; flex-shrink: 0; }
     .brand-icon img { position: absolute; width: 200%; max-width: none; height: auto; left: -50%; top: -37.6%; }
-    .nav-links { display: flex; align-items: center; gap: 1.65rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.15rem; white-space: nowrap; }
     .nav-links > a:not(.button), .nav-dropdown summary { display: flex; align-items: center; gap: .35rem; min-height: 44px; font-size: .85rem; color: var(--muted); }
     .nav-links > a:hover, .nav-dropdown summary:hover { color: var(--text); }
     .nav-dropdown { position: relative; }
@@ -328,7 +328,7 @@
       .project-art, .project-copy { padding: 2rem; }
       .demo-grid, .faq-grid, .contact-grid { gap: 3rem; }
     }
-    @media (max-width: 850px) {
+    @media (max-width: 1200px) {
       .site-header { position: relative; } .js .site-header { position: sticky; }
       .nav-shell { flex-wrap: wrap; min-height: 74px; padding-block: .8rem; }
       .js .menu-toggle { display: flex; }
@@ -338,6 +338,8 @@
       .nav-links .button { justify-self: start; margin-top: .75rem; font-size: .85rem; }
       .dropdown-panel { position: static; width: 100%; box-shadow: none; }
       .site-header:has(.nav-links.open) { max-height: 100svh; overflow-y: auto; }
+    }
+    @media (max-width: 850px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
       .hero-visual { width: min(460px, 90%); margin-inline: auto; padding-top: .5rem; }
@@ -455,6 +457,9 @@
           </div>
         </details>
         <a href="#work">Work</a>
+        <a href="#assistant-demo">AI Assistant</a>
+        <a href="#options">Packages</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
         <a class="button" href="#contact">Free Consultation <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </nav>
@@ -692,7 +697,7 @@
             <a href="https://github.com/visheshsingh123/FormiqBloom" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> repository (opens in a new tab)</span></a>
           </nav>
         </div>
-        <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Project Options</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">Assistant</a><a href="#contact">Contact</a></nav>
+        <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Packages</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">AI Assistant</a><a href="#contact">Contact</a></nav>
       </div>
       <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><div class="footer-legal"><span>Privacy Policy <small>— coming soon</small></span><span>Terms of Service <small>— coming soon</small></span></div></div>
     </div>
@@ -731,7 +736,7 @@
       const nav = document.getElementById('primary-nav');
       const dropdown = document.getElementById('services-dropdown');
       const summary = dropdown.querySelector('summary');
-      const mobile = window.matchMedia('(max-width: 850px)');
+      const mobile = window.matchMedia('(max-width: 1200px)');
 
       function setMenu(open, restoreFocus = false) {
         nav.classList.toggle('open', open);
