@@ -351,6 +351,11 @@
       .js .menu-toggle { display: flex; }
       .nav-links { width: 100%; display: grid; gap: .25rem; padding-block: .5rem; }
       .js .nav-links:not(.open) { display: none; }
+      .js .nav-links.open { transform-origin: top; animation: mobile-menu-open .35s cubic-bezier(.22, 1, .36, 1) both; }
+      @keyframes mobile-menu-open {
+        from { opacity: 0; transform: translateY(-12px); clip-path: inset(0 0 100% 0); }
+        to { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+      }
       .nav-links > a:not(.button), .nav-dropdown summary { min-height: 48px; font-size: .95rem; }
       .nav-links .button { justify-self: start; margin-top: .75rem; font-size: .85rem; }
       .dropdown-panel { position: static; width: 100%; box-shadow: none; }
