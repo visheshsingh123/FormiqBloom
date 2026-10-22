@@ -191,9 +191,11 @@
     .tag { padding: .3rem .65rem; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); font-size: .65rem; }
 
     /* Assistant section and shared chat styling. */
-    .demo-section { background: #17151D; border-block: 1px solid var(--line); }
-    .demo-grid { display: grid; grid-template-columns: .9fr 1fr; align-items: center; gap: 5rem; }
-    .demo-copy h2 { max-width: 29rem; }
+    .demo-section { padding-block: clamp(4rem, 6vw, 6rem); background: #17151D; border-block: 1px solid var(--line); }
+    .demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: clamp(2rem, 4vw, 4rem); }
+    .demo-copy h2 { max-width: 100%; font-size: clamp(2.3rem, 3.8vw, 3.7rem); }
+    .demo-copy h2 span { display: block; text-wrap: balance; }
+    .demo-grid > .chat { margin-top: 2.25rem; }
     .demo-copy > p { max-width: 28rem; margin-block: 1.5rem; color: var(--muted); }
     .chat { min-width: 0; border: 1px solid #51435F; border-radius: 10px; background: var(--card); overflow: hidden; }
     .chat-header { display: flex; align-items: center; gap: .75rem; padding: 1.25rem; border-bottom: 1px solid var(--line); }
@@ -362,6 +364,7 @@
       .nutrition-meal { flex-wrap: wrap; }
       .demo-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .demo-copy h2, .demo-copy > p { max-width: 38rem; }
+      .demo-grid > .chat { margin-top: 0; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
       .options-grid { grid-template-columns: 1fr; }
       .option { padding: 2rem; }
@@ -577,7 +580,7 @@
       <div class="container demo-grid">
         <div class="demo-copy">
           <div class="eyebrow">03 / A little conversation</div>
-          <h2 id="demo-title">Useful answers.<br>A more human<br>first hello.</h2>
+          <h2 id="demo-title"><span>Useful answers.</span><span>A more human first hello.</span></h2>
           <p>Give visitors a helpful starting point. An assistant can explain your services, answer common questions, and point people toward the next step.</p>
           <a class="text-link" href="#contact" data-service="assistant">Request a custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
