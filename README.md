@@ -51,7 +51,7 @@ The floating chat opens from the bottom-right button or the assistant section. I
 
 ## Consultation form
 
-The form uses a native cross-origin HTTPS POST to the standard `formResponse` endpoint derived from the supplied Google Form ID, `18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw`. It opens Google's response in a new tab so Google can validate required fields, enforce access settings, and display its actual confirmation. It works without JavaScript and requires no server secret, CORS workaround, or hidden iframe.
+The form uses a native cross-origin HTTPS POST to the standard `formResponse` endpoint derived from the supplied Google Form ID, `18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw`. It navigates the **current tab** to Google's response, so Google can validate required fields, enforce access settings, and display its actual confirmation. It works without JavaScript and requires no popup, server secret, CORS workaround, or hidden iframe.
 
 Entry IDs are taken from the supplied form screenshot in displayed question order:
 
@@ -65,7 +65,7 @@ Entry IDs are taken from the supplied form screenshot in displayed question orde
 
 Service needed is a short-answer Google field, so the website sends the selected service's full label. Other values are URL-encoded by the browser in the POST body, rather than placed in the URL.
 
-The site keeps entries intact and never claims successful delivery merely because a tab opened. Visitors must check Google's confirmation; access and validation errors are not success. The owner must publish the Google Form, enable accepting responses, and allow the intended visitors to respond. If Google requires sign-in, visitors must complete that step there. If the responder URL changes, update the form's `action` in `index.html`.
+The site never claims successful delivery merely because navigation started. Visitors must check Google's confirmation; access and validation errors are not success. The owner must publish the Google Form, enable accepting responses, and allow the intended visitors to respond. If Google requires sign-in, visitors must complete that step there. If the responder URL changes, update the form's `action` in `index.html`.
 
 Local browser validation used intercepted Google requests only; no test enquiries were submitted to the real form. The supplied link is an owner preview URL, and the workspace network blocked Google Forms, so public access and real Google receipt remain unverified. Complete one real submission on the deployed site and check the form's Responses tab to verify delivery.
 

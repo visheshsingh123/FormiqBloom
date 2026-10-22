@@ -275,7 +275,7 @@
     .faq-item[open] summary .icon { transform: rotate(45deg); color: var(--lime); }
     .faq-item p { max-width: 38rem; padding-bottom: 1.5rem; color: var(--muted); font-size: .9rem; }
 
-    /* Google Forms handles delivery and its own confirmation in a new tab. */
+    /* Native navigation shows Google's actual submission result in this tab. */
     .contact { position: relative; border-top: 1px solid var(--line); background: #19151F; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .contact-copy h2 { font-size: clamp(3rem, 5.5vw, 5rem); }
@@ -646,7 +646,7 @@
 
     <!-- 10 / Contact. Native POST uses the Google Form ID and supplied entry IDs.
          Google Forms validates the response and displays its own confirmation.
-         Keep this page's entries intact; opening Google is not proof of receipt. -->
+         Navigate the current tab to Google's result; navigation alone is not proof of receipt. -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div class="contact-copy">
@@ -660,8 +660,8 @@
             <a href="https://github.com/visheshsingh123/FormiqBloom" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> repository (opens in a new tab)</span></a>
           </nav>
         </div>
-        <form class="consultation-form" id="consultation-form" action="https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse" method="post" target="_blank" rel="noopener noreferrer" aria-describedby="contact-notice">
-          <p class="form-notice" id="contact-notice"><strong>Your enquiry is processed by Google Forms.</strong><br>Submitting opens Google Forms in a new tab. Check its confirmation to verify receipt; your entries stay on this page. You can also enquire directly on WhatsApp.</p>
+        <form class="consultation-form" id="consultation-form" action="https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse" method="post" target="_self" aria-describedby="contact-notice">
+          <p class="form-notice" id="contact-notice"><strong>Your enquiry is processed by Google Forms.</strong><br>Submitting takes you to Google Forms in this tab. Check its confirmation to verify receipt. You can also enquire directly on WhatsApp.</p>
           <fieldset id="contact-fields">
             <legend class="sr-only">Request a free consultation</legend>
             <div class="form-grid">
@@ -671,11 +671,11 @@
               <div class="field full"><label for="service">Service needed</label><select id="service" name="entry.2086671607" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
               <div class="field full"><label for="details">Project details</label><textarea id="details" name="entry.942640608" required maxlength="5000" placeholder="Tell us about your idea, goals, and anything you have in place already."></textarea></div>
             </div>
-            <button class="button" type="submit">Request a Free Consultation <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only"> (opens Google Forms in a new tab)</span></button>
+            <button class="button" type="submit">Request a Free Consultation <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only"> (continues to Google Forms)</span></button>
           </fieldset>
           <p class="form-footnote">All fields required unless marked optional. Please don’t include sensitive information.</p>
           <p class="form-feedback" id="form-feedback" role="status" tabindex="-1"></p>
-          <noscript><p>This form works without JavaScript. Google Forms opens in a new tab to validate your enquiry and display its confirmation.</p></noscript>
+          <noscript><p>This form works without JavaScript. Submitting takes you to Google Forms in this tab to validate your enquiry and display its result.</p></noscript>
         </form>
       </div>
     </section>
@@ -788,9 +788,9 @@
       const contactForm = document.getElementById('consultation-form');
       const serviceSelect = document.getElementById('service');
       const feedback = document.getElementById('form-feedback');
-      // Let the native POST open Google's actual result; never infer receipt here.
+      // Do not prevent navigation: the native POST shows Google's actual result.
       contactForm.addEventListener('submit', () => {
-        feedback.textContent = 'Google Forms is opening in a new tab. Check its confirmation there; your entries remain on this page. If Google shows an access or validation error, your enquiry has not been confirmed—please use WhatsApp.';
+        feedback.textContent = 'Continuing to Google Forms… Please wait for its confirmation. If Google shows an access or validation error, your enquiry has not been confirmed—please use WhatsApp.';
       });
       document.querySelectorAll('[data-service]').forEach(link => {
         link.addEventListener('click', () => {
