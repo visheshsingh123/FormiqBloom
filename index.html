@@ -108,7 +108,7 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
     .hero-footnote { display: flex; gap: .6rem; align-items: center; margin-top: 2.2rem; color: var(--muted); font-size: .75rem; }
     .hero-footnote .icon { color: var(--lime); width: 1rem; height: 1rem; }
-    .hero-visual { position: relative; min-width: 0; padding: .25rem 0 6.5rem; transform: scale(.8); transform-origin: top center; }
+    .hero-visual { position: relative; min-width: 0; width: 80%; justify-self: center; padding: .25rem 0 6.5rem; zoom: .8; }
     .visual-caption { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; color: var(--muted); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
     .browser-window { border: 1px solid #5F586E; border-radius: 9px; background: var(--card); box-shadow: 14px 16px 0 #22202C; overflow: hidden; transform: rotate(-2deg); }
     .browser-bar { display: flex; align-items: center; gap: 5px; padding: 12px 15px; border-bottom: 1px solid #3B364A; }
@@ -130,7 +130,7 @@
     .sample-bubble { width: fit-content; max-width: 94%; padding: .6rem .8rem; border-radius: 6px; font-size: .7rem; line-height: 1.5; }
     .sample-bubble.user { margin: 0 0 .5rem auto; background: #43335E; }
     .sample-bubble.bot { background: #35303F; color: #E9E5F3; }
-    .hero-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .7rem; color: var(--muted); }
+    .hero-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .7rem; color: var(--muted); }
     .hero-bottom span:last-child { display: flex; align-items: center; gap: .7rem; }
 
     /* Two identical groups make one seamless loop. */
@@ -341,9 +341,9 @@
     @media (max-width: 850px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
-      .hero-visual { width: min(460px, 90%); margin-inline: auto; padding-top: .5rem; }
+      .hero-visual { display: none; }
       .sample-site-heading { font-size: 2.6rem; }
-      .hero-bottom { margin-top: 3rem; }
+      .hero-bottom { margin-top: 2rem; }
       .service-grid { grid-template-columns: 1fr; }
       .service-card { padding: 2rem; }
       .service-card-top { margin-bottom: 1.5rem; }
@@ -374,7 +374,6 @@
       .hero .eyebrow { max-width: 20rem; font-size: .6rem; letter-spacing: .08em; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero h1 .keep-together { font-size: min(1em, 10vw); }
-      .hero-visual { width: 94%; padding-bottom: 7rem; }
       .sample-site { padding: 1.25rem; }
       .sample-site-heading { font-size: 2.1rem; }
       .sample-site-bottom { gap: 1rem; }
