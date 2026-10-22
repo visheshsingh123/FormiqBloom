@@ -261,16 +261,22 @@
     .process-step h3 { font-size: 1.3rem; }
     .process-step p { margin-top: 1rem; color: var(--muted); font-size: .85rem; }
     .options { border-block: 1px solid var(--line); }
-    .options-grid { display: grid; width: 90%; margin-inline: auto; zoom: .9; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .options > .container { width: min(1080px, calc(90% - 2.7rem)); }
+    .options .section-heading { display: block; margin-bottom: 2rem; }
+    .options .section-heading h2 { max-width: none; font-size: clamp(2.3rem, 3.8vw, 3.7rem); text-wrap: balance; }
+    .options .section-heading > p { max-width: 43rem; margin-top: 1rem; }
+    .options-grid { display: grid; width: 100%; margin-inline: auto; zoom: .9; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .option { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 7px; }
     .option.featured { border-color: #8C5AD6; background: #211B2D; }
     .option-label { min-height: 2.5rem; color: #C6A6FF; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; }
     .option h3 { min-height: 3.5rem; }
     .option p { margin-top: 1rem; color: var(--muted); font-size: .85rem; }
+    .option > p:not(.option-label) { min-height: 3.3em; }
+    .option .option-label { margin-top: 0; }
     .option .check-list { margin-bottom: 2rem; }
     .option .check-list li { font-size: .8rem; }
     .option .button { width: 100%; margin-top: auto; }
-    .quote-note { max-width: 800px; margin: 1.7rem auto 0; color: var(--muted); text-align: center; font-size: .8rem; }
+    .quote-note { max-width: 54rem; margin: 1.5rem 0 0; color: var(--muted); font-size: .8rem; }
 
     /* Native accessible FAQ accordion. */
     .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 5rem; }
@@ -371,7 +377,9 @@
       .demo-copy h2, .demo-copy > p { max-width: 38rem; }
       .demo-grid > .chat { margin-top: 0; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
+      .options > .container { width: calc(100% - 3rem); }
       .options-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
+      .option > p:not(.option-label) { min-height: 0; }
       .option { padding: 2rem; }
       .option h3 { min-height: 0; }
       .option .button { width: auto; }
@@ -392,7 +400,7 @@
       .sample-site-bottom { gap: 1rem; }
       .assistant-float { width: 90%; right: -.25rem; }
       .hero-bottom { flex-direction: column; gap: .5rem; }
-      .work-section > .container { width: calc(100% - 2.25rem); }
+      .work-section > .container, .options > .container { width: calc(100% - 2.25rem); }
       .project { grid-template-columns: 1fr; }
       .project-art { padding: 1.75rem; }
       .project-copy { padding: 2rem 1.5rem; }
