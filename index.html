@@ -102,7 +102,13 @@
     .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; align-items: start; gap: 3rem; }
     .hero .eyebrow { font-size: .68rem; letter-spacing: .12em; }
     .hero h1 { max-width: 730px; font-size: clamp(3rem, 4.8vw, 4.6rem); }
-    .hero h1 span { color: var(--lime); }
+    .hero h1 .hero-line-accent { color: var(--lime); }
+    /* Stagger the three headline lines upward on initial page load. */
+    .hero-title-line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+    .hero-title-text { display: block; animation: hero-line-rise .9s cubic-bezier(.22, 1, .36, 1) backwards; }
+    .hero-title-line:nth-child(2) .hero-title-text { animation-delay: .16s; }
+    .hero-title-line:nth-child(3) .hero-title-text { animation-delay: .32s; }
+    @keyframes hero-line-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
     .hero h1 .keep-together { white-space: nowrap; color: inherit; }
     .hero-copy > p { max-width: 31rem; margin-top: 1.7rem; color: var(--muted); font-size: 1.05rem; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
@@ -465,7 +471,7 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <div class="eyebrow">Independent by design. Built for what’s next.</div>
-            <h1 id="hero-title">Your website.<br><span class="keep-together">Your AI assistant.</span><br><span>Your next stage.</span></h1>
+            <h1 id="hero-title"><span class="hero-title-line"><span class="hero-title-text">Your website.</span></span><span class="hero-title-line"><span class="hero-title-text keep-together">Your AI assistant.</span></span><span class="hero-title-line hero-line-accent"><span class="hero-title-text">Your next stage.</span></span></h1>
             <p>We build responsive websites, manage your hosting, and create AI assistants that help your customers get answers.</p>
             <div class="hero-actions">
               <a class="button" href="#contact">Start Your Project <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
