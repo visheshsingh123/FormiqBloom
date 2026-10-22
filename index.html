@@ -126,14 +126,10 @@
 
     /* Two identical groups make one seamless loop. */
     .marquee { overflow: hidden; background: var(--lime); color: var(--bg); padding-block: 1.15rem; }
-    .marquee-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
-    .marquee-group { flex-shrink: 0; padding-right: 1.2rem; white-space: nowrap; font: 700 clamp(.85rem, 1.7vw, 1.2rem)/1.4 var(--display); letter-spacing: .025em; }
-    .marquee:hover .marquee-track, .marquee.paused .marquee-track { animation-play-state: paused; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 16s linear infinite; }
+    .marquee-group { display: flex; align-items: center; justify-content: space-around; gap: 1.2rem; min-width: 100vw; flex-shrink: 0; padding-right: 1.2rem; white-space: nowrap; font: 700 clamp(.85rem, 1.7vw, 1.2rem)/1.4 var(--display); letter-spacing: .025em; }
+    .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
     @keyframes marquee { to { transform: translateX(-50%); } }
-    .motion-control { display: flex; justify-content: flex-end; padding-top: .6rem; }
-    .motion-control button { min-height: 44px; padding: .4rem .6rem; border: 0; background: none; color: var(--muted); font-size: .7rem; }
-    .motion-control button:hover { color: var(--lime); }
-    .motion-control[hidden] { display: none; }
 
     /* Services. */
     .services { padding-top: 4.5rem; }
@@ -381,9 +377,8 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .marquee-track { width: 100%; }
-      .marquee-group { padding: 0 1.25rem; white-space: normal; text-align: center; flex-shrink: 1; }
+      .marquee-group { display: block; min-width: 0; padding: 0 1.25rem; white-space: normal; text-align: center; flex-shrink: 1; }
       .marquee-group[aria-hidden="true"] { display: none; }
-      .motion-control { display: none; }
     }
   </style>
 </head>
@@ -476,13 +471,12 @@
     </section>
 
     <!-- 02 / Seamless marquee; duplicate hidden from assistive technology. -->
-    <div class="marquee" id="marquee" aria-label="What we do">
+    <div class="marquee" id="marquee" aria-label="What we do" tabindex="0">
       <div class="marquee-track">
-        <p class="marquee-group">RESPONSIVE WEBSITES ◆ MANAGED HOSTING ◆ AI ASSISTANTS ◆ BUILT TO GROW ◆ FORMIQBLOOM ◆</p>
-        <p class="marquee-group" aria-hidden="true">RESPONSIVE WEBSITES ◆ MANAGED HOSTING ◆ AI ASSISTANTS ◆ BUILT TO GROW ◆ FORMIQBLOOM ◆</p>
+        <p class="marquee-group"><span>RESPONSIVE WEBSITES ◆</span> <span>MANAGED HOSTING ◆</span> <span>AI ASSISTANTS ◆</span> <span>BUILT TO GROW ◆</span> <span>FORMIQBLOOM ◆</span></p>
+        <p class="marquee-group" aria-hidden="true"><span>RESPONSIVE WEBSITES ◆</span> <span>MANAGED HOSTING ◆</span> <span>AI ASSISTANTS ◆</span> <span>BUILT TO GROW ◆</span> <span>FORMIQBLOOM ◆</span></p>
       </div>
     </div>
-    <div class="container motion-control" id="motion-control" hidden><button id="motion-toggle" type="button" aria-pressed="false" aria-controls="marquee">Pause moving strip</button></div>
 
     <!-- 03 / Services. -->
     <section class="section services" id="services" aria-labelledby="services-title">
@@ -743,16 +737,6 @@
         document.querySelector('.site-header .wordmark').focus({ preventScroll: true });
       });
       document.documentElement.classList.add('js');
-
-      // Explicit pause complements hover pause and reduced-motion support.
-      const marquee = document.getElementById('marquee');
-      const motionButton = document.getElementById('motion-toggle');
-      document.getElementById('motion-control').hidden = false;
-      motionButton.addEventListener('click', () => {
-        const paused = marquee.classList.toggle('paused');
-        motionButton.setAttribute('aria-pressed', String(paused));
-        motionButton.textContent = paused ? 'Resume moving strip' : 'Pause moving strip';
-      });
 
       // Frontend-only demo: no network requests, credentials, or HTML injection.
       const chatForm = document.getElementById('chat-form');
