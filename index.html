@@ -288,8 +288,6 @@
     .social-links a:hover { background: var(--card); border-color: var(--lime); }
     .social-links .whatsapp-link { border-color: var(--violet); background: var(--violet); color: #fff; }
     .social-links .whatsapp-link:hover { border-color: #6D28D9; background: #6D28D9; }
-    .form-notice { margin-bottom: 1.5rem; padding: 1rem; border-left: 2px solid var(--lime); background: #24202C; color: var(--muted); font-size: .8rem; }
-    .form-notice strong { color: var(--text); }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .field { min-width: 0; }
     .field.full { grid-column: 1 / -1; }
@@ -660,8 +658,7 @@
             <a href="https://github.com/visheshsingh123/FormiqBloom" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> repository (opens in a new tab)</span></a>
           </nav>
         </div>
-        <form class="consultation-form" id="consultation-form" action="https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse" method="post" target="_self" aria-describedby="contact-notice">
-          <p class="form-notice" id="contact-notice"><strong>Your enquiry is processed by Google Forms.</strong><br>Submitting takes you to Google Forms in this tab. Check its confirmation to verify receipt. You can also enquire directly on WhatsApp.</p>
+        <form class="consultation-form" id="consultation-form" action="https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse" method="post" target="_self">
           <fieldset id="contact-fields">
             <legend class="sr-only">Request a free consultation</legend>
             <div class="form-grid">
