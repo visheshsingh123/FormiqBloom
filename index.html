@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="chatbot.js" defer></script>
+  <script src="enhancements.js" defer></script>
   <style>
     :root {
       color-scheme: dark;
@@ -420,6 +421,34 @@
       .footer-bottom { flex-direction: column; align-items: start; }
       .footer-legal { gap: .7rem 1rem; }
     }
+
+    /* Small, distinct interaction details; primary buttons keep their circular fill. */
+    .button.secondary .icon, .social-links .icon { transition: transform .25s; }
+    .button.secondary:is(:hover, :focus-visible) { border-color: var(--lime); background: #D9F99D0D; }
+    .button.secondary:is(:hover, :focus-visible) .icon { transform: translateX(4px); }
+    .text-link:is(:hover, :focus-visible), .footer-nav a:is(:hover, :focus-visible) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+    .social-links a:is(:hover, :focus-visible) .icon { transform: rotate(-8deg); }
+    .nav-links > a:not(.button):is(:hover, :focus-visible) { text-decoration: underline; text-underline-offset: 7px; text-decoration-color: var(--lime); }
+
+    .service-card { transition: border-color .25s, box-shadow .25s; }
+    .service-card:is(:hover, :focus-within) { border-color: #9B77C8; box-shadow: inset 0 -3px var(--violet); transform: none; }
+    .service-card-top > .icon { transition: transform .3s, color .3s; }
+    .service-card:is(:hover, :focus-within) .service-card-top > .icon { color: var(--lime); transform: rotate(-8deg); }
+    .service-card:nth-child(2):is(:hover, :focus-within) .service-card-top > .icon { transform: translateX(4px); }
+    .service-card:nth-child(3):is(:hover, :focus-within) .service-card-top > .icon { transform: scale(1.12); }
+    .project { transition: border-color .3s; }
+    .nutrition-window { transition: transform .45s; }
+    .project:is(:hover, :focus-within) { border-color: #75916F; }
+    .project:is(:hover, :focus-within) .nutrition-window { transform: scale(1.015); }
+    .option { transition: border-color .25s, box-shadow .25s; }
+    .option:is(:hover, :focus-within) { border-color: #9B77C8; box-shadow: inset 0 3px var(--lime); }
+    .option-label { transition: color .25s; }
+    .option:is(:hover, :focus-within) .option-label { color: var(--lime); }
+    .tools-marquee { background: #241A35; color: #D8C4FA; padding-block: .85rem; border-bottom: 1px solid #49315F; }
+    .tools-marquee .marquee-track { animation-duration: 24s; animation-direction: reverse; }
+    .tools-marquee .marquee-group { font-size: clamp(.8rem, 1.4vw, 1rem); letter-spacing: .1em; }
+    .tool-divider { margin-left: 1rem; color: var(--lime); }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -524,6 +553,14 @@
       <div class="marquee-track">
         <p class="marquee-group"><span>RESPONSIVE WEBSITES ◆</span> <span>MANAGED HOSTING ◆</span> <span>AI ASSISTANTS ◆</span> <span>BUILT TO GROW ◆</span> <span>FORMIQBLOOM ◆</span></p>
         <p class="marquee-group" aria-hidden="true"><span>RESPONSIVE WEBSITES ◆</span> <span>MANAGED HOSTING ◆</span> <span>AI ASSISTANTS ◆</span> <span>BUILT TO GROW ◆</span> <span>FORMIQBLOOM ◆</span></p>
+      </div>
+    </div>
+
+    <!-- Tools strip: reverse direction, with an accessible single copy. -->
+    <div class="marquee tools-marquee" aria-label="Website tools" tabindex="0">
+      <div class="marquee-track">
+        <p class="marquee-group"><span>WordPress<span class="tool-divider" aria-hidden="true">◆</span></span> <span>Figma<span class="tool-divider" aria-hidden="true">◆</span></span> <span>HTML<span class="tool-divider" aria-hidden="true">◆</span></span> <span>CSS<span class="tool-divider" aria-hidden="true">◆</span></span> <span>PHP<span class="tool-divider" aria-hidden="true">◆</span></span> <span>SQL<span class="tool-divider" aria-hidden="true">◆</span></span> <span>Canva<span class="tool-divider" aria-hidden="true">◆</span></span> <span>JS<span class="tool-divider" aria-hidden="true">◆</span></span></p>
+        <p class="marquee-group" aria-hidden="true"><span>WordPress<span class="tool-divider" aria-hidden="true">◆</span></span> <span>Figma<span class="tool-divider" aria-hidden="true">◆</span></span> <span>HTML<span class="tool-divider" aria-hidden="true">◆</span></span> <span>CSS<span class="tool-divider" aria-hidden="true">◆</span></span> <span>PHP<span class="tool-divider" aria-hidden="true">◆</span></span> <span>SQL<span class="tool-divider" aria-hidden="true">◆</span></span> <span>Canva<span class="tool-divider" aria-hidden="true">◆</span></span> <span>JS<span class="tool-divider" aria-hidden="true">◆</span></span></p>
       </div>
     </div>
 
