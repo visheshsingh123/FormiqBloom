@@ -2,6 +2,9 @@
   "functions": {
     "api/chat.js": {
       "maxDuration": 30
+    },
+    "api/contact.js": {
+      "maxDuration": 30
     }
   }
 }

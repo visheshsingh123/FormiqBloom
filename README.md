@@ -4,7 +4,7 @@ Responsive agency website with a floating chatbot. No build step or runtime npm 
 
 ## Vercel deployment
 
-- Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so `api/chat.js` becomes `/api/chat`.
+- Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so the chat and contact functions become `/api/chat` and `/api/contact`.
 - Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
 - Redeploy after adding or changing the variable. A Git push starts deployment if the repository is connected to Vercel.
 - By default, the server checks Groq's authenticated `/models` catalog and selects an active text chat model actually listed for the key. It prefers `openai/gpt-oss-20b`, followed by other supported text models, and excludes audio and safety-only models. The catalog is cached for five minutes per key fingerprint, without storing the key in the cache. Up to three listed models are attempted only when Groq explicitly rejects a model as unavailable. All calls share an 18-second deadline.
@@ -47,11 +47,11 @@ Recent conversation is kept only in browser memory, with at most three previous 
 
 The endpoint validates message size and roles, rejects cross-origin browser calls, limits response length, and applies a best-effort limit of eight AI requests per minute per visitor **per function instance**. This in-memory limiter is not a global quota guarantee across Vercel instances. Configure Vercel Firewall rate limiting if deployment-wide enforcement is needed.
 
-The floating chat opens from the bottom-right button or the assistant section. It supports Escape, keyboard focus, mobile layouts, and reduced motion. The consultation form sends enquiries directly to Google Forms; WhatsApp is also available.
+The floating chat opens from the bottom-right button or the assistant section. It supports Escape, keyboard focus, mobile layouts, and reduced motion. The consultation form submits in the background through `/api/contact`; WhatsApp is also available.
 
 ## Consultation form
 
-The form uses a native cross-origin HTTPS POST to the standard `formResponse` endpoint derived from the supplied Google Form ID, `18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw`. It navigates the **current tab** to Google's response, so Google can validate required fields, enforce access settings, and display its actual confirmation. It works without JavaScript and requires no popup, server secret, CORS workaround, or hidden iframe.
+The form uses a same-origin JSON request to `/api/contact` and stays on the website throughout submission. The Vercel function validates the fields and forwards a URL-encoded HTTPS POST to the Google Form ID `18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw`. No Google API secret is required. There are no redirects, popups, hidden iframes, or opaque `no-cors` responses in the browser.
 
 Entry IDs are taken from the supplied form screenshot in displayed question order:
 
@@ -63,18 +63,20 @@ Entry IDs are taken from the supplied form screenshot in displayed question orde
 | Service needed | `entry.2086671607` |
 | Project details | `entry.942640608` |
 
-Service needed is a short-answer Google field, so the website sends the selected service's full label. Other values are URL-encoded by the browser in the POST body, rather than placed in the URL.
+Service needed is a short-answer Google field, so the website sends the selected service's full label. The server URL-encodes the values in the POST body, rather than placing personal details in the URL. Enquiry contents are not logged or cached by the application. Basic per-instance rate limiting allows five submissions per visitor per ten minutes; configure Vercel Firewall for deployment-wide enforcement if needed.
 
-The site never claims successful delivery merely because navigation started. Visitors must check Google's confirmation; access and validation errors are not success. The owner must publish the Google Form, enable accepting responses, and allow the intended visitors to respond. If Google requires sign-in, visitors must complete that step there. If the responder URL changes, update the form's `action` in `index.html`.
+The server requests English (`hl=en`) and conservatively recognizes Google's standard recorded-response text inside a known confirmation container. HTTP 200 alone is insufficient: validation forms, sign-in redirects, closed forms, and embedded script strings are rejected. Keep Google's default confirmation message, “Your response has been recorded.” A custom or changed Google confirmation format will be reported as unconfirmed until the parser is updated. The owner must publish the Google Form, enable accepting responses, and allow anonymous responses; a sign-in-only form cannot be submitted by this server. Update `GOOGLE_FORM_URL` in `api/contact.js` if its responder URL changes.
 
-Local browser validation used intercepted Google requests only; no test enquiries were submitted to the real form. The supplied link is an owner preview URL, and the workspace network blocked Google Forms, so public access and real Google receipt remain unverified. Complete one real submission on the deployed site and check the form's Responses tab to verify delivery.
+The website shows inline success and clears the fields only after a recognized confirmation. On failure, the entries remain, and the page offers WhatsApp. It does not automatically retry: a timeout or unrecognized response can occur after Google saves the enquiry, so visitors should check with Vishesh before retrying. JavaScript is required for background submission; the form remains disabled without it and offers WhatsApp instead of navigating away.
+
+Tests use mocked Google responses; no test enquiries were submitted to the real form. The supplied link is an owner preview URL, and the workspace network blocks Google Forms, so public access and real Google receipt remain unverified. Complete one real submission on the deployed site and check the form's Responses tab to verify delivery.
 
 ## Validation and local development
 
 Run the dependency-free endpoint tests with Node.js 22 or newer:
 
 ```sh
-node --test tests/chat.test.js
+node --test tests/*.test.js
 ```
 
-Tests use mocked Groq responses; they do not need a real key or make provider calls. To run Vercel functions locally, use `vercel dev` with Vercel CLI and a securely configured local `api` variable. A plain static server can display the page and saved answers, but cannot execute `/api/chat`.
+Tests use mocked Groq and Google responses; they do not need a real key or make provider calls. To run Vercel functions locally, use `vercel dev` with Vercel CLI and a securely configured local `api` variable. A plain static server can display the page and saved answers, but cannot execute `/api/chat` or `/api/contact`.

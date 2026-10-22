@@ -275,7 +275,7 @@
     .faq-item[open] summary .icon { transform: rotate(45deg); color: var(--lime); }
     .faq-item p { max-width: 38rem; padding-bottom: 1.5rem; color: var(--muted); font-size: .9rem; }
 
-    /* Native navigation shows Google's actual submission result in this tab. */
+    /* Inline enquiry feedback: the page stays in place during submission. */
     .contact { position: relative; border-top: 1px solid var(--line); background: #19151F; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .contact-copy h2 { font-size: clamp(3rem, 5.5vw, 5rem); }
@@ -299,6 +299,7 @@
     .consultation-form .button { width: 100%; margin-top: 1.4rem; }
     .form-footnote { margin-top: .8rem; color: var(--muted); font-size: .7rem; }
     .form-feedback:not(:empty) { margin-top: 1rem; padding: 1rem; border: 1px solid var(--lime); border-radius: 4px; font-size: .85rem; }
+    .form-feedback[data-state="error"] { border-color: #FCA5A5; color: #FEE2E2; }
     noscript p { padding: 1rem; color: var(--lime); font-size: .8rem; }
 
     /* Footer. */
@@ -642,9 +643,9 @@
       </div>
     </section>
 
-    <!-- 10 / Contact. Native POST uses the Google Form ID and supplied entry IDs.
-         Google Forms validates the response and displays its own confirmation.
-         Navigate the current tab to Google's result; navigation alone is not proof of receipt. -->
+    <!-- 10 / Contact. POST JSON to /api/contact without navigating.
+         The server maps Google entry IDs and checks for Google's confirmation.
+         Enable controls only after the submit handler is attached. -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div class="contact-copy">
@@ -658,21 +659,21 @@
             <a href="https://github.com/visheshsingh123/FormiqBloom" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> repository (opens in a new tab)</span></a>
           </nav>
         </div>
-        <form class="consultation-form" id="consultation-form" action="https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse" method="post" target="_self">
-          <fieldset id="contact-fields">
+        <form class="consultation-form" id="consultation-form" action="/api/contact" method="post">
+          <fieldset id="contact-fields" disabled>
             <legend class="sr-only">Request a free consultation</legend>
             <div class="form-grid">
-              <div class="field"><label for="name">Name</label><input id="name" name="entry.772884676" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
-              <div class="field"><label for="email">Email</label><input id="email" name="entry.92953162" type="email" autocomplete="email" required maxlength="254" placeholder="you@yourbusiness.com"></div>
-              <div class="field full"><label for="business">Business name <span>(optional)</span></label><input id="business" name="entry.257858045" autocomplete="organization" maxlength="150" placeholder="What’s your business called?"></div>
-              <div class="field full"><label for="service">Service needed</label><select id="service" name="entry.2086671607" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
-              <div class="field full"><label for="details">Project details</label><textarea id="details" name="entry.942640608" required maxlength="5000" placeholder="Tell us about your idea, goals, and anything you have in place already."></textarea></div>
+              <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@yourbusiness.com"></div>
+              <div class="field full"><label for="business">Business name <span>(optional)</span></label><input id="business" name="business" autocomplete="organization" maxlength="150" placeholder="What’s your business called?"></div>
+              <div class="field full"><label for="service">Service needed</label><select id="service" name="service" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
+              <div class="field full"><label for="details">Project details</label><textarea id="details" name="details" required maxlength="5000" placeholder="Tell us about your idea, goals, and anything you have in place already."></textarea></div>
             </div>
-            <button class="button" type="submit">Request a Free Consultation <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only"> (continues to Google Forms)</span></button>
+            <button class="button" type="submit"><span id="contact-submit-label">Request a Free Consultation</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           </fieldset>
           <p class="form-footnote">All fields required unless marked optional. Please don’t include sensitive information.</p>
           <p class="form-feedback" id="form-feedback" role="status" tabindex="-1"></p>
-          <noscript><p>This form works without JavaScript. Submitting takes you to Google Forms in this tab to validate your enquiry and display its result.</p></noscript>
+          <noscript><p>Enable JavaScript to send an enquiry without leaving this page, or use the WhatsApp link to contact Vishesh.</p></noscript>
         </form>
       </div>
     </section>
@@ -785,10 +786,49 @@
       const contactForm = document.getElementById('consultation-form');
       const serviceSelect = document.getElementById('service');
       const feedback = document.getElementById('form-feedback');
-      // Do not prevent navigation: the native POST shows Google's actual result.
-      contactForm.addEventListener('submit', () => {
-        feedback.textContent = 'Continuing to Google Forms… Please wait for its confirmation. If Google shows an access or validation error, your enquiry has not been confirmed—please use WhatsApp.';
+      const contactFields = document.getElementById('contact-fields');
+      const submitLabel = document.getElementById('contact-submit-label');
+      let submitting = false;
+      contactForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (submitting) return;
+        const payload = Object.fromEntries(new FormData(contactForm));
+        submitting = true;
+        contactFields.disabled = true;
+        contactForm.setAttribute('aria-busy', 'true');
+        submitLabel.textContent = 'Sending…';
+        feedback.dataset.state = 'pending';
+        feedback.textContent = 'Sending your enquiry…';
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 22_000);
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload), signal: controller.signal,
+            cache: 'no-store', credentials: 'same-origin'
+          });
+          const data = await response.json().catch(() => null);
+          if (!response.ok || data?.ok !== true) {
+            throw new Error(typeof data?.error === 'string' ? data.error : 'We couldn’t confirm your enquiry. Your entries are still here. Please use WhatsApp to check with Vishesh.');
+          }
+          feedback.dataset.state = 'success';
+          feedback.textContent = 'Your enquiry has been submitted. Thank you for getting in touch.';
+          contactForm.reset();
+        } catch (error) {
+          feedback.dataset.state = 'error';
+          feedback.textContent = error.name === 'AbortError' || error instanceof TypeError
+            ? 'We couldn’t confirm the submission. Your entries are still here. Please use WhatsApp to check with Vishesh before retrying.'
+            : error.message;
+        } finally {
+          window.clearTimeout(timeout);
+          submitting = false;
+          contactFields.disabled = false;
+          contactForm.setAttribute('aria-busy', 'false');
+          submitLabel.textContent = 'Request a Free Consultation';
+          feedback.focus({ preventScroll: true });
+        }
       });
+      contactFields.disabled = false;
       document.querySelectorAll('[data-service]').forEach(link => {
         link.addEventListener('click', () => {
           const option = Array.from(serviceSelect.options).find(item => item.dataset.serviceOption === link.dataset.service);

@@ -20,7 +20,7 @@
     {
       id: 'contact',
       question: 'How can I contact you?',
-      answer: 'Message Vishesh on WhatsApp at +91 9054349785 using the link below, find @formiqbloom on Instagram, or use the website enquiry form. Submitting takes you to Google Forms in the current tab; check its confirmation to verify receipt. Share your business goals, services needed, and any existing website or content.'
+      answer: 'Message Vishesh on WhatsApp at +91 9054349785 using the link below, find @formiqbloom on Instagram, or use the website enquiry form. It submits in the background and shows its result here without leaving the website. Share your business goals, services needed, and any existing website or content.'
     }
   ];
 
