@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="chatbot.js" defer></script>
   <style>
     :root {
       color-scheme: dark;
@@ -175,7 +176,7 @@
     .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
     .tag { padding: .3rem .65rem; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); font-size: .65rem; }
 
-    /* Local assistant demo. */
+    /* Assistant section and shared chat styling. */
     .demo-section { background: #17151D; border-block: 1px solid var(--line); }
     .demo-grid { display: grid; grid-template-columns: .9fr 1fr; align-items: center; gap: 5rem; }
     .demo-copy h2 { max-width: 29rem; }
@@ -202,6 +203,36 @@
     .chat-input-row input { min-width: 0; width: 100%; }
     .chat-input-row button { min-width: 48px; padding: .75rem; }
     .chat-disclaimer { margin-top: .75rem; color: var(--muted); font-size: .65rem; }
+    .chat-teaser { padding: 1.5rem; }
+    .chat-teaser > p { color: var(--muted); font-size: .9rem; }
+    .chat-teaser .suggestions { display: grid; grid-template-columns: 1fr 1fr; margin-block: 1.5rem; }
+    .chat-teaser .button { width: 100%; }
+
+    /* Bottom-right assistant: square controls and room for the back-to-top link. */
+    .chat-launcher { position: fixed; right: clamp(1rem, 3vw, 2rem); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 41; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border: 1px solid var(--violet); background: var(--violet); color: #fff; box-shadow: 0 5px 24px #0006; }
+    .chat-launcher:hover { background: #6D28D9; }
+    .chat-launcher > .icon { width: 28px; height: 28px; }
+    .chat-launcher .close-icon { display: none; }
+    .chat-launcher[aria-expanded="true"] .open-icon { display: none; }
+    .chat-launcher[aria-expanded="true"] .close-icon { display: block; }
+    .chat-widget { position: fixed; right: clamp(1rem, 3vw, 2rem); bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 70px); z-index: 42; display: flex; flex-direction: column; width: min(390px, calc(100vw - 2rem)); height: min(620px, calc(100svh - 110px)); height: min(620px, calc(100dvh - 110px)); border: 1px solid #66517D; background: var(--card); box-shadow: 0 12px 48px #0008; overflow-y: auto; overscroll-behavior: contain; }
+    .chat-widget[hidden], .chat-launcher[hidden] { display: none; }
+    .widget-header { display: flex; align-items: center; gap: .65rem; padding: .85rem 1rem; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+    .widget-header h2 { font-size: 1.1rem; letter-spacing: -.025em; }
+    .widget-header p { color: var(--muted); font-size: .68rem; margin-top: .15rem; }
+    .widget-close { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin-left: auto; border: 1px solid var(--line); background: transparent; }
+    .widget-close:hover { background: #302A3D; }
+    .chat-widget .chat-log { flex: 1; min-height: 80px; height: auto; padding: 1rem; }
+    .chat-widget .chat-message p { white-space: pre-wrap; }
+    .widget-questions { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: 0; padding: .6rem 1rem; flex-shrink: 0; border-top: 1px solid var(--line); }
+    .widget-questions button { padding-inline: .5rem; font-size: .68rem; }
+    .widget-form { padding: .25rem 1rem .6rem; flex-shrink: 0; }
+    .widget-status { min-height: 1.3rem; padding-top: .25rem; color: var(--lime); font-size: .7rem; }
+    .widget-footer { padding: .65rem 1rem; border-top: 1px solid var(--line); color: var(--muted); flex-shrink: 0; font-size: .65rem; line-height: 1.5; }
+    .widget-footer a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; color: var(--lime); font-size: .75rem; }
+    .widget-footer p { margin-top: .15rem; }
+    .has-chat-widget .back-to-top { bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 72px); }
+    .chat-is-open .back-to-top { opacity: 0; visibility: hidden; pointer-events: none; }
 
     /* Process, founder, and enquiry options. */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; list-style: none; padding: 0; margin: 0; }
@@ -540,7 +571,7 @@
       </div>
     </section>
 
-    <!-- 05 / Frontend-only assistant; all dynamic messages use textContent. -->
+    <!-- 05 / Assistant entry point; shares the floating chat and its four saved answers. -->
     <section class="section demo-section" id="assistant-demo" aria-labelledby="demo-title">
       <div class="container demo-grid">
         <div class="demo-copy">
@@ -548,23 +579,17 @@
           <h2 id="demo-title">Useful answers.<br>A more human<br>first hello.</h2>
           <p>Give visitors a helpful starting point. An assistant can explain your services, answer common questions, and point people toward the next step.</p>
           <a class="text-link" href="#contact" data-service="assistant">Request a custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <p class="demo-note">Try this small preview. It uses predefined replies in your browser, with no connected AI service. A custom assistant would use your approved business information and agreed boundaries.</p>
+          <p class="demo-note">Choose a saved answer or open the chat to ask your own question. Custom questions use Groq AI and FormiqBloom’s published business information. Please check important details with Vishesh.</p>
         </div>
         <div class="chat">
-          <div class="chat-header"><div class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div><div><strong>Meet the FormiqBloom preview</strong><small>Interactive preview — sample responses.</small></div></div>
-          <div class="chat-log" id="chat-log" role="log" aria-label="Sample assistant conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
-            <div class="chat-message"><strong>FormiqBloom · sample</strong><p>Hello! Curious about a website, hosting, or a custom assistant? Ask me about the services or how a project starts.</p></div>
+          <div class="chat-header"><div class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div><div><strong>Meet your FormiqBloom assistant</strong><small>Four quick answers. AI for your other questions.</small></div></div>
+          <div class="chat-teaser">
+            <p>Curious about a website, hosting, or a custom assistant? Start with a question below.</p>
+            <div class="suggestions" data-widget-questions aria-label="Quick questions"></div>
+            <button class="button" type="button" data-open-chat disabled>Open the chat <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button>
+            <p class="chat-disclaimer">Custom questions are sent to Groq. Don’t share sensitive information.</p>
           </div>
-          <form class="chat-controls" id="chat-form">
-            <fieldset id="chat-fields" disabled>
-              <legend class="sr-only">Try the sample assistant</legend>
-              <div class="suggestions" aria-label="Suggested questions"><button type="button" data-question="What services do you offer?">What do you build?</button><button type="button" data-question="How does your process work?">How does it work?</button><button type="button" data-question="How do I start a project?">Let’s start a project</button></div>
-              <label class="chat-label" for="chat-input">Your question</label>
-              <div class="chat-input-row"><input id="chat-input" name="question" type="text" placeholder="Ask about FormiqBloom…" maxlength="400" required autocomplete="off"><button class="button" type="submit" aria-label="Send question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button></div>
-              <p class="chat-disclaimer">Local demo only. Please don’t share sensitive information.</p>
-            </fieldset>
-          </form>
-          <noscript><p>Enable JavaScript to try the sample conversation. You can still explore all services and project information on this page.</p></noscript>
+          <noscript><p>Enable JavaScript to use chat, or contact Vishesh through the WhatsApp links on this page.</p></noscript>
         </div>
       </div>
     </section>
@@ -670,13 +695,36 @@
             <a href="https://github.com/visheshsingh123/FormiqBloom" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> repository (opens in a new tab)</span></a>
           </nav>
         </div>
-        <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Project Options</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">Assistant Preview</a><a href="#contact">Contact</a></nav>
+        <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Project Options</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">Assistant</a><a href="#contact">Contact</a></nav>
       </div>
       <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><div class="footer-legal"><span>Privacy Policy <small>— coming soon</small></span><span>Terms of Service <small>— coming soon</small></span></div></div>
     </div>
   </footer>
 
   <a class="back-to-top" id="back-to-top" href="#top" aria-label="Back to top" title="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a>
+
+  <!-- Nonmodal assistant. The key stays on the server; recent chat lives only in memory. -->
+  <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open FormiqBloom chat" aria-controls="chat-widget" aria-expanded="false" hidden><svg class="icon open-icon" aria-hidden="true"><use href="#i-chat"/></svg><svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <aside class="chat-widget" id="chat-widget" role="dialog" aria-modal="false" aria-labelledby="widget-title" hidden>
+    <header class="widget-header">
+      <span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500"></span>
+      <div><h2 id="widget-title">FormiqBloom chat</h2><p>Saved answers + Groq AI</p></div>
+      <button class="widget-close" id="widget-close" type="button" aria-label="Close chat"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="chat-log" id="widget-log" role="log" aria-label="Chat conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
+      <div class="chat-message"><strong>FormiqBloom</strong><p>Hi! Choose a quick question for a saved answer, or ask me something about your project.</p></div>
+    </div>
+    <div class="suggestions widget-questions" data-widget-questions aria-label="Saved questions"></div>
+    <form class="widget-form" id="widget-form">
+      <fieldset id="widget-fields" disabled>
+        <legend class="sr-only">Ask FormiqBloom</legend>
+        <label class="chat-label" for="widget-input">Your question</label>
+        <div class="chat-input-row"><input id="widget-input" name="question" type="text" placeholder="Ask about your project…" maxlength="1000" required autocomplete="off" aria-describedby="widget-disclosure"><button class="button" type="submit" aria-label="Send chat question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button></div>
+      </fieldset>
+      <p class="widget-status" id="widget-status" role="status"></p>
+    </form>
+    <footer class="widget-footer"><p id="widget-disclosure">Custom questions and recent conversation are sent to Groq. AI can make mistakes. Don’t share sensitive information.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to Vishesh on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
+  </aside>
 
   <script>
     (() => {
@@ -737,52 +785,6 @@
         document.querySelector('.site-header .wordmark').focus({ preventScroll: true });
       });
       document.documentElement.classList.add('js');
-
-      // Frontend-only demo: no network requests, credentials, or HTML injection.
-      const chatForm = document.getElementById('chat-form');
-      const chatInput = document.getElementById('chat-input');
-      const chatLog = document.getElementById('chat-log');
-      const replies = [
-        { pattern: /\b(process|work flow|workflow|steps|discovery|design process)\b|how.*work/i, text: 'The process is Discovery → Design → Development → Launch & Support. We agree on scope, gather your input, review the design together, then build and prepare for launch. Ongoing support is agreed separately.' },
-        { pattern: /\b(timeline|time|long|when|deadline|weeks)\b/i, text: 'Timing depends on scope, content readiness, integrations, and feedback. Vishesh will discuss milestones with you before work begins; there is no one-size-fits-all delivery promise.' },
-        { pattern: /\b(price|pricing|cost|quote|budget|pay|allowance|usage)\b/i, text: 'Projects are quoted around your scope. Setup is separate from recurring hosting, maintenance, and AI usage. Allowances and overage handling are agreed before work begins. Use the contact section to explore your project options.' },
-        { pattern: /\b(start|enquiry|enquiries|contact|consultation|hire|project|book|whatsapp)\b/i, text: 'Start with your business goals, the services you need, and any existing website or content. Use the WhatsApp link in the contact section to discuss your project with Vishesh. The form itself is still an unconnected preview and cannot send enquiries.' },
-        { pattern: /\b(hosting|host|maintenance|https|deployment|updates|support)\b/i, text: 'Managed hosting and maintenance can cover deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan. Responsibilities, coverage, and recurring costs are clarified before work begins.' },
-        { pattern: /\b(ai|assistant|assistants|chatbot|chatbots|bot|faq|faqs)\b/i, text: 'A custom assistant can use your approved business information to answer FAQs and guide visitors toward enquiries. Its boundaries, human handoff, and usage allowance are agreed in advance. AI can make mistakes. This preview uses predefined replies, not a connected AI model.' },
-        { pattern: /\b(website|websites|responsive|redesign|pwa)\b/i, text: 'FormiqBloom designs and develops responsive business websites with clear navigation and enquiry flows. An existing site can be reviewed to decide whether updates or a rebuild make the most sense.' },
-        { pattern: /\b(nutriglance|portfolio|example|examples)\b/i, text: 'NutriGlance is a founder-built project for AI-assisted nutrition tracking, meal logging, and progress dashboards, with a responsive web and PWA experience. You can explore the live project through the Selected Work section.' },
-        { pattern: /\b(founder|vishesh|team|agency|who)\b/i, text: 'FormiqBloom is a founder-led agency by Vishesh. The focus is thoughtful design, practical functionality, and direct communication with the person building your project.' },
-        { pattern: /\b(services|offer|build|do)\b/i, text: 'FormiqBloom offers Website Design & Development, Managed Hosting & Maintenance, and custom AI Assistants. You can start with a website, add ongoing care, or explore a website with an assistant.' },
-        { pattern: /^(hi|hello|hey|thanks|thank you)[!.\s]*$/i, text: 'Hello! I can share sample answers about FormiqBloom’s services, process, or how a project starts. What would you like to explore?' }
-      ];
-      function addMessage(speaker, text, user = false) {
-        const message = document.createElement('div');
-        message.className = 'chat-message' + (user ? ' user' : '');
-        const label = document.createElement('strong');
-        label.textContent = speaker;
-        const content = document.createElement('p');
-        content.textContent = text;
-        message.append(label, content);
-        chatLog.append(message);
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }
-      function ask(question) {
-        const text = question.trim().slice(0, 400);
-        if (!text) { chatInput.focus(); return; }
-        addMessage('You', text, true);
-        const match = replies.find(reply => reply.pattern.test(text));
-        addMessage('FormiqBloom · sample', match ? match.text : 'I only have sample replies about FormiqBloom’s services, process, pricing approach, and enquiries. Try asking about one of those. For a specific business requirement, use the WhatsApp link in the contact section; the form itself is not connected yet.');
-        chatInput.value = '';
-      }
-      chatForm.addEventListener('submit', event => {
-        event.preventDefault();
-        ask(chatInput.value);
-        chatInput.focus();
-      });
-      document.querySelectorAll('[data-question]').forEach(button => {
-        button.addEventListener('click', () => ask(button.dataset.question));
-      });
-      document.getElementById('chat-fields').disabled = false;
 
       const contactForm = document.getElementById('consultation-form');
       const serviceSelect = document.getElementById('service');
