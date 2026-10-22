@@ -84,9 +84,9 @@
     .menu-toggle[aria-expanded="true"] .close-icon { display: block; }
 
     /* Hero and hand-built illustrative website / assistant preview. */
-    .hero { position: relative; isolation: isolate; padding-block: clamp(4rem, 7vw, 7rem) 4rem; overflow: hidden; }
+    .hero { position: relative; isolation: isolate; padding-block: clamp(2rem, 3vw, 3rem) 3rem; overflow: hidden; }
     .hero::before { content: ""; position: absolute; z-index: -1; inset: 0 0 0 52%; background-image: linear-gradient(#35333f40 1px, transparent 1px), linear-gradient(90deg, #35333f40 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(90deg, transparent, #000); }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 3rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; align-items: start; gap: 3rem; }
     .hero .eyebrow { font-size: .68rem; letter-spacing: .12em; }
     .hero h1 { max-width: 730px; font-size: clamp(3rem, 4.8vw, 4.6rem); }
     .hero h1 span { color: var(--lime); }
@@ -94,7 +94,7 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
     .hero-footnote { display: flex; gap: .6rem; align-items: center; margin-top: 2.2rem; color: var(--muted); font-size: .75rem; }
     .hero-footnote .icon { color: var(--lime); width: 1rem; height: 1rem; }
-    .hero-visual { position: relative; min-width: 0; padding: 2rem 0 6.5rem; }
+    .hero-visual { position: relative; min-width: 0; padding: .25rem 0 6.5rem; }
     .visual-caption { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; color: var(--muted); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
     .browser-window { border: 1px solid #5F586E; border-radius: 9px; background: var(--card); box-shadow: 14px 16px 0 #22202C; overflow: hidden; transform: rotate(-2deg); }
     .browser-bar { display: flex; align-items: center; gap: 5px; padding: 12px 15px; border-bottom: 1px solid #3B364A; }
@@ -328,7 +328,7 @@
       .container { width: calc(100% - 2.25rem); }
       .wordmark { width: 200px; }
       .brand-icon { width: 24px; height: 24px; }
-      .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
+      .hero { padding-top: 2rem; padding-bottom: 2rem; }
       .hero .eyebrow { max-width: 20rem; font-size: .6rem; letter-spacing: .08em; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero-visual { width: 94%; padding-bottom: 7rem; }
