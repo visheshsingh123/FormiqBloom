@@ -103,7 +103,9 @@
       });
       const data = await response.json().catch(() => null);
       if (!response.ok) {
-        throw new Error(typeof data?.error === 'string' ? data.error : 'AI chat is unavailable here. Please use WhatsApp or try again later.');
+        const message = typeof data?.error === 'string' ? data.error : 'AI chat is unavailable here. Please use WhatsApp or try again later.';
+        const reference = typeof data?.code === 'string' && /^AI_[A-Z_]{1,40}$/.test(data.code) ? ` (Reference: ${data.code})` : '';
+        throw new Error(message + reference);
       }
       if (typeof data?.answer !== 'string' || !data.answer.trim()) throw new Error('The assistant could not produce an answer. Please try again or use WhatsApp.');
       addMessage('FormiqBloom · AI', data.answer);

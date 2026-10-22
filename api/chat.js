@@ -5,12 +5,27 @@ const visitors = new Map();
 const WINDOW_MS = 60_000;
 const REQUEST_LIMIT = 8;
 const MAX_BODY_BYTES = 65_536;
+const DEFAULT_MODELS = ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile'];
 
 function getKey() {
   // Server-only variable names are case-sensitive; prefer the requested `api`.
   return ['api', 'GROQ_API_KEY', 'API']
     .map(name => (process.env[name] || '').trim())
     .find(Boolean);
+}
+
+function providerFailure(status, data) {
+  const providerCode = data?.error?.code;
+  const modelUnavailable = ['model_decommissioned', 'model_not_found', 'model_not_available', 'model_permission_blocked'].includes(providerCode)
+    || ([400, 404].includes(status) && /model.*(?:decommissioned|not found|does not exist|not available|not supported)/i.test(String(data?.error?.message || '')));
+  if (status === 401 || providerCode === 'invalid_api_key') {
+    return { code: 'AI_AUTH_FAILED', error: 'AI chat could not authenticate with its provider. Please use WhatsApp to reach Vishesh.' };
+  }
+  if (modelUnavailable) return { code: 'AI_MODEL_UNAVAILABLE', error: 'The AI model is currently unavailable. Please use WhatsApp or try again later.' };
+  if (status === 403) return { code: 'AI_ACCESS_DENIED', error: 'The AI provider is not allowing chat requests from this deployment. Please use WhatsApp.' };
+  if (status === 429) return { code: 'AI_RATE_LIMIT', error: 'The AI service has reached its current usage limit. Please try again later or contact Vishesh on WhatsApp.' };
+  if (status === 400) return { code: 'AI_REQUEST_REJECTED', error: 'The AI provider could not accept this request. Please try a shorter question or use WhatsApp.' };
+  return { code: 'AI_PROVIDER_UNAVAILABLE', error: 'AI chat is temporarily unavailable. Please try again or use WhatsApp.' };
 }
 
 const SYSTEM_PROMPT = `You are the friendly, concise website assistant for FormiqBloom.
@@ -118,7 +133,7 @@ module.exports = async function handler(req, res) {
   const messages = validMessages(body);
   if (!messages) return respond(res, 400, { error: 'Please send a question of up to 1,000 characters with a short conversation history.' });
   const key = getKey();
-  if (!key) return respond(res, 503, { error: 'AI chat is not available on this deployment yet. Please use WhatsApp to reach Vishesh.' });
+  if (!key) return respond(res, 503, { code: 'AI_NOT_CONFIGURED', error: 'AI chat is not available on this deployment yet. Please use WhatsApp to reach Vishesh.' });
 
   // Best-effort per-instance limit; Vercel Firewall can enforce deployment-wide limits.
   const now = Date.now();
@@ -137,32 +152,42 @@ module.exports = async function handler(req, res) {
   record.count++;
 
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant',
-        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
-        temperature: 0.35,
-        max_tokens: 450,
-        stream: false
-      }),
-      signal: AbortSignal.timeout(18_000)
-    });
-    if (!response.ok) {
-      if (response.status === 429) return respond(res, 429, { error: 'The AI service has reached its current usage limit. Please try again later or contact Vishesh on WhatsApp.' });
-      // Never forward provider diagnostics, request headers, or credential details.
-      return respond(res, 502, { error: 'AI chat is temporarily unavailable. Please try again or use WhatsApp.' });
+    const configuredModel = (process.env.GROQ_MODEL || '').trim();
+    const models = configuredModel ? [configuredModel] : DEFAULT_MODELS;
+    // All attempts share one deadline, within Vercel's 30-second function budget.
+    const signal = AbortSignal.timeout(18_000);
+    for (let attempt = 0; attempt < models.length; attempt++) {
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: models[attempt],
+          messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
+          temperature: 0.35,
+          max_tokens: 450,
+          stream: false
+        }),
+        signal
+      });
+      let data;
+      try { data = await response.json(); } catch { data = null; }
+      if (!response.ok) {
+        const failure = providerFailure(response.status, data);
+        if (failure.code === 'AI_MODEL_UNAVAILABLE' && attempt + 1 < models.length) continue;
+        // Log only our fixed classification and HTTP status, never provider payloads or keys.
+        console.warn('[FormiqBloom chat]', failure.code, 'upstream status:', response.status);
+        return respond(res, response.status === 429 ? 429 : 502, { ...failure, providerStatus: response.status });
+      }
+      const answer = data?.choices?.[0]?.message?.content;
+      if (typeof answer !== 'string' || !answer.trim()) {
+        return respond(res, 502, { code: 'AI_EMPTY_REPLY', error: 'The assistant could not produce an answer. Please try again or use WhatsApp.' });
+      }
+      return respond(res, 200, { answer: answer.trim().slice(0, 5000) });
     }
-    const data = await response.json();
-    const answer = data?.choices?.[0]?.message?.content;
-    if (typeof answer !== 'string' || !answer.trim()) {
-      return respond(res, 502, { error: 'The assistant could not produce an answer. Please try again or use WhatsApp.' });
-    }
-    return respond(res, 200, { answer: answer.trim().slice(0, 5000) });
   } catch (error) {
     const timedOut = error.name === 'TimeoutError' || error.name === 'AbortError';
     return respond(res, timedOut ? 504 : 502, {
+      code: timedOut ? 'AI_TIMEOUT' : 'AI_CONNECTION_ERROR',
       error: timedOut ? 'The AI reply took too long. Please try again or contact Vishesh on WhatsApp.' : 'AI chat could not connect. Please try again or use WhatsApp.'
     });
   }

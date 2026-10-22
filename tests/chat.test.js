@@ -7,7 +7,7 @@ const handler = require('../api/chat');
 
 let sequence = 0;
 function setup(t) {
-  const names = ['api', 'GROQ_API_KEY', 'API'];
+  const names = ['api', 'GROQ_API_KEY', 'API', 'GROQ_MODEL'];
   const previous = Object.fromEntries(names.map(name => [name, process.env[name]]));
   for (const name of names) delete process.env[name];
   process.env.api = 'test-only-not-a-real-key';
@@ -162,7 +162,50 @@ test('does not pass upstream authentication diagnostics or keys to the browser',
   t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status: 401, json: async () => ({ error: 'test-only-not-a-real-key' }) }));
   const result = await request();
   assert.equal(result.status, 502);
+  assert.equal(result.body.code, 'AI_AUTH_FAILED');
+  assert.equal(result.body.providerStatus, 401);
   assert.ok(!JSON.stringify(result).includes('test-only-not-a-real-key'));
+});
+
+test('distinguishes access, request, and service errors without forwarding provider payloads', async t => {
+  setup(t);
+  let status;
+  t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status, json: async () => ({ error: { message: 'sensitive-provider-payload' } }) }));
+  for (const [providerStatus, code] of [[403, 'AI_ACCESS_DENIED'], [400, 'AI_REQUEST_REJECTED'], [500, 'AI_PROVIDER_UNAVAILABLE']]) {
+    status = providerStatus;
+    const result = await request();
+    assert.equal(result.body.code, code);
+    assert.equal(result.body.providerStatus, providerStatus);
+    assert.ok(!JSON.stringify(result).includes('sensitive-provider-payload'));
+  }
+});
+
+test('uses a fallback only when Groq explicitly reports the default model unavailable', async t => {
+  setup(t);
+  const models = [];
+  const signals = [];
+  t.mock.method(globalThis, 'fetch', async (_, options) => {
+    models.push(JSON.parse(options.body).model);
+    signals.push(options.signal);
+    if (models.length === 1) return { ok: false, status: 400, json: async () => ({ error: { code: 'model_decommissioned' } }) };
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'We can discuss multilingual navigation.' } }] }) };
+  });
+  const result = await request();
+  assert.equal(result.status, 200);
+  assert.deepEqual(models, ['llama-3.1-8b-instant', 'llama-3.3-70b-versatile']);
+  assert.equal(signals[0], signals[1]);
+});
+
+test('does not retry invalid keys or silently override a configured model', async t => {
+  setup(t);
+  const upstream = t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status: 401, json: async () => ({ error: { code: 'invalid_api_key' } }) }));
+  await request();
+  assert.equal(upstream.mock.callCount(), 1);
+  process.env.GROQ_MODEL = 'custom-model';
+  upstream.mock.mockImplementation(async () => ({ ok: false, status: 404, json: async () => ({ error: { code: 'model_not_found' } }) }));
+  const result = await request();
+  assert.equal(result.body.code, 'AI_MODEL_UNAVAILABLE');
+  assert.equal(upstream.mock.callCount(), 2);
 });
 
 test('maps Groq quota errors and empty answers to helpful failure states', async t => {
