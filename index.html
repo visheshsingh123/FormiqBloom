@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#101014">
   <meta name="description" content="FormiqBloom is Vishesh’s founder-led agency for responsive websites, managed hosting, and custom AI assistants. Build your next stage.">
   <title>FormiqBloom — Built for your next stage.</title>
+  <link rel="icon" type="image/png" sizes="500x500" href="Assets/fav.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -61,8 +62,11 @@
     /* Navigation: native details also works without JavaScript. */
     .site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--line); background: var(--bg); }
     .nav-shell { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 84px; }
-    .wordmark { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--display); font-size: 1.4rem; font-weight: 700; letter-spacing: -.055em; white-space: nowrap; }
-    .brand-icon { width: 28px; height: 28px; color: var(--violet); flex-shrink: 0; }
+    /* Crop transparent asset padding for a clear, consistently sized brand. */
+    .wordmark { position: relative; display: inline-flex; width: 225px; height: 44px; overflow: hidden; flex-shrink: 0; }
+    .brand-logo { position: absolute; width: 133.52%; max-width: none; height: auto; left: -16.15%; top: 50%; transform: translateY(-50%); }
+    .brand-icon { position: relative; display: block; width: 28px; height: 28px; overflow: hidden; flex-shrink: 0; }
+    .brand-icon img { position: absolute; width: 200%; max-width: none; height: auto; left: -50%; top: -37.6%; }
     .nav-links { display: flex; align-items: center; gap: 1.65rem; }
     .nav-links > a:not(.button), .nav-dropdown summary { display: flex; align-items: center; gap: .35rem; min-height: 44px; font-size: .85rem; color: var(--muted); }
     .nav-links > a:hover, .nav-dropdown summary:hover { color: var(--text); }
@@ -104,7 +108,7 @@
     .sample-site-copy { color: #5B565D; font-size: .65rem; line-height: 1.7; }
     .sample-cta { display: inline-block; margin-top: 1rem; padding: .5rem .8rem; background: #252329; color: #fff; font-size: .55rem; }
     .bloom-art { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: #C8C0E6; }
-    .bloom-art svg { width: 75%; height: 75%; color: #6D28D9; transform: rotate(15deg); }
+    .bloom-art .brand-icon { width: 70%; height: 70%; transform: rotate(15deg); }
     .assistant-float { position: absolute; right: -.5rem; bottom: 0; width: 78%; padding: 1rem; border: 1px solid #605277; border-radius: 8px; background: #24202F; box-shadow: 0 12px 30px #0005; transform: rotate(2deg); }
     .assistant-float-header { display: flex; align-items: center; gap: .55rem; margin-bottom: .8rem; font-size: .7rem; }
     .assistant-float-header > span:last-child { margin-left: auto; color: var(--muted); font-size: .6rem; }
@@ -178,7 +182,7 @@
     .demo-note { padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .8rem; }
     .chat { min-width: 0; border: 1px solid #51435F; border-radius: 10px; background: var(--card); overflow: hidden; }
     .chat-header { display: flex; align-items: center; gap: .75rem; padding: 1.25rem; border-bottom: 1px solid var(--line); }
-    .chat-avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 7px; background: var(--violet); }
+    .chat-avatar { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #51435F; border-radius: 7px; background: #2F2440; }
     .chat-avatar .brand-icon { width: 24px; height: 24px; color: #fff; }
     .chat-header strong { display: block; font-size: .85rem; }
     .chat-header small { display: block; color: var(--muted); font-size: .68rem; }
@@ -322,7 +326,7 @@
     }
     @media (max-width: 560px) {
       .container { width: calc(100% - 2.25rem); }
-      .wordmark { font-size: 1.25rem; }
+      .wordmark { width: 200px; }
       .brand-icon { width: 24px; height: 24px; }
       .hero { padding-top: 3.5rem; padding-bottom: 2rem; }
       .hero .eyebrow { max-width: 20rem; font-size: .6rem; letter-spacing: .08em; }
@@ -370,10 +374,9 @@
 <body id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Shared inline SVG icons; no image or icon library required. -->
+  <!-- Shared inline SVG interface icons; no icon library required. -->
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
-      <symbol id="i-bloom" viewBox="0 0 32 32"><path fill="currentColor" d="M16 15C3-5-5 3 15 16-5 29 3 37 16 17c13 20 21 12 1-1C37 3 29-5 16 15Z"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
       <symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
@@ -392,7 +395,7 @@
   <!-- Sticky navigation. -->
   <header class="site-header">
     <div class="container nav-shell">
-      <a class="wordmark" href="#top" aria-label="FormiqBloom, back to top"><svg class="brand-icon" aria-hidden="true"><use href="#i-bloom"/></svg>FormiqBloom<span aria-hidden="true" style="color:var(--lime)">.</span></a>
+      <a class="wordmark" href="#top" aria-label="FormiqBloom, back to top"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span id="menu-label">Menu</span><svg class="icon menu-icon" aria-hidden="true"><use href="#i-menu"/></svg><svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
@@ -438,12 +441,12 @@
                 <div class="sample-site-heading">Make room<br>for what’s next.</div>
                 <div class="sample-site-bottom">
                   <div><p class="sample-site-copy">A clear story.<br>A thoughtful experience.<br>A website that feels like you.</p><span class="sample-cta">Discover more</span></div>
-                  <div class="bloom-art"><svg><use href="#i-bloom"/></svg></div>
+                  <div class="bloom-art"><span class="brand-icon"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div>
                 </div>
               </div>
             </div>
             <div class="assistant-float" aria-hidden="true">
-              <div class="assistant-float-header"><svg class="brand-icon"><use href="#i-bloom"/></svg><strong>A little help, built in.</strong><span>SAMPLE</span></div>
+              <div class="assistant-float-header"><span class="brand-icon"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span><strong>A little help, built in.</strong><span>SAMPLE</span></div>
               <div class="sample-bubble user">Can you help with my website?</div>
               <div class="sample-bubble bot">From design to hosting — let’s find the right fit for your business.</div>
             </div>
@@ -535,7 +538,7 @@
           <p class="demo-note">Try this small preview. It uses predefined replies in your browser, with no connected AI service. A custom assistant would use your approved business information and agreed boundaries.</p>
         </div>
         <div class="chat">
-          <div class="chat-header"><div class="chat-avatar"><svg class="brand-icon" aria-hidden="true"><use href="#i-bloom"/></svg></div><div><strong>Meet the FormiqBloom preview</strong><small>Interactive preview — sample responses.</small></div></div>
+          <div class="chat-header"><div class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div><div><strong>Meet the FormiqBloom preview</strong><small>Interactive preview — sample responses.</small></div></div>
           <div class="chat-log" id="chat-log" role="log" aria-label="Sample assistant conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
             <div class="chat-message"><strong>FormiqBloom · sample</strong><p>Hello! Curious about a website, hosting, or a custom assistant? Ask me about the services or how a project starts.</p></div>
           </div>
@@ -634,7 +637,7 @@
   <!-- 11 / Footer. Legal labels remain plain text until documents exist. -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-main"><div class="footer-brand"><a class="wordmark" href="#top" aria-label="FormiqBloom, back to top"><svg class="brand-icon" aria-hidden="true"><use href="#i-bloom"/></svg>FormiqBloom<span aria-hidden="true" style="color:var(--lime)">.</span></a><p>Thoughtful websites. Considered hosting.<br>Helpful AI. Built for your next stage.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Project Options</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">Assistant Preview</a><a href="#contact">Contact</a></nav></div>
+      <div class="footer-main"><div class="footer-brand"><a class="wordmark" href="#top" aria-label="FormiqBloom, back to top"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a><p>Thoughtful websites. Considered hosting.<br>Helpful AI. Built for your next stage.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="#work">Selected Work</a><a href="#about">About</a><a href="#options">Project Options</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">Assistant Preview</a><a href="#contact">Contact</a></nav></div>
       <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><div class="footer-legal"><span>Privacy Policy <small>— coming soon</small></span><span>Terms of Service <small>— coming soon</small></span></div></div>
     </div>
   </footer>
