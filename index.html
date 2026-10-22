@@ -35,7 +35,7 @@
     a { color: inherit; text-decoration: none; }
     button, input, select, textarea { font: inherit; }
     button, summary, select { cursor: pointer; }
-    button { color: inherit; }
+    button { color: inherit; border-radius: 0; }
     a, button, summary, input, select, textarea { -webkit-tap-highlight-color: transparent; }
     :focus-visible { outline: 3px solid var(--lime); outline-offset: 5px; }
     input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 2px; }
@@ -51,7 +51,7 @@
     .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3rem; }
     .section-heading > p { max-width: 25rem; color: var(--muted); }
     .section-heading h2 { max-width: 42rem; }
-    .button { display: inline-flex; min-height: 50px; justify-content: center; align-items: center; gap: .85rem; padding: .85rem 1.4rem; border: 1px solid transparent; border-radius: 5px; background: var(--violet); color: #fff; font-size: .9rem; font-weight: 600; line-height: 1.4; transition: background .2s, transform .2s, border-color .2s; }
+    .button { display: inline-flex; min-height: 50px; justify-content: center; align-items: center; gap: .85rem; padding: .85rem 1.4rem; border: 1px solid transparent; border-radius: 0; background: var(--violet); color: #fff; font-size: .9rem; font-weight: 600; line-height: 1.4; transition: background .2s, transform .2s, border-color .2s; }
     .button:hover { background: #6D28D9; transform: translateY(-2px); }
     .button.secondary { border-color: #514C62; background: transparent; color: var(--text); }
     .button.secondary:hover { background: var(--card); border-color: var(--muted); }
@@ -83,7 +83,7 @@
     .dropdown-panel { position: absolute; top: 100%; left: -1rem; width: 290px; padding: .5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--card); box-shadow: 0 14px 30px #0005; }
     .dropdown-panel a { display: block; padding: .8rem; border-radius: 3px; font-size: .85rem; }
     .dropdown-panel a:hover { background: #2C2838; color: var(--lime); }
-    .menu-toggle { display: none; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .5rem .75rem; border: 1px solid var(--line); border-radius: 4px; background: var(--card); font-size: .85rem; }
+    .menu-toggle { display: none; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .5rem .75rem; border: 1px solid var(--line); border-radius: 0; background: var(--card); font-size: .85rem; }
     .menu-toggle .close-icon { display: none; }
     .menu-toggle[aria-expanded="true"] .menu-icon { display: none; }
     .menu-toggle[aria-expanded="true"] .close-icon { display: block; }
@@ -199,7 +199,7 @@
     fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
     .chat-controls { padding: 0 1.25rem 1.25rem; }
     .suggestions { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
-    .suggestions button { min-height: 44px; padding: .45rem .65rem; border: 1px solid #5C4E70; border-radius: 4px; background: transparent; color: var(--text); font-size: .7rem; }
+    .suggestions button { min-height: 44px; padding: .45rem .65rem; border: 1px solid #5C4E70; border-radius: 0; background: transparent; color: var(--text); font-size: .7rem; }
     .suggestions button:hover { background: #382A4A; }
     .chat-label { display: block; margin-bottom: .4rem; font-size: .7rem; color: var(--muted); }
     .chat-input-row { display: flex; gap: .5rem; }
@@ -281,6 +281,12 @@
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; }
     .footer-legal { display: flex; flex-wrap: wrap; gap: 1.5rem; }
     .footer-legal small { color: #BFA3E8; font-size: .6rem; }
+
+    /* Native anchor remains usable without JavaScript. */
+    .back-to-top { position: fixed; right: clamp(1rem, 3vw, 2rem); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 25; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid var(--lime); background: var(--lime); color: var(--bg); box-shadow: 0 4px 20px #0005; transition: opacity .2s, visibility .2s, transform .2s, background .2s; }
+    .back-to-top .icon { transform: rotate(-90deg); }
+    .back-to-top:hover { background: var(--text); border-color: var(--text); }
+    .js .back-to-top:not(.is-visible) { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); }
 
     @media (min-width: 1400px) { .hero-grid { gap: 4rem; } }
     @media (max-width: 1050px) {
@@ -647,6 +653,8 @@
     </div>
   </footer>
 
+  <a class="back-to-top" id="back-to-top" href="#top" aria-label="Back to top" title="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a>
+
   <script>
     (() => {
       'use strict';
@@ -694,6 +702,17 @@
         }
       });
       mobile.addEventListener('change', () => setMenu(false));
+
+      const backToTop = document.getElementById('back-to-top');
+      const updateBackToTop = () => backToTop.classList.toggle('is-visible', window.scrollY > 400);
+      window.addEventListener('scroll', updateBackToTop, { passive: true });
+      updateBackToTop();
+      backToTop.addEventListener('click', event => {
+        event.preventDefault();
+        // Use the CSS scroll behavior, including its reduced-motion override.
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        document.querySelector('.site-header .wordmark').focus({ preventScroll: true });
+      });
       document.documentElement.classList.add('js');
 
       // Explicit pause complements hover pause and reduced-motion support.
