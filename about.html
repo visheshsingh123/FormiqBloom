@@ -198,7 +198,12 @@
     .breadcrumb a:hover { color: var(--lime); }
     .breadcrumb span { align-self: center; }
     .about-heading { font-size: clamp(3.2rem, 6vw, 5.5rem); }
-    .about-heading span { color: var(--lime); }
+    .about-heading .hero-line-accent { color: var(--lime); }
+    .hero-title-line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+    .hero-title-text { display: block; animation: hero-line-rise .9s cubic-bezier(.22, 1, .36, 1) backwards; }
+    .hero-title-line:nth-child(2) .hero-title-text { animation-delay: .16s; }
+    .hero-title-line:nth-child(3) .hero-title-text { animation-delay: .32s; }
+    @keyframes hero-line-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
     .about-lead { max-width: 35rem; margin-top: 1.7rem; color: var(--muted); font-size: 1.05rem; }
     .founder-profile { align-self: stretch; display: flex; flex-direction: column; padding-top: 2rem; }
     .founder-visual { position: relative; display: grid; place-items: center; flex: 1; min-height: 320px; border: 1px solid #5C4377; background: #21182E; }
@@ -332,7 +337,7 @@
         <div class="about-hero-grid">
           <div>
             <div class="eyebrow">About FormiqBloom</div>
-            <h1 class="about-heading" id="about-title">Founder-led.<br>Thoughtfully<br><span>built.</span></h1>
+            <h1 class="about-heading" id="about-title"><span class="hero-title-line"><span class="hero-title-text">Founder-led.</span></span><span class="hero-title-line"><span class="hero-title-text">Thoughtfully</span></span><span class="hero-title-line hero-line-accent"><span class="hero-title-text">built.</span></span></h1>
             <p class="about-lead">An independent agency by Vishesh, bringing thoughtful design, practical functionality, and direct communication to your next stage online.</p>
             <div class="about-actions"><a class="button" href="index.html#contact">Let’s talk about your idea <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="button secondary" href="index.html#work">Explore the work <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></div>
           </div>
