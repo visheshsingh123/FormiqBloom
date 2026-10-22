@@ -65,7 +65,7 @@ test('relays valid history with server business context and keeps the key out of
 test('rejects methods, foreign origins, and non-JSON requests before calling Groq', async t => {
   setup(t);
   const upstream = t.mock.method(globalThis, 'fetch', async () => { throw new Error('Must not call'); });
-  assert.equal((await request({ method: 'GET' })).status, 405);
+  assert.equal((await request({ method: 'PUT' })).status, 405);
   assert.equal((await request({ headers: { host: 'example.test', origin: 'https://other.test', 'content-type': 'application/json' } })).status, 403);
   assert.equal((await request({ headers: { 'content-type': 'text/plain' } })).status, 415);
   assert.equal(upstream.mock.callCount(), 0);
@@ -94,6 +94,35 @@ test('handles missing Vercel key without exposing internals', async t => {
   const result = await request();
   assert.equal(result.status, 503);
   assert.match(result.body.error, /WhatsApp/);
+});
+
+test('GET reports only safe deployment metadata and never calls Groq', async t => {
+  setup(t);
+  const upstream = t.mock.method(globalThis, 'fetch', async () => { throw new Error('Must not call'); });
+  const originalEnv = process.env.VERCEL_ENV;
+  const originalRevision = process.env.VERCEL_GIT_COMMIT_SHA;
+  t.after(() => {
+    if (originalEnv === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = originalEnv;
+    if (originalRevision === undefined) delete process.env.VERCEL_GIT_COMMIT_SHA;
+    else process.env.VERCEL_GIT_COMMIT_SHA = originalRevision;
+  });
+  process.env.VERCEL_ENV = 'production';
+  process.env.VERCEL_GIT_COMMIT_SHA = '9e21bd270b429865be2ee4cfb4438f0843d679c6';
+  const ready = await request({ method: 'GET' });
+  assert.equal(ready.status, 200);
+  assert.deepEqual(ready.body, { keyConfigured: true, deployment: 'production', revision: '9e21bd2', providerChecked: false });
+  assert.equal(ready.headers['cache-control'], 'no-store');
+  assert.ok(!JSON.stringify(ready).includes('test-only-not-a-real-key'));
+  delete process.env.api;
+  assert.equal((await request({ method: 'GET' })).body.keyConfigured, false);
+  process.env.VERCEL_ENV = 'test-only-not-a-real-key';
+  process.env.VERCEL_GIT_COMMIT_SHA = 'test-only-not-a-real-key';
+  const invalidMetadata = await request({ method: 'GET' });
+  assert.equal(invalidMetadata.body.deployment, 'unknown');
+  assert.equal(invalidMetadata.body.revision, 'unknown');
+  assert.ok(!JSON.stringify(invalidMetadata).includes('test-only-not-a-real-key'));
+  assert.equal(upstream.mock.callCount(), 0);
 });
 
 test('supports common server variable names and trims accidental whitespace', async t => {

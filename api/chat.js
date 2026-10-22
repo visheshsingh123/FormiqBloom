@@ -6,6 +6,13 @@ const WINDOW_MS = 60_000;
 const REQUEST_LIMIT = 8;
 const MAX_BODY_BYTES = 65_536;
 
+function getKey() {
+  // Server-only variable names are case-sensitive; prefer the requested `api`.
+  return ['api', 'GROQ_API_KEY', 'API']
+    .map(name => (process.env[name] || '').trim())
+    .find(Boolean);
+}
+
 const SYSTEM_PROMPT = `You are the friendly, concise website assistant for FormiqBloom.
 Help visitors understand its services and take an appropriate next step. Answer in plain text, usually under 150 words.
 Use the following business facts as your source of truth. Do not invent prices, timelines, guarantees, clients, awards, credentials, team members, or commitments.
@@ -70,9 +77,20 @@ function validMessages(body) {
 }
 
 module.exports = async function handler(req, res) {
+  // Safe deployment diagnostics: no key values and no requests to Groq.
+  if (req.method === 'GET') {
+    const environment = process.env.VERCEL_ENV;
+    const revision = process.env.VERCEL_GIT_COMMIT_SHA || '';
+    return respond(res, 200, {
+      keyConfigured: Boolean(getKey()),
+      deployment: ['production', 'preview', 'development'].includes(environment) ? environment : 'unknown',
+      revision: /^[a-f0-9]{40}$/i.test(revision) ? revision.slice(0, 7) : 'unknown',
+      providerChecked: false
+    });
+  }
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return respond(res, 405, { error: 'Please send a chat message using POST.' });
+    res.setHeader('Allow', 'GET, POST');
+    return respond(res, 405, { error: 'Use GET for deployment status or POST for a chat message.' });
   }
   // Same-origin browser requests only; no permissive CORS headers.
   if (req.headers.origin) {
@@ -99,11 +117,7 @@ module.exports = async function handler(req, res) {
   }
   const messages = validMessages(body);
   if (!messages) return respond(res, 400, { error: 'Please send a question of up to 1,000 characters with a short conversation history.' });
-  // Vercel variable names are case-sensitive. Keep the requested `api` name
-  // first, while also supporting common server-only Groq key names.
-  const key = ['api', 'GROQ_API_KEY', 'API']
-    .map(name => (process.env[name] || '').trim())
-    .find(Boolean);
+  const key = getKey();
   if (!key) return respond(res, 503, { error: 'AI chat is not available on this deployment yet. Please use WhatsApp to reach Vishesh.' });
 
   // Best-effort per-instance limit; Vercel Firewall can enforce deployment-wide limits.

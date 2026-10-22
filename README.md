@@ -21,6 +21,8 @@ That response specifically means the running Vercel function has no nonempty sup
 
 Enter the credential only in Vercel's secure environment settings, never in chat or source code.
 
+For a safe deployment check, open `/api/chat` in the deployed site's browser. GET returns only `keyConfigured`, the deployment environment, the deployed Git revision, and `providerChecked: false`. It does not expose the key or call Groq. `keyConfigured: true` confirms the function sees a supported nonempty variable; it does not prove Groq accepts it. Check the revision to distinguish an old deployment from the latest Git commit, then test a custom chat question to exercise Groq.
+
 ## Chat behavior
 
 `chatbot.js` provides four fixed answers about services, process, pricing, and contact. Clicking them (or typing the exact question) does not call Groq. All other questions go to the same-origin `/api/chat` endpoint, which adds the agency's business facts and calls Groq with the server key.
