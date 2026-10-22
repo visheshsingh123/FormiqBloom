@@ -99,7 +99,11 @@ module.exports = async function handler(req, res) {
   }
   const messages = validMessages(body);
   if (!messages) return respond(res, 400, { error: 'Please send a question of up to 1,000 characters with a short conversation history.' });
-  const key = process.env.api;
+  // Vercel variable names are case-sensitive. Keep the requested `api` name
+  // first, while also supporting common server-only Groq key names.
+  const key = ['api', 'GROQ_API_KEY', 'API']
+    .map(name => (process.env[name] || '').trim())
+    .find(Boolean);
   if (!key) return respond(res, 503, { error: 'AI chat is not available on this deployment yet. Please use WhatsApp to reach Vishesh.' });
 
   // Best-effort per-instance limit; Vercel Firewall can enforce deployment-wide limits.

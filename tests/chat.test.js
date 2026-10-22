@@ -7,11 +7,15 @@ const handler = require('../api/chat');
 
 let sequence = 0;
 function setup(t) {
-  const previous = process.env.api;
+  const names = ['api', 'GROQ_API_KEY', 'API'];
+  const previous = Object.fromEntries(names.map(name => [name, process.env[name]]));
+  for (const name of names) delete process.env[name];
   process.env.api = 'test-only-not-a-real-key';
   t.after(() => {
-    if (previous === undefined) delete process.env.api;
-    else process.env.api = previous;
+    for (const name of names) {
+      if (previous[name] === undefined) delete process.env[name];
+      else process.env[name] = previous[name];
+    }
   });
 }
 
@@ -90,6 +94,38 @@ test('handles missing Vercel key without exposing internals', async t => {
   const result = await request();
   assert.equal(result.status, 503);
   assert.match(result.body.error, /WhatsApp/);
+});
+
+test('supports common server variable names and trims accidental whitespace', async t => {
+  setup(t);
+  let authorization;
+  t.mock.method(globalThis, 'fetch', async (_, options) => {
+    authorization = options.headers.Authorization;
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'Ready to help.' } }] }) };
+  });
+  for (const name of ['api', 'GROQ_API_KEY', 'API']) {
+    for (const candidate of ['api', 'GROQ_API_KEY', 'API']) delete process.env[candidate];
+    process.env[name] = '  test-only-not-a-real-key\n';
+    const result = await request();
+    assert.equal(result.status, 200);
+    assert.equal(authorization, 'Bearer test-only-not-a-real-key');
+    assert.ok(!JSON.stringify(result).includes('test-only-not-a-real-key'));
+  }
+});
+
+test('prefers the requested api variable and ignores blank aliases', async t => {
+  setup(t);
+  let authorization;
+  t.mock.method(globalThis, 'fetch', async (_, options) => {
+    authorization = options.headers.Authorization;
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'Ready to help.' } }] }) };
+  });
+  process.env.GROQ_API_KEY = 'alternate-test-only-key';
+  await request();
+  assert.equal(authorization, 'Bearer test-only-not-a-real-key');
+  process.env.api = '  ';
+  await request();
+  assert.equal(authorization, 'Bearer alternate-test-only-key');
 });
 
 test('does not pass upstream authentication diagnostics or keys to the browser', async t => {

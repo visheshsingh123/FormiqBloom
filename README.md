@@ -5,10 +5,21 @@ Responsive agency website with a floating chatbot. No build step or runtime npm 
 ## Vercel deployment
 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so `api/chat.js` becomes `/api/chat`.
-- Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). Enable it for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
+- Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
 - Redeploy after adding or changing the variable. A Git push starts deployment if the repository is connected to Vercel.
 - The default model is `llama-3.1-8b-instant`. Optional server variable `GROQ_MODEL` can select another chat model available to your Groq account.
 - `vercel.json` allows the function 30 seconds; the upstream request has an 18-second timeout. Free Groq accounts have usage limits; quota or connection failures show a helpful message and a WhatsApp alternative.
+
+### If chat says it is not available on this deployment yet
+
+That response specifically means the running Vercel function has no nonempty supported key variable. It occurs before any request to Groq, so it is not a model or Groq quota error.
+
+1. Open the Vercel project serving this website → **Settings → Environment Variables**.
+2. Create or check **Name: `api`**, **Value: your existing Groq API key**, and enable **Production**. Enable Preview as well if you are using a preview deployment. A key named "api" in the Groq console does not automatically create a Vercel environment variable.
+3. Save, then redeploy the latest commit from Vercel's **Deployments** page. Existing deployments do not receive subsequently added environment variables.
+4. Open the new deployment and ask a custom question. Saved quick answers do not test the server key because they run locally.
+
+Enter the credential only in Vercel's secure environment settings, never in chat or source code.
 
 ## Chat behavior
 
