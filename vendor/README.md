@@ -19,3 +19,9 @@ node scripts/build_robot_renderer.mjs
 Commit the resulting `Assets/hero-robot.glb` and `vendor/robot-renderer.js` together.
 The original upload remains untouched. The model preparation script is specific
 to this model's upright axis and mechanical neck, rather than a general rigging tool.
+
+## Team card tilt
+
+`vanilla-tilt.min.js` is the locally hosted Vanilla Tilt 1.8.1 distribution (MIT).
+Its license is in `vanilla-tilt-LICENSE.txt`. `team-tilt.js` enables a subtle tilt
+only for precise hover pointers without a reduced-motion preference.
