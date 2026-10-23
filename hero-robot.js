@@ -1,4 +1,4 @@
-/* Cursor-following CSS 3D illustration. No WebGL library, camera, or cursor interception. */
+/* Lazy-loaded 3D robot with cursor-following head movement. */
 (() => {
   'use strict';
   const stage = document.getElementById('hero-robot');
@@ -35,7 +35,7 @@
     if (frame) window.cancelAnimationFrame(frame);
     frame = 0;
     position = null;
-    for (const property of ['--head-yaw', '--head-pitch', '--gaze-x', '--gaze-y', '--drift-x', '--drift-y']) stage.style.removeProperty(property);
+    for (const property of ['--head-yaw', '--head-pitch', '--drift-x', '--drift-y']) stage.style.removeProperty(property);
     model?.setLook(0, 0, reduced.matches);
     syncModel();
   }
@@ -48,8 +48,6 @@
     stage.style.setProperty('--head-yaw', (x * 26).toFixed(2) + 'deg');
     stage.style.setProperty('--head-pitch', (-y * 17).toFixed(2) + 'deg');
     model?.setLook(x * 26, -y * 17);
-    stage.style.setProperty('--gaze-x', (x * 4).toFixed(2) + 'px');
-    stage.style.setProperty('--gaze-y', (y * 3).toFixed(2) + 'px');
     stage.style.setProperty('--drift-x', (x * 9).toFixed(2) + 'px');
     stage.style.setProperty('--drift-y', (y * 7).toFixed(2) + 'px');
   }
