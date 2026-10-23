@@ -6,7 +6,7 @@ Vercel build is required. Editable source: `src/robot-model.js`.
 
 Three.js and Meshoptimizer use the MIT license. Their license notices are included
 in this directory. The model has a separate CC BY 4.0 attribution at
-`Assets/robot-model-attribution.txt` and visible links beside the hero.
+`Assets/robot-model-attribution.txt` and a visible credits link in the footer.
 
 Optional asset maintenance, from the repository root:
 

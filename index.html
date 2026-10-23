@@ -546,9 +546,6 @@
     /* Locally hosted portrait robot model. */
     .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); animation: robot-enter 1.1s cubic-bezier(.22, 1, .36, 1) both; }
     @keyframes robot-enter { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: translateY(0); } }
-    .robot-credits { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .3rem; margin-top: 1rem; color: var(--muted); font-size: .6rem; }
-    .robot-credits a { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline; text-underline-offset: 3px; }
-    .robot-credits a:is(:hover, :focus-visible) { color: var(--lime); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -633,7 +630,6 @@
             <div class="robot-stage" id="hero-robot" role="img" aria-label="An interactive 3D humanoid robot with a head that follows your cursor.">
               <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
             </div>
-            <p class="robot-credits">Robot model by <a href="https://sketchfab.com/3dUVpro" target="_blank" rel="noopener noreferrer">3dUVpro<span class="sr-only"> (opens in a new tab)</span></a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0<span class="sr-only"> (opens in a new tab)</span></a> · <a href="/Assets/robot-model-attribution.txt" target="_blank" rel="noopener noreferrer">Adapted<span class="sr-only"> model credits and changes (opens in a new tab)</span></a></p>
           </div>
         </div>
         <div class="hero-bottom"><span>Founder-led. From first idea to launch and beyond.</span><span>Scroll to discover <svg class="icon" aria-hidden="true" style="transform:rotate(90deg)"><use href="#i-right"/></svg></span></div>
@@ -799,7 +795,7 @@
         </div>
         <nav class="footer-nav" aria-label="Footer navigation"><a href="https://formiqbloom.vercel.app/">Home</a><a href="/work">Selected Work</a><a href="/about">About</a><a href="/team">Team</a><a href="#options">Packages</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">AI Assistant</a><a href="#contact">Contact</a></nav>
       </div>
-      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></nav></div>
+      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/Assets/robot-model-attribution.txt">3D model credits</a></nav></div>
     </div>
   </footer>
 

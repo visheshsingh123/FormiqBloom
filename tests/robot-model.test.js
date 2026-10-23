@@ -41,8 +41,8 @@ test('model attribution and self-hosted runtime licenses remain available', () =
   assert.match(attribution, /creativecommons.org\/licenses\/by\/4.0/);
   assert.match(attribution, /Separated the head/);
   const html = readFileSync(join(root, 'index.html'), 'utf8');
-  assert.match(html, /class="robot-credits"/);
-  assert.match(html, /href="https:\/\/sketchfab.com\/3dUVpro"/);
+  assert.match(html, /href="\/Assets\/robot-model-attribution.txt">3D model credits<\/a>/);
+  assert.doesNotMatch(html, /class="robot-credits"/);
   assert.match(readFileSync(join(root, 'vendor/three-LICENSE.txt'), 'utf8'), /MIT License/);
   assert.match(readFileSync(join(root, 'vendor/meshoptimizer-LICENSE.md'), 'utf8'), /MIT License/);
 });
