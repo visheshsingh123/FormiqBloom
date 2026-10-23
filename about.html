@@ -265,7 +265,10 @@
     .button.secondary:is(:hover, :focus-visible) .icon { transform: translateX(4px); }
     .text-link:is(:hover, :focus-visible), .footer-nav a:is(:hover, :focus-visible) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
     .social-links a:is(:hover, :focus-visible) .icon { transform: rotate(-8deg); }
-    .nav-links > a:not(.button):is(:hover, :focus-visible) { text-decoration: underline; text-underline-offset: 7px; text-decoration-color: var(--lime); }
+    /* Grow navigation underlines without changing link or menu dimensions. */
+    .nav-links > a:not(.button), .nav-dropdown summary { position: relative; width: fit-content; }
+    .nav-links > a:not(.button)::after, .nav-dropdown summary::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(50% - .8em - 5px); height: 1px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .4s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
+    .nav-links > a:not(.button):is(:hover, :focus-visible)::after, .nav-dropdown summary:is(:hover, :focus-visible)::after, .nav-dropdown[open] summary::after { transform: scaleX(1); }
 
     .principle { transition: border-color .25s, box-shadow .25s; }
     .principle .icon { transition: transform .3s, color .3s; }
