@@ -6,6 +6,8 @@ The Team page (`/team`, served from `team.html`) presents Vishesh Singh’s appr
 
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 
+The homepage hero uses a CSS 3D robot with cursor-following head and eyes (`hero-robot.js`), without a 3D library or model download. It stays static without JavaScript or with reduced motion, pauses outside the hero, and remains hidden on mobile.
+
 ## SEO
 
 All six public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
