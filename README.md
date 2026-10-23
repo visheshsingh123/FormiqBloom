@@ -4,6 +4,8 @@ Responsive agency website with a homepage (`index.html`), dedicated About (`/abo
 
 ## Vercel deployment
 
+The concise website policies are at `/privacy` (`privacy.html`) and `/terms` (`terms.html`). Keep these updated when data handling or service arrangements change.
+
 `vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about`, and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so the chat and contact functions become `/api/chat` and `/api/contact`.

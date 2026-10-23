@@ -171,7 +171,9 @@
     .footer-nav a:hover { color: var(--lime); }
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; }
     .footer-legal { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-legal small { color: #BFA3E8; font-size: .6rem; }
+    .footer-legal a { display: inline-flex; align-items: center; min-height: 44px; }
+    .footer-legal a:is(:hover, :focus-visible) { color: var(--lime); text-decoration: underline; text-underline-offset: 5px; }
+    .form-footnote a, #widget-disclosure a { text-decoration: underline; text-underline-offset: 3px; }
 
     /* Native anchor remains usable without JavaScript. */
     .back-to-top { position: fixed; right: clamp(1rem, 3vw, 2rem); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 25; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid var(--lime); background: var(--lime); color: var(--bg); box-shadow: 0 4px 20px #0005; transition: opacity .2s, visibility .2s, transform .2s, background .2s; }
@@ -464,7 +466,7 @@
         </div>
         <nav class="footer-nav" aria-label="Footer navigation"><a href="/#home">Home</a><a href="/work" aria-current="page">Selected Work</a><a href="/about">About</a><a href="/#options">Packages</a><a href="/#services">Services</a><a href="/#faq">FAQ</a><a href="/#assistant-demo">AI Assistant</a><a href="/#contact">Contact</a></nav>
       </div>
-      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><div class="footer-legal"><span>Privacy Policy <small>— coming soon</small></span><span>Terms of Service <small>— coming soon</small></span></div></div>
+      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></nav></div>
     </div>
   </footer>
 
@@ -490,7 +492,7 @@
       </fieldset>
       <p class="widget-status" id="widget-status" role="status"></p>
     </form>
-    <footer class="widget-footer"><p id="widget-disclosure">Custom questions and recent conversation are sent to Groq. AI can make mistakes. Don’t share sensitive information.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to FormiqBloom on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
+    <footer class="widget-footer"><p id="widget-disclosure">Custom questions and recent conversation are sent to Groq. AI can make mistakes. Don’t share sensitive information. <a href="/privacy">Privacy Policy</a>.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to FormiqBloom on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
   </aside>
 
   <script>
