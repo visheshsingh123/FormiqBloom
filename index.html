@@ -544,7 +544,8 @@
     .robot-orbit-plus::after { left: .8em; width: 2px; height: 100%; }
 
     /* Locally hosted portrait robot model. */
-    .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); }
+    .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); animation: robot-enter 1.1s cubic-bezier(.22, 1, .36, 1) both; }
+    @keyframes robot-enter { from { opacity: 0; transform: translateY(-48px); } to { opacity: 1; transform: translateY(0); } }
     .robot-credits { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .3rem; margin-top: 1rem; color: var(--muted); font-size: .6rem; }
     .robot-credits a { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline; text-underline-offset: 3px; }
     .robot-credits a:is(:hover, :focus-visible) { color: var(--lime); }
