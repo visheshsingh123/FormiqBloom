@@ -77,6 +77,8 @@ Process: Discovery, Design, Development, Launch & Support. Scope and milestones 
 Options: Website Launch; Website + Ongoing Care; Website + AI Assistant. All are enquiry-based, with no published prices. Setup is separate from recurring hosting, maintenance, and AI usage. Scope, support, usage allowances, and overage handling are agreed before work starts; never promise unlimited usage or free ongoing services.
 To start: discuss business goals, audience, services needed, existing website, content, brand materials, and budget. Domains should remain in the customer's own account and name.
 Founder-built project: NutriGlance, AI-assisted nutrition tracking, meal logging, progress dashboards, responsive web and PWA. Live: https://nutriglance.vercel.app/
+Founder-built project: RelayChat, a live text messaging web application with usernames and user accounts. Live: https://relaychat.vercel.app/
+Only these RelayChat features are confirmed; do not invent additional messaging, privacy, or security capabilities.
 Contact FormiqBloom on WhatsApp: +91 9054349785, https://wa.me/919054349785
 Instagram: @formiqbloom, https://www.instagram.com/formiqbloom/
 GitHub repository: https://github.com/visheshsingh123/FormiqBloom
