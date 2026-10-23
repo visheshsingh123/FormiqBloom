@@ -551,6 +551,10 @@
     /* Locally hosted portrait robot model. */
     .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); animation: robot-enter 1.1s cubic-bezier(.22, 1, .36, 1) both; }
     @media (max-width: 850px) {
+      .hero-actions { flex-direction: row; flex-wrap: nowrap; align-items: stretch; }
+      .hero-actions > .button:not(.work-button) { flex: 1 1 auto; min-width: 0; padding-inline: .85rem; }
+      .hero-actions .work-button, .hero-actions .work-button:is(:hover, :focus-visible) { width: 54px; flex: 0 0 54px; padding-inline: 0; justify-content: center; gap: 0; transition: background .25s, border-color .25s; }
+      .hero-actions .work-button-label, .hero-actions .work-button:is(:hover, :focus-visible) .work-button-label { display: none; }
       /* A shadowed portrait sits behind the copy without intercepting taps. */
       .hero-grid { position: relative; isolation: isolate; }
       .hero-copy { position: relative; z-index: 1; text-shadow: 0 2px 12px #101014; }
