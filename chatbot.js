@@ -38,7 +38,7 @@
   function setOpen(open) {
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', String(open));
-    launcher.setAttribute('aria-label', open ? 'Close FormiqBloom chat' : 'Open FormiqBloom chat');
+    launcher.setAttribute('aria-label', open ? 'Close FormiqBloom AI' : 'Open FormiqBloom AI');
     document.documentElement.classList.toggle('chat-is-open', open);
     if (open) {
       (busy ? closeButton : input).focus({ preventScroll: true });
