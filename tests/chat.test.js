@@ -57,7 +57,8 @@ test('relays valid history with server business context and keeps the key out of
   assert.equal(sent.url, 'https://api.groq.com/openai/v1/chat/completions');
   assert.equal(sent.options.headers.Authorization, 'Bearer test-only-not-a-real-key');
   assert.equal(sent.body.messages[0].role, 'system');
-  assert.match(sent.body.messages[0].content, /Vishesh/);
+  assert.match(sent.body.messages[0].content, /FormiqBloom is a founder-led agency/);
+  assert.match(sent.body.messages[0].content, /Do not provide or infer the founder’s personal name/);
   assert.match(sent.body.messages[0].content, /submits in the background/);
   assert.equal(sent.body.messages.length, 4);
   assert.equal(sent.body.max_tokens, 450);

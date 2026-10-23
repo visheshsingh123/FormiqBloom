@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101014">
-  <meta name="description" content="FormiqBloom is Vishesh’s founder-led agency for responsive websites, managed hosting, and custom AI assistants. Build your next stage.">
+  <meta name="description" content="FormiqBloom is a founder-led agency for responsive websites, managed hosting, and custom AI assistants. Build your next stage.">
   <title>FormiqBloom — Built for your next stage.</title>
   <link rel="icon" type="image/png" sizes="500x500" href="Assets/fav.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -588,7 +588,7 @@
             <button class="button" type="button" data-open-chat disabled>Open the chat <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button>
             <p class="chat-disclaimer">Custom questions are sent to Groq. Don’t share sensitive information.</p>
           </div>
-          <noscript><p>Enable JavaScript to use chat, or contact Vishesh through the WhatsApp links on this page.</p></noscript>
+          <noscript><p>Enable JavaScript to use chat, or contact FormiqBloom through the WhatsApp links on this page.</p></noscript>
         </div>
       </div>
     </section>
@@ -642,7 +642,7 @@
           <div class="eyebrow">06 / Your next chapter</div>
           <h2 id="contact-title">Let’s build<br>your <span>next stage.</span></h2>
           <p>A new website, a better home for your existing one, or an assistant with useful answers. Start with what you have in mind.</p>
-          <div class="contact-detail"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><p>A direct conversation with Vishesh.<br>A clear scope before any work begins.</p></div>
+          <div class="contact-detail"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><p>A direct conversation with the founder.<br>A clear scope before any work begins.</p></div>
           <nav class="social-links" id="contact-socials" aria-label="Contact and social links">
             <a class="whatsapp-link" href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp · +91 9054349785<span class="sr-only"> (opens in a new tab)</span></a>
             <a href="https://www.instagram.com/formiqbloom/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>@formiqbloom<span class="sr-only"> on Instagram (opens in a new tab)</span></a>
@@ -663,7 +663,7 @@
           </fieldset>
           <p class="form-footnote">All fields required unless marked optional. Please don’t include sensitive information.</p>
           <p class="form-feedback" id="form-feedback" role="status" tabindex="-1"></p>
-          <noscript><p>Enable JavaScript to send an enquiry without leaving this page, or use the WhatsApp link to contact Vishesh.</p></noscript>
+          <noscript><p>Enable JavaScript to send an enquiry without leaving this page, or use the WhatsApp link to contact FormiqBloom.</p></noscript>
         </form>
       </div>
     </section>
@@ -710,7 +710,7 @@
       </fieldset>
       <p class="widget-status" id="widget-status" role="status"></p>
     </form>
-    <footer class="widget-footer"><p id="widget-disclosure">Custom questions and recent conversation are sent to Groq. AI can make mistakes. Don’t share sensitive information.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to Vishesh on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
+    <footer class="widget-footer"><p id="widget-disclosure">Custom questions and recent conversation are sent to Groq. AI can make mistakes. Don’t share sensitive information.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to FormiqBloom on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
   </aside>
 
   <script>
@@ -807,7 +807,7 @@
           });
           const data = await response.json().catch(() => null);
           if (!response.ok || data?.ok !== true) {
-            throw new Error(typeof data?.error === 'string' ? data.error : 'We couldn’t confirm your enquiry. Your entries are still here. Please use WhatsApp to check with Vishesh.');
+            throw new Error(typeof data?.error === 'string' ? data.error : 'We couldn’t confirm your enquiry. Your entries are still here. Please use WhatsApp to check with FormiqBloom.');
           }
           feedback.dataset.state = 'success';
           feedback.textContent = 'Your enquiry has been submitted. Thank you for getting in touch.';
@@ -815,7 +815,7 @@
         } catch (error) {
           feedback.dataset.state = 'error';
           feedback.textContent = error.name === 'AbortError' || error instanceof TypeError
-            ? 'We couldn’t confirm the submission. Your entries are still here. Please use WhatsApp to check with Vishesh before retrying.'
+            ? 'We couldn’t confirm the submission. Your entries are still here. Please use WhatsApp to check with FormiqBloom before retrying.'
             : error.message;
         } finally {
           window.clearTimeout(timeout);

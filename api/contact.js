@@ -91,7 +91,7 @@ module.exports = async function handler(req, res) {
   }
   if (record.count >= 5) {
     res.setHeader('Retry-After', String(Math.ceil((record.resetAt - now) / 1000)));
-    return respond(res, 429, { error: 'Please wait before submitting another enquiry, or contact Vishesh on WhatsApp.' });
+    return respond(res, 429, { error: 'Please wait before submitting another enquiry, or contact FormiqBloom on WhatsApp.' });
   }
   record.count++;
 
@@ -104,15 +104,15 @@ module.exports = async function handler(req, res) {
     });
     const finalUrl = new URL(response.url || GOOGLE_FORM_URL);
     if (!response.ok || finalUrl.hostname !== 'docs.google.com' || !finalUrl.pathname.startsWith('/forms/')) {
-      return respond(res, 502, { error: 'We couldn’t confirm your enquiry. Your entries are still here. Please use WhatsApp to check with Vishesh.' });
+      return respond(res, 502, { error: 'We couldn’t confirm your enquiry. Your entries are still here. Please use WhatsApp to check with FormiqBloom.' });
     }
     const html = await response.text();
     if (!isGoogleConfirmation(html)) {
-      return respond(res, 502, { error: 'Google Forms did not return a recognized confirmation. Your entries are still here. Please use WhatsApp to check with Vishesh before retrying.' });
+      return respond(res, 502, { error: 'Google Forms did not return a recognized confirmation. Your entries are still here. Please use WhatsApp to check with FormiqBloom before retrying.' });
     }
     return respond(res, 200, { ok: true, message: 'Your enquiry has been submitted. Thank you for getting in touch.' });
   } catch {
     // A timeout can occur after Google saves a response: never claim definite failure or retry automatically.
-    return respond(res, 502, { error: 'We couldn’t confirm the submission. Your entries are still here. Please use WhatsApp to check with Vishesh before retrying.' });
+    return respond(res, 502, { error: 'We couldn’t confirm the submission. Your entries are still here. Please use WhatsApp to check with FormiqBloom before retrying.' });
   }
 };

@@ -5,7 +5,7 @@
     {
       id: 'services',
       question: 'What services do you offer?',
-      answer: 'FormiqBloom offers responsive Website Design & Development, Managed Hosting & Maintenance, and custom AI Assistants grounded in approved business information. You work directly with Vishesh, the founder.'
+      answer: 'FormiqBloom offers responsive Website Design & Development, Managed Hosting & Maintenance, and custom AI Assistants grounded in approved business information. You work directly with the founder.'
     },
     {
       id: 'process',
@@ -15,12 +15,12 @@
     {
       id: 'pricing',
       question: 'How much does it cost?',
-      answer: 'Every project is quoted around its scope. Setup is quoted separately from recurring hosting, maintenance, and AI usage. Scope, support responsibilities, and usage allowances are agreed before work starts. Message Vishesh on WhatsApp for a project-specific quote.'
+      answer: 'Every project is quoted around its scope. Setup is quoted separately from recurring hosting, maintenance, and AI usage. Scope, support responsibilities, and usage allowances are agreed before work starts. Message FormiqBloom on WhatsApp for a project-specific quote.'
     },
     {
       id: 'contact',
       question: 'How can I contact you?',
-      answer: 'Message Vishesh on WhatsApp at +91 9054349785 using the link below, find @formiqbloom on Instagram, or use the website enquiry form. It submits in the background and shows its result here without leaving the website. Share your business goals, services needed, and any existing website or content.'
+      answer: 'Message FormiqBloom on WhatsApp at +91 9054349785 using the link below, find @formiqbloom on Instagram, or use the website enquiry form. It submits in the background and shows its result here without leaving the website. Share your business goals, services needed, and any existing website or content.'
     }
   ];
 
