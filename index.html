@@ -100,8 +100,8 @@
     /* Hero and hand-built illustrative website / assistant preview. */
     .hero { position: relative; isolation: isolate; padding-block: clamp(2rem, 3vw, 3rem) 3rem; overflow: hidden; }
     /* Slow ambient movement stays behind the content and within the hero. */
-    .hero::before { content: ""; position: absolute; z-index: -1; inset: 0 0 0 52%; pointer-events: none; background-image: linear-gradient(#35333f40 1px, transparent 1px), linear-gradient(90deg, #35333f40 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(90deg, transparent, #000); animation: hero-grid-drift 12s linear infinite; }
-    .hero::after { content: ""; position: absolute; z-index: -2; inset: -15%; pointer-events: none; background: radial-gradient(ellipse at 72% 35%, #A7F3D90F, transparent 52%), radial-gradient(ellipse at 30% 80%, #A7F3D906, transparent 45%); animation: hero-glow-drift 16s ease-in-out infinite alternate; }
+    .hero::before { content: ""; position: absolute; z-index: -1; inset: 0 0 0 52%; pointer-events: none; background-image: linear-gradient(#35333f40 1px, transparent 1px), linear-gradient(90deg, #35333f40 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(90deg, transparent, #000); animation: hero-grid-drift 8s linear infinite; }
+    .hero::after { content: ""; position: absolute; z-index: -2; inset: -15%; pointer-events: none; background: radial-gradient(ellipse at 72% 35%, #A7F3D90F, transparent 52%), radial-gradient(ellipse at 30% 80%, #A7F3D906, transparent 45%); animation: hero-glow-drift 10s ease-in-out infinite alternate; }
     @keyframes hero-grid-drift { from { background-position: 0 0; } to { background-position: 54px 54px; } }
     @keyframes hero-glow-drift { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(4%, 3%, 0) scale(1.08); } }
     .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; align-items: start; gap: 3rem; }
