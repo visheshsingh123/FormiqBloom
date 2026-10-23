@@ -137,8 +137,8 @@
       container.append(button);
     }
   });
+  let greeted = false;
   document.querySelectorAll('[data-open-chat]').forEach(button => {
-    let greeted = false;
     button.addEventListener('click', () => {
       if (button.dataset.chatGreeting && !greeted) {
         const greeting = button.dataset.chatGreeting;
@@ -151,6 +151,14 @@
     });
     button.disabled = false;
     button.hidden = false;
+  });
+  // On mobile the robot sits behind text; forward taps without blocking links.
+  const robotTrigger = document.querySelector('.robot-chat-trigger');
+  document.querySelector('.hero-grid')?.addEventListener('click', event => {
+    if (!robotTrigger || robotTrigger.hidden || !window.matchMedia('(max-width: 850px)').matches) return;
+    if (event.target.closest('a, button, input, textarea, select, summary') || window.getSelection()?.toString()) return;
+    const bounds = robotTrigger.getBoundingClientRect();
+    if (event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom) robotTrigger.click();
   });
   launcher.addEventListener('click', () => setOpen(panel.hidden));
   closeButton.addEventListener('click', () => setOpen(false));

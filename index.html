@@ -550,6 +550,8 @@
     .robot-orbit-plus::before { top: .8em; width: 100%; height: 2px; }
     .robot-orbit-plus::after { left: .8em; width: 2px; height: 100%; }
 
+    .robot-chat-trigger { position: absolute; z-index: 1; inset: 0 12%; padding: 0; border: 0; background: transparent; pointer-events: auto; }
+    .robot-chat-trigger[hidden] { display: none; }
     /* A small invitation anchored beside the robot, above the visual layer. */
     .robot-invite { position: absolute; z-index: 3; top: 4.5rem; right: 0; display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .65rem .9rem; border: 1px solid #75608C; border-radius: 12px 12px 12px 2px; background: #1C1C24; color: var(--text); font-size: .75rem; font-weight: 600; box-shadow: 0 6px 22px #0004; transition: border-color .25s, background .25s; }
     .robot-invite[hidden] { display: none; }
@@ -658,8 +660,9 @@
           </div>
           <div class="hero-visual">
             <div class="visual-caption" aria-hidden="true"><span>Your next chapter, online</span><span>Interactive preview</span></div>
-            <div class="robot-stage" id="hero-robot" role="img" aria-label="A 3D humanoid robot whose head follows your cursor on desktop.">
+            <div class="robot-stage" id="hero-robot" role="group" aria-label="A 3D humanoid robot whose head follows your cursor on desktop.">
               <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
+              <button class="robot-chat-trigger" type="button" data-open-chat data-chat-greeting="Hello there!" aria-label="Open FormiqBloom AI by clicking the robot" aria-controls="chat-widget" hidden></button>
             </div>
           </div>
         </div>
