@@ -1,6 +1,6 @@
 # FormiqBloom
 
-Responsive agency website with a floating chatbot. No build step or runtime npm dependencies are required.
+Responsive agency website with a homepage (`index.html`), dedicated About (`about.html`) and Work (`work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
 ## Vercel deployment
 
