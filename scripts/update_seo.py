@@ -48,8 +48,8 @@ def page_graph(page, origin, image):
         entity['mainEntity'] = {'@id': origin + '/#founder'}
     if page['path'] == '/work':
         projects = [
-            {'@type': 'WebApplication', '@id': canonical + '#nutriglance', 'name': 'NutriGlance',
-             'url': 'https://nutriglance.vercel.app/', 'creator': {'@id': origin + '/#founder'},
+            {'@type': 'WebApplication', '@id': canonical + '#micromuse', 'name': 'MicroMuse',
+             'url': 'https://micromuse.vercel.app/', 'creator': {'@id': origin + '/#founder'},
              'description': 'AI-assisted nutrition tracking with meal logging, progress dashboards, and a responsive web and PWA experience.'},
             {'@type': 'WebApplication', '@id': canonical + '#relaychatting', 'name': 'RelayChatting',
              'url': 'https://relaychatting.vercel.app/', 'creator': {'@id': origin + '/#founder'},

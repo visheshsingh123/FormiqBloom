@@ -107,7 +107,7 @@ class SEOTests(unittest.TestCase):
                 self.assertEqual(crumbs[-1]['item'], CONFIG['site_url'] + item['path'])
             if item['path'] == '/work':
                 self.assertEqual({node['url'] for node in graph if node['@type'] == 'WebApplication'},
-                                 {'https://nutriglance.vercel.app/', 'https://relaychatting.vercel.app/'})
+                                 {'https://micromuse.vercel.app/', 'https://relaychatting.vercel.app/'})
 
     def test_sitemap_robots_image_and_api_indexing(self):
         sitemap = ET.parse(ROOT / 'sitemap.xml')
