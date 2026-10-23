@@ -5,7 +5,7 @@
     {
       id: 'services',
       question: 'What services do you offer?',
-      answer: 'FormiqBloom offers responsive Website Design & Development, Managed Hosting & Maintenance, and custom AI Assistants grounded in approved business information. You work directly with the founder.'
+      answer: 'FormiqBloom offers responsive Website Design & Development, Managed Hosting & Maintenance, and custom AI Assistants grounded in approved business information. SEO setup is included with every package at no extra charge. You work directly with the founder.'
     },
     {
       id: 'process',
