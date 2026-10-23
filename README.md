@@ -2,13 +2,15 @@
 
 Responsive agency website with a homepage (`index.html`), dedicated About (`/about`, served from `about.html`) and Work (`/work`, served from `work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
+The Team page (`/team`, served from `team.html`) presents the confirmed founder role without personal names or invented staff.
+
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 
 ## Vercel deployment
 
 The concise website policies are at `/privacy` (`privacy.html`) and `/terms` (`terms.html`). Keep these updated when data handling or service arrangements change.
 
-`vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about`, and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
+`vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about`, `/team`, and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so the chat and contact functions become `/api/chat` and `/api/contact`.
 - Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
