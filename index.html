@@ -518,8 +518,7 @@
     .option:is(:hover, :focus-within) { border-color: #9B77C8; box-shadow: inset 0 3px var(--lime); }
     .option-label { transition: color .25s; }
     .option:is(:hover, :focus-within) .option-label { color: var(--lime); }
-    /* Reserve half the 5-degree ribbon rise on each side, plus room for its shadow. */
-    .marquee-stack { position: relative; isolation: isolate; overflow: hidden; padding-block: calc(4.6vw + 2.5rem); }
+    .marquee-stack { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(1.5rem, 3vw, 3rem) clamp(2.5rem, 4vw, 4rem); }
     .marquee-stack > #marquee { position: relative; z-index: 2; box-shadow: 0 7px 18px #0004; }
     .tools-marquee { position: absolute; z-index: 1; top: 50%; left: -2%; width: 104%; margin-top: .8rem; transform: translateY(-50%) rotate(-5deg); background: #C8B5E8; color: #241831; padding-block: .85rem; border-block: 1px solid #E0D3F3; box-shadow: 0 8px 20px #0005; }
     .marquee-stack .marquee:focus-visible { outline-offset: -4px; }
