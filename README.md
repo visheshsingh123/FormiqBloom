@@ -2,7 +2,7 @@
 
 Responsive agency website with a homepage (`index.html`), dedicated About (`/about`, served from `about.html`) and Work (`/work`, served from `work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
-The Team page (`/team`, served from `team.html`) presents the confirmed founder role without personal names or invented staff.
+The Team page (`/team`, served from `team.html`) presents Vishesh Singh’s approved founder profile, Surat location, personal website, and email contact.
 
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 

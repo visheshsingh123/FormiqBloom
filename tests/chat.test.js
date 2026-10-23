@@ -61,7 +61,8 @@ test('relays valid history with server business context and keeps the key out of
   assert.match(sent.body.messages[0].content, /Location: Surat/);
   assert.match(sent.body.messages[0].content, /Email: visheshsingh29537@gmail\.com/);
   assert.match(sent.body.messages[0].content, /RelayChatting, a live text messaging web application with usernames and user accounts/);
-  assert.match(sent.body.messages[0].content, /Do not provide or infer the founder’s personal name/);
+  assert.match(sent.body.messages[0].content, /Founder: Vishesh Singh, based in Surat/);
+  assert.match(sent.body.messages[0].content, /https:\/\/visheshsingh\.vercel\.app\//);
   assert.match(sent.body.messages[0].content, /submits in the background/);
   assert.equal(sent.body.messages.length, 4);
   assert.equal(sent.body.max_tokens, 450);
