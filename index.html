@@ -553,7 +553,7 @@
     .robot-chat-trigger { position: absolute; z-index: 1; inset: 0 12%; padding: 0; border: 0; background: transparent; pointer-events: auto; }
     .robot-chat-trigger[hidden] { display: none; }
     /* A small invitation anchored beside the robot, above the visual layer. */
-    .robot-invite { position: absolute; z-index: 3; top: 2.25rem; right: clamp(2.5rem, 5vw, 4.5rem); display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .65rem .9rem; border: 1px solid #75608C; border-radius: 0; background: #1C1C24; color: var(--text); font-size: .75rem; font-weight: 600; box-shadow: 0 6px 22px #0004; transition: border-color .25s, background .25s; }
+    .robot-invite { position: absolute; z-index: 3; top: 2.25rem; right: clamp(2.5rem, 5vw, 4.5rem); display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .65rem .9rem; border: 1px solid #75608C; border-radius: 0; background: #1C1C24; color: var(--text); font-size: .75rem; font-weight: 600; box-shadow: 0 6px 22px #0004; transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)); transition: transform .25s ease-out, border-color .25s, background .25s; }
     .robot-invite[hidden] { display: none; }
     .robot-invite::before { content: ""; width: 5px; height: 5px; background: var(--lime); border-radius: 50%; }
     .robot-invite::after { content: ""; position: absolute; left: 12px; bottom: -5px; width: 8px; height: 8px; background: inherit; border-right: 1px solid #75608C; border-bottom: 1px solid #75608C; transform: rotate(45deg); }

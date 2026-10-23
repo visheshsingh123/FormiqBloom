@@ -3,6 +3,7 @@
   'use strict';
   const stage = document.getElementById('hero-robot');
   const hero = document.getElementById('home');
+  const invite = document.querySelector('.robot-invite');
   if (!stage || !hero) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -36,6 +37,8 @@
     frame = 0;
     position = null;
     for (const property of ['--head-yaw', '--head-pitch', '--drift-x', '--drift-y']) stage.style.removeProperty(property);
+    invite?.style.removeProperty('--drift-x');
+    invite?.style.removeProperty('--drift-y');
     model?.setLook(0, 0, reduced.matches);
     syncModel();
   }
@@ -48,8 +51,10 @@
     stage.style.setProperty('--head-yaw', (x * 26).toFixed(2) + 'deg');
     stage.style.setProperty('--head-pitch', (-y * 17).toFixed(2) + 'deg');
     model?.setLook(x * 26, -y * 17);
-    stage.style.setProperty('--drift-x', (x * 9).toFixed(2) + 'px');
-    stage.style.setProperty('--drift-y', (y * 7).toFixed(2) + 'px');
+    for (const element of [stage, invite]) {
+      element?.style.setProperty('--drift-x', (x * 9).toFixed(2) + 'px');
+      element?.style.setProperty('--drift-y', (y * 7).toFixed(2) + 'px');
+    }
   }
   hero.addEventListener('pointermove', event => {
     if (event.pointerType !== 'mouse' || !allowed()) return;
