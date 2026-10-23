@@ -266,7 +266,7 @@
 
     /* Services. */
     .service-grid { display: grid; width: 85%; margin-inline: auto; zoom: .85; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .service-card { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 8px; background: var(--card); transition: border-color .2s, transform .2s; }
+    .service-card { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 0; background: var(--card); transition: border-color .2s, transform .2s; }
     .service-card:hover { border-color: #736287; transform: translateY(-4px); }
     .service-card-top { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 2.8rem; }
     .service-card-top > .icon { width: 2rem; height: 2rem; color: #BE9DFF; }
@@ -351,7 +351,7 @@
     .options .section-heading h2 { max-width: none; font-size: clamp(2.3rem, 3.8vw, 3.7rem); text-wrap: balance; }
     .options .section-heading > p { max-width: 43rem; margin-top: 1rem; }
     .options-grid { display: grid; width: 100%; margin-inline: auto; zoom: .9; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .option { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 7px; }
+    .option { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 0; }
     .option.featured { border-color: #8C5AD6; background: #211B2D; }
     .option-label { min-height: 2.5rem; color: #C6A6FF; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; }
     .option h3 { min-height: 3.5rem; }
@@ -392,6 +392,7 @@
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .field { min-width: 0; }
     .field.full { grid-column: 1 / -1; }
+    .consultation-form :is(input, select, textarea) { border-radius: 0; }
     .field label { display: block; margin-bottom: .5rem; font-size: .8rem; }
     .field label span { color: var(--muted); font-size: .7rem; }
     input, select, textarea { width: 100%; min-height: 48px; padding: .8rem .9rem; border: 1px solid #565060; border-radius: 4px; background: #151219; color: var(--text); font-size: .9rem; }
