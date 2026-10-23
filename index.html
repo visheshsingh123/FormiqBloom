@@ -97,7 +97,7 @@
     .menu-toggle[aria-expanded="true"] .menu-icon { display: none; }
     .menu-toggle[aria-expanded="true"] .close-icon { display: block; }
 
-    /* Hero and hand-built illustrative website / assistant preview. */
+    /* Hero with the supplied website / assistant illustration. */
     .hero { position: relative; isolation: isolate; padding-block: clamp(2rem, 3vw, 3rem) 3rem; overflow: hidden; }
     /* Slow ambient movement stays behind the content and within the hero. */
     .hero::before { content: ""; position: absolute; z-index: -1; inset: 0 0 0 52%; pointer-events: none; background-image: linear-gradient(#35333f40 1px, transparent 1px), linear-gradient(90deg, #35333f40 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(90deg, transparent, #000); animation: hero-grid-drift 8s linear infinite; }
@@ -119,28 +119,9 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
     .hero-footnote { display: flex; gap: .6rem; align-items: center; margin-top: 2.2rem; color: var(--muted); font-size: .75rem; }
     .hero-footnote .icon { color: var(--lime); width: 1rem; height: 1rem; }
-    .hero-visual { position: relative; min-width: 0; width: 80%; justify-self: center; padding: .25rem 0 6.5rem; zoom: .8; }
+    .hero-visual { position: relative; min-width: 0; width: 80%; justify-self: center; padding-top: .25rem; }
+    .hero-illustration { display: block; width: 100%; height: auto; }
     .visual-caption { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; color: var(--muted); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
-    .browser-window { border: 1px solid #5F586E; border-radius: 9px; background: var(--card); box-shadow: 14px 16px 0 #22202C; overflow: hidden; transform: rotate(-2deg); }
-    .browser-bar { display: flex; align-items: center; gap: 5px; padding: 12px 15px; border-bottom: 1px solid #3B364A; }
-    .browser-dot { width: 5px; height: 5px; border-radius: 50%; background: #8B839D; }
-    .browser-label { margin-inline: auto; color: var(--muted); font-size: .6rem; letter-spacing: .08em; }
-    .sample-site { padding: 1.5rem 1.6rem 2.2rem; background: #EEEDE5; color: #252329; }
-    .sample-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2.1rem; font-size: .55rem; font-weight: 700; letter-spacing: .06em; }
-    .sample-nav span:last-child { border-bottom: 1px solid; }
-    .sample-site-heading { max-width: 270px; font: 600 clamp(1.8rem, 3vw, 2.8rem)/1.06 var(--display); letter-spacing: -.06em; }
-    .sample-site-bottom { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 1.5rem; margin-top: 1.8rem; }
-    .sample-site-copy { color: #5B565D; font-size: .65rem; line-height: 1.7; }
-    .sample-cta { display: inline-block; margin-top: 1rem; padding: .5rem .8rem; background: #252329; color: #fff; font-size: .55rem; }
-    .bloom-art { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: #C8C0E6; }
-    .bloom-art .brand-icon { width: 70%; height: 70%; transform: rotate(15deg); }
-    .assistant-float { position: absolute; right: -.5rem; bottom: 0; width: 78%; padding: 1rem; border: 1px solid #605277; border-radius: 8px; background: #24202F; box-shadow: 0 12px 30px #0005; transform: rotate(2deg); }
-    .assistant-float-header { display: flex; align-items: center; gap: .55rem; margin-bottom: .8rem; font-size: .7rem; }
-    .assistant-float-header > span:last-child { margin-left: auto; color: var(--muted); font-size: .6rem; }
-    .assistant-float .brand-icon { width: 20px; height: 20px; color: var(--lime); }
-    .sample-bubble { width: fit-content; max-width: 94%; padding: .6rem .8rem; border-radius: 6px; font-size: .7rem; line-height: 1.5; }
-    .sample-bubble.user { margin: 0 0 .5rem auto; background: #43335E; }
-    .sample-bubble.bot { background: #35303F; color: #E9E5F3; }
     .hero-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .7rem; color: var(--muted); }
     .hero-bottom span:last-child { display: flex; align-items: center; gap: .7rem; }
 
@@ -337,7 +318,6 @@
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
       .hero-visual { display: none; }
-      .sample-site-heading { font-size: 2.6rem; }
       .hero-bottom { margin-top: 2rem; }
       .service-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
       .service-card { padding: 2rem; }
@@ -366,10 +346,6 @@
       .hero .eyebrow { max-width: 20rem; font-size: .6rem; letter-spacing: .08em; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero h1 .keep-together { font-size: min(1em, 10vw); }
-      .sample-site { padding: 1.25rem; }
-      .sample-site-heading { font-size: 2.1rem; }
-      .sample-site-bottom { gap: 1rem; }
-      .assistant-float { width: 90%; right: -.25rem; }
       .hero-bottom { flex-direction: column; gap: .5rem; }
       .options > .container { width: calc(100% - 2.25rem); }
       .process-grid { gap: 2rem 1.25rem; }
@@ -501,24 +477,9 @@
             </div>
             <div class="hero-footnote"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Thoughtful design. Practical technology. Direct communication.</div>
           </div>
-          <div class="hero-visual" role="img" aria-label="Illustration of a responsive website paired with a sample business assistant conversation.">
+          <div class="hero-visual">
             <div class="visual-caption" aria-hidden="true"><span>Your next chapter, online</span><span>Concept preview</span></div>
-            <div class="browser-window" aria-hidden="true">
-              <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-label">YOUR SPACE ON THE INTERNET</span></div>
-              <div class="sample-site">
-                <div class="sample-nav"><span>YOUR BRAND</span><span>Let’s talk</span></div>
-                <div class="sample-site-heading">Make room<br>for what’s next.</div>
-                <div class="sample-site-bottom">
-                  <div><p class="sample-site-copy">A clear story.<br>A thoughtful experience.<br>A website that feels like you.</p><span class="sample-cta">Discover more</span></div>
-                  <div class="bloom-art"><span class="brand-icon"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div>
-                </div>
-              </div>
-            </div>
-            <div class="assistant-float" aria-hidden="true">
-              <div class="assistant-float-header"><span class="brand-icon"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span><strong>A little help, built in.</strong><span>SAMPLE</span></div>
-              <div class="sample-bubble user">Can you help with my website?</div>
-              <div class="sample-bubble bot">From design to hosting — let’s find the right fit for your business.</div>
-            </div>
+            <img class="hero-illustration" src="Assets/illustration.png" alt="Illustration of a website preview with a sample business assistant conversation." width="1158" height="1359" decoding="async" fetchpriority="high">
           </div>
         </div>
         <div class="hero-bottom"><span>Founder-led. From first idea to launch and beyond.</span><span>Scroll to discover <svg class="icon" aria-hidden="true" style="transform:rotate(90deg)"><use href="#i-right"/></svg></span></div>
