@@ -19,6 +19,9 @@
       --muted: #B7B3C6; --violet: #7C3AED; --lime: #D9F99D;
       --line: #35333F; --display: "Syne", "Arial Black", sans-serif;
       --body: "DM Sans", Arial, sans-serif;
+      --section-space: clamp(3.5rem, 6vw, 6rem);
+      --heading-gap: clamp(1.75rem, 3vw, 2.5rem);
+      --page-start: clamp(2rem, 3vw, 3rem);
     }
     *, *::before, *::after { box-sizing: border-box; }
     /* Violet scrollbars, including the page and assistant conversation. */
@@ -45,12 +48,12 @@
     svg { display: block; }
     .icon { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
     .container { width: min(1200px, calc(100% - 3rem)); margin-inline: auto; }
-    .section { padding-block: clamp(4.5rem, 8vw, 8rem); }
+    .section { padding-block: var(--section-space); }
     section[id], article[id] { scroll-margin-top: 1.25rem; }
     .muted { color: var(--muted); }
-    .eyebrow { display: flex; align-items: center; gap: .7rem; margin-bottom: 1.5rem; color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
+    .eyebrow { display: flex; align-items: center; gap: .7rem; margin-bottom: clamp(.75rem, 1.5vw, 1.25rem); color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--lime); flex-shrink: 0; }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3rem; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: var(--heading-gap); }
     .section-heading > p { max-width: 25rem; color: var(--muted); }
     .section-heading h2 { max-width: 42rem; }
     .button { display: inline-flex; min-height: 50px; justify-content: center; align-items: center; gap: .85rem; padding: .85rem 1.4rem; border: 1px solid transparent; border-radius: 0; background: var(--violet); color: #fff; font-size: .9rem; font-weight: 600; line-height: 1.4; position: relative; isolation: isolate; overflow: hidden; transition: color .25s, background .2s, border-color .2s; }
@@ -164,8 +167,8 @@
     input, select, textarea { width: 100%; min-height: 48px; padding: .8rem .9rem; border: 1px solid #565060; border-radius: 4px; background: #151219; color: var(--text); font-size: .9rem; }
     input::placeholder, textarea::placeholder { color: #9D95AB; opacity: 1; }
     /* Footer. */
-    .site-footer { padding-block: 3.5rem 1.5rem; border-top: 1px solid var(--line); }
-    .footer-main { display: flex; justify-content: space-between; align-items: start; gap: 3rem; padding-bottom: 3rem; }
+    .site-footer { padding-block: var(--heading-gap) 1.5rem; border-top: 1px solid var(--line); }
+    .footer-main { display: flex; justify-content: space-between; align-items: start; gap: 3rem; padding-bottom: var(--heading-gap); }
     .footer-brand p { max-width: 23rem; margin-top: 1rem; color: var(--muted); font-size: .85rem; }
     .footer-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem 3rem; }
     .footer-nav a { display: flex; align-items: center; min-height: 44px; color: var(--muted); font-size: .8rem; }
@@ -199,7 +202,7 @@
       .site-header:has(.nav-links.open) { max-height: 100svh; overflow-y: auto; }
     }
     /* About page: a founder introduction, principles, and a clear next step. */
-    .breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; color: var(--muted); font-size: .75rem; }
+    .breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: var(--heading-gap); color: var(--muted); font-size: .75rem; }
     .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
     .breadcrumb a:hover { color: var(--lime); }
     .breadcrumb span { align-self: center; }
@@ -220,7 +223,6 @@
       .container { width: calc(100% - 2.25rem); }
       .wordmark { width: 176px; }
       .brand-icon { width: 24px; height: 24px; }
-      .breadcrumb { margin-bottom: 1.5rem; }
       .about-actions { flex-direction: column; }
       .footer-main { flex-direction: column; gap: 2rem; }
       .footer-nav { width: 100%; }
@@ -249,7 +251,7 @@
     }
 
     /* Short policy pages with a comfortable reading width. */
-    .legal-page { padding-block: clamp(2rem, 4vw, 4rem) clamp(4rem, 7vw, 6rem); }
+    .legal-page { padding-block: var(--page-start) var(--section-space); }
     .legal-page > .container { width: min(780px, calc(100% - 3rem)); }
     .legal-page h1 { font-size: clamp(2.5rem, 6vw, 4.3rem); }
     .legal-updated { margin-top: 1rem; color: var(--muted); font-size: .8rem; }
