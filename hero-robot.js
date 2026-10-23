@@ -13,14 +13,14 @@
   let model = null;
   let modelStarted = false;
   function syncModel() {
-    model?.setActive(visible && desktop.matches && !document.hidden);
+    model?.setActive(visible && !document.hidden);
   }
   async function loadModel() {
-    if (modelStarted || !desktop.matches || !pointer.matches || !visible || document.hidden || navigator.connection?.saveData) return;
+    if (modelStarted || !visible || document.hidden || navigator.connection?.saveData) return;
     modelStarted = true;
     try {
       const { mountRobot } = await import('./vendor/robot-renderer.js');
-      if (!desktop.matches || document.hidden) { modelStarted = false; return; }
+      if (document.hidden) { modelStarted = false; return; }
       model = await mountRobot(stage, () => { model = null; stage.dataset.robotModel = 'fallback'; });
       stage.dataset.robotModel = 'ready';
       syncModel();

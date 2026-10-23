@@ -451,7 +451,7 @@
       #contact .contact-detail, #contact-socials { display: none; }
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
-      .hero-visual { display: none; }
+      .hero-visual { display: block; max-width: 28rem; }
       .hero-bottom { margin-top: 2rem; }
       .service-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
       .service-card { padding: 2rem; }
@@ -545,6 +545,10 @@
 
     /* Locally hosted portrait robot model. */
     .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); animation: robot-enter 1.1s cubic-bezier(.22, 1, .36, 1) both; }
+    @media (max-width: 850px) {
+      .robot-stage { height: clamp(290px, 85vw, 370px); min-height: 0; }
+      .hero-visual .visual-caption { font-size: .55rem; }
+    }
     @keyframes robot-enter { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (prefers-reduced-motion: reduce) {
@@ -628,7 +632,7 @@
           </div>
           <div class="hero-visual">
             <div class="visual-caption" aria-hidden="true"><span>Your next chapter, online</span><span>Interactive preview</span></div>
-            <div class="robot-stage" id="hero-robot" role="img" aria-label="An interactive 3D humanoid robot with a head that follows your cursor.">
+            <div class="robot-stage" id="hero-robot" role="img" aria-label="A 3D humanoid robot whose head follows your cursor on desktop.">
               <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
             </div>
           </div>
