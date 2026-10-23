@@ -183,6 +183,8 @@
     .eyebrow { display: flex; align-items: center; gap: .7rem; margin-bottom: clamp(.75rem, 1.5vw, 1.25rem); color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--lime); flex-shrink: 0; }
     .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: var(--heading-gap); }
+    #process-title { max-width: none; font-size: clamp(1.4rem, 7vw, 4.2rem); }
+    .process-title-line { white-space: nowrap; }
     .section-heading > p { max-width: 25rem; color: var(--muted); }
     .section-heading h2 { max-width: 42rem; }
     .button { display: inline-flex; min-height: 50px; justify-content: center; align-items: center; gap: .85rem; padding: .85rem 1.4rem; border: 1px solid transparent; border-radius: 0; background: var(--violet); color: #fff; font-size: .9rem; font-weight: 600; line-height: 1.4; position: relative; isolation: isolate; overflow: hidden; transition: color .25s, background .2s, border-color .2s; }
@@ -727,7 +729,7 @@
     <!-- 05 / Process. -->
     <section class="section" id="process" aria-labelledby="process-title">
       <div class="container">
-        <div class="section-heading"><div><div class="eyebrow">03 / How it works</div><h2 id="process-title">A clear path.<br>A considered outcome.</h2></div></div>
+        <div class="section-heading"><div><div class="eyebrow">03 / How it works</div><h2 id="process-title">A clear path.<br><span class="process-title-line">A considered outcome.</span></h2></div></div>
         <ol class="process-grid">
           <li class="process-step"><div class="step-number"><span>01</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></div><h3>Discovery</h3><p>We talk through your goals, audience, content, and scope before agreeing on a plan.</p></li>
           <li class="process-step"><div class="step-number"><span>02</span><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></div><h3>Design</h3><p>We shape the layout, visual direction, and user journey with your feedback.</p></li>
