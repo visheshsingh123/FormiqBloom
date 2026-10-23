@@ -1,8 +1,10 @@
 # FormiqBloom
 
-Responsive agency website with a homepage (`index.html`), dedicated About (`about.html`) and Work (`work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
+Responsive agency website with a homepage (`index.html`), dedicated About (`/about`, served from `about.html`) and Work (`/work`, served from `work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
 ## Vercel deployment
+
+`vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about`, and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so the chat and contact functions become `/api/chat` and `/api/contact`.
 - Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
