@@ -6,7 +6,7 @@ The Team page (`/team`, served from `team.html`) presents Vishesh Singh’s appr
 
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 
-The homepage hero uses a CSS 3D robot with cursor-following head and eyes (`hero-robot.js`), without a 3D library or model download. It stays static without JavaScript or with reduced motion, pauses outside the hero, and remains hidden on mobile.
+The homepage hero uses the uploaded robot model with an independently tracking head (`hero-robot.js`). Its optimized copy is about 800 KB and 32,000 triangles, loaded with a local renderer only on suitable desktop devices. Reduced motion keeps it static, rendering pauses outside the hero, and mobile does not download the model. A CSS robot remains available without JavaScript or when WebGL/model loading fails. Creator attribution is visible beside the robot; see `Assets/robot-model-attribution.txt` and `vendor/README.md` for licensing and optional asset regeneration. No deployment build is required.
 
 ## SEO
 

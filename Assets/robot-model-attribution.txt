@@ -1,0 +1,16 @@
+Humanoid robot Ai
+Creator: 3dUVpro — https://sketchfab.com/3dUVpro
+Source: https://sketchfab.com/3d-models/humanoid-robot-ai-e5de866d076646be8f20c610fefbbbcf
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Adapted by FormiqBloom for its interactive hero:
+- Simplified the geometry from 175,702 to 31,626 triangles.
+- Converted specular/glossiness materials to metallic/roughness materials.
+- Compressed textures and geometry for web delivery.
+- Separated the head at the mechanical neck and added a rotation pivot.
+- Added browser lighting and cursor-following head movement.
+
+The original upload is retained as humanoid_robot_ai.glb.
+The optimized derivative is hero-robot.glb.
+The creator does not endorse FormiqBloom.

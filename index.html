@@ -585,6 +585,14 @@
     .robot-caption { position: absolute; bottom: -.8em; display: flex; align-items: center; gap: .6rem; color: var(--muted); font-size: .75rem; }
     .robot-caption > span { width: 5px; height: 5px; background: var(--lime); }
 
+    /* The locally hosted GLB replaces the CSS robot only after it is ready. */
+    .robot-model-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; mask-image: linear-gradient(to bottom, #000 84%, transparent 100%); }
+    .has-robot-model .robot-rig, .has-robot-model .robot-ground { visibility: hidden; }
+    .has-robot-model .robot-caption { display: none; }
+    .robot-credits { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .3rem; margin-top: 1rem; color: var(--muted); font-size: .6rem; }
+    .robot-credits a { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline; text-underline-offset: 3px; }
+    .robot-credits a:is(:hover, :focus-visible) { color: var(--lime); }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -665,7 +673,7 @@
           </div>
           <div class="hero-visual">
             <div class="visual-caption" aria-hidden="true"><span>Your next chapter, online</span><span>Interactive preview</span></div>
-            <div class="robot-stage" id="hero-robot" role="img" aria-label="A violet and lime 3D robot with a head that follows your cursor.">
+            <div class="robot-stage" id="hero-robot" role="img" aria-label="An interactive 3D humanoid robot with a head that follows your cursor.">
               <div class="robot-ground" aria-hidden="true"></div>
               <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
               <div class="robot-rig" aria-hidden="true">
@@ -679,6 +687,7 @@
               </div>
               <p class="robot-caption" aria-hidden="true"><span></span>A little help, built in.</p>
             </div>
+            <p class="robot-credits">Robot model by <a href="https://sketchfab.com/3dUVpro" target="_blank" rel="noopener noreferrer">3dUVpro<span class="sr-only"> (opens in a new tab)</span></a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0<span class="sr-only"> (opens in a new tab)</span></a> · <a href="/Assets/robot-model-attribution.txt" target="_blank" rel="noopener noreferrer">Adapted<span class="sr-only"> model credits and changes (opens in a new tab)</span></a></p>
           </div>
         </div>
         <div class="hero-bottom"><span>Founder-led. From first idea to launch and beyond.</span><span>Scroll to discover <svg class="icon" aria-hidden="true" style="transform:rotate(90deg)"><use href="#i-right"/></svg></span></div>
