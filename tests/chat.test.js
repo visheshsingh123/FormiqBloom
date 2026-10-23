@@ -58,6 +58,7 @@ test('relays valid history with server business context and keeps the key out of
   assert.equal(sent.options.headers.Authorization, 'Bearer test-only-not-a-real-key');
   assert.equal(sent.body.messages[0].role, 'system');
   assert.match(sent.body.messages[0].content, /FormiqBloom is a founder-led agency/);
+  assert.match(sent.body.messages[0].content, /Location: Surat/);
   assert.match(sent.body.messages[0].content, /RelayChatting, a live text messaging web application with usernames and user accounts/);
   assert.match(sent.body.messages[0].content, /Do not provide or infer the founder’s personal name/);
   assert.match(sent.body.messages[0].content, /submits in the background/);
