@@ -1,0 +1,54 @@
+{
+  "site_url": "https://formiqbloom.vercel.app",
+  "social_image": "/Assets/social-preview.png",
+  "pages": [
+    {
+      "file": "index.html",
+      "path": "/",
+      "name": "Home",
+      "type": "WebPage",
+      "title": "Web Design & AI Assistants in Surat | FormiqBloom",
+      "description": "FormiqBloom is a founder-led agency in Surat building responsive websites, managing hosting, and creating AI assistants. Request a free consultation."
+    },
+    {
+      "file": "about.html",
+      "path": "/about",
+      "name": "About",
+      "type": "AboutPage",
+      "title": "About FormiqBloom | Founder-Led Web Agency in Surat",
+      "description": "Get to know FormiqBloom, a founder-led agency based in Surat focused on thoughtful website design, practical functionality, and direct communication."
+    },
+    {
+      "file": "work.html",
+      "path": "/work",
+      "name": "Selected Work",
+      "type": "CollectionPage",
+      "title": "Web & App Projects: NutriGlance & RelayChatting | FormiqBloom",
+      "description": "Explore NutriGlance and RelayChatting, web apps built by FormiqBloom’s founder. View real product screenshots, features, and links to the live projects."
+    },
+    {
+      "file": "team.html",
+      "path": "/team",
+      "name": "Team",
+      "type": "AboutPage",
+      "title": "Vishesh Singh, Founder | FormiqBloom, Surat",
+      "description": "Meet Vishesh Singh, founder of FormiqBloom in Surat. Learn about his approach to websites, hosting, and AI assistants, and find his website and email."
+    },
+    {
+      "file": "privacy.html",
+      "path": "/privacy",
+      "name": "Privacy Policy",
+      "type": "WebPage",
+      "title": "Privacy Policy | FormiqBloom",
+      "description": "Read how FormiqBloom handles enquiry details, chatbot messages, and technical information, including its use of Google Forms, Groq, and Vercel."
+    },
+    {
+      "file": "terms.html",
+      "path": "/terms",
+      "name": "Terms of Service",
+      "type": "WebPage",
+      "title": "Terms of Service | FormiqBloom",
+      "description": "Read the terms for using FormiqBloom’s website, enquiry form, and AI assistant, including project agreements, third-party services, and your rights."
+    }
+  ]
+}
