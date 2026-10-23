@@ -6,7 +6,7 @@ The Team page (`/team`, served from `team.html`) presents Vishesh Singh’s appr
 
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 
-The homepage hero uses the uploaded robot model with an independently tracking head (`hero-robot.js`). Its optimized copy is about 800 KB and 32,000 triangles, loaded with a local renderer on desktop and mobile. Touch devices use a static portrait; desktop supports cursor tracking. Reduced motion keeps it static, and rendering pauses outside the hero. The previous CSS robot has been removed; core page content remains available if the 3D model cannot load. Creator attribution is linked from the footer; see `Assets/robot-model-attribution.txt` and `vendor/README.md` for licensing and optional asset regeneration. No deployment build is required.
+The homepage hero uses the uploaded robot model with an independently tracking head (`hero-robot.js`). Its optimized copy is about 800 KB and 32,000 triangles, loaded with a local renderer on desktop and mobile. Mobile uses a shadowed portrait behind the hero copy, with a static pose on touch devices; desktop supports cursor tracking. Reduced motion keeps it static, and rendering pauses outside the hero. The previous CSS robot has been removed; core page content remains available if the 3D model cannot load. Creator attribution is linked from the footer; see `Assets/robot-model-attribution.txt` and `vendor/README.md` for licensing and optional asset regeneration. No deployment build is required.
 
 ## SEO
 
