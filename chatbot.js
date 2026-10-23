@@ -34,8 +34,10 @@
   const status = document.getElementById('widget-status');
   const history = [];
   let busy = false;
+  let returnFocus = launcher;
 
   function setOpen(open) {
+    if (open && panel.hidden) returnFocus = document.activeElement;
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', String(open));
     launcher.setAttribute('aria-label', open ? 'Close FormiqBloom AI' : 'Open FormiqBloom AI');
@@ -44,7 +46,7 @@
       (busy ? closeButton : input).focus({ preventScroll: true });
       log.scrollTop = log.scrollHeight;
     } else {
-      launcher.focus({ preventScroll: true });
+      (returnFocus?.isConnected ? returnFocus : launcher).focus({ preventScroll: true });
     }
   }
 
@@ -136,8 +138,19 @@
     }
   });
   document.querySelectorAll('[data-open-chat]').forEach(button => {
-    button.addEventListener('click', () => setOpen(true));
+    let greeted = false;
+    button.addEventListener('click', () => {
+      if (button.dataset.chatGreeting && !greeted) {
+        const greeting = button.dataset.chatGreeting;
+        if (log.children.length === 1 && history.length === 0) {
+          log.firstElementChild.querySelector('p').textContent = greeting;
+        } else addMessage('FormiqBloom AI', greeting);
+        greeted = true;
+      }
+      setOpen(true);
+    });
     button.disabled = false;
+    button.hidden = false;
   });
   launcher.addEventListener('click', () => setOpen(panel.hidden));
   closeButton.addEventListener('click', () => setOpen(false));
