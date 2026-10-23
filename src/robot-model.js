@@ -90,8 +90,8 @@ export async function mountRobot(stage, onFailure) {
     const bounds = new THREE.Box3().setFromObject(model);
     const size = bounds.getSize(new THREE.Vector3());
     const center = bounds.getCenter(new THREE.Vector3());
-    // Frame the upper body so the head remains readable at hero size.
-    const visibleHeight = size.y * .62;
+    // Portrait framing: keep the head and chest visible, cropping above the waist.
+    const visibleHeight = size.y * .40;
     const targetY = bounds.max.y - visibleHeight * .5;
     function render(time = 0) {
       frame = 0;
