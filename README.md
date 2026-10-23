@@ -2,6 +2,8 @@
 
 Responsive agency website with a homepage (`index.html`), dedicated About (`/about`, served from `about.html`) and Work (`/work`, served from `work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
+The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
+
 ## Vercel deployment
 
 The concise website policies are at `/privacy` (`privacy.html`) and `/terms` (`terms.html`). Keep these updated when data handling or service arrangements change.
