@@ -8,9 +8,11 @@ The Work page uses selected uploaded product screenshots. `work-gallery.js` adds
 
 The homepage hero uses the uploaded robot model with an independently tracking head (`hero-robot.js`). Its optimized copy is about 800 KB and 32,000 triangles, loaded with a local renderer on desktop and mobile. Mobile uses a shadowed portrait behind the hero copy, with a static pose on touch devices; desktop supports cursor tracking. Reduced motion keeps it static, and rendering pauses outside the hero. The previous CSS robot has been removed; core page content remains available if the 3D model cannot load. Creator attribution is linked from the footer; see `Assets/robot-model-attribution.txt` and `vendor/README.md` for licensing and optional asset regeneration. No deployment build is required.
 
+The Other solutions section covers redesigns, landing pages, booking integrations, and business dashboards. The Blog (`/blog`) links two original, static business guides at `/blog/business-website-checklist` and `/blog/website-redesign-guide`. Their content and shared assets work without a build step; article metadata, publication dates, BlogPosting schema, breadcrumbs, and sitemap entries are managed through `seo.config.json`.
+
 ## SEO
 
-All six public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
+All nine public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
 
 `seo.config.json` is the source for page metadata and the production domain. Run `python3 scripts/update_seo.py` after editing it; generated HTML, `sitemap.xml`, and `robots.txt` are committed, so Vercel still needs no build step. API responses carry an `X-Robots-Tag: noindex` header. The uploaded Google verification file is preserved separately and is not added to the sitemap.
 
@@ -19,7 +21,7 @@ After deployment, verify the current property in Google Search Console and submi
 For the future `.in` move:
 
 1. Connect the real domain to this Vercel project and confirm it serves the website over HTTPS.
-2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all six pages. Commit and deploy the generated files and configuration together.
+2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all nine pages. Commit and deploy the generated files and configuration together.
 3. Configure a permanent redirect from the old domain to the new one in Vercel, preserving each page path. Verify the new Search Console property, submit its sitemap, and use Change of Address where applicable. Google verification may require new verification details for the new property.
 
 Check the SEO files with `python3 -B -m unittest discover -s tests -p test_seo.py -v`.

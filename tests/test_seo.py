@@ -103,11 +103,35 @@ class SEOTests(unittest.TestCase):
             self.assertEqual(person['url'], 'https://visheshsingh.vercel.app/')
             if item['path'] != '/':
                 crumbs = next(node for node in graph if node['@type'] == 'BreadcrumbList')['itemListElement']
-                self.assertEqual([crumb['position'] for crumb in crumbs], [1, 2])
+                self.assertEqual([crumb['position'] for crumb in crumbs], [1, 2, 3] if item.get('article') else [1, 2])
                 self.assertEqual(crumbs[-1]['item'], CONFIG['site_url'] + item['path'])
             if item['path'] == '/work':
                 self.assertEqual({node['url'] for node in graph if node['@type'] == 'WebApplication'},
                                  {'https://macromuse.vercel.app/', 'https://relaychatting.vercel.app/'})
+
+    def test_blog_articles_have_truthful_dates_authorship_and_linked_breadcrumbs(self):
+        articles = [item for item in CONFIG['pages'] if item.get('article')]
+        self.assertEqual(len(articles), 2)
+        listing = Page((ROOT / 'blog.html').read_text())
+        blog = next(node for node in listing.schemas[0]['@graph'] if node['@type'] == 'Blog')
+        self.assertEqual({post['@id'] for post in blog['blogPost']},
+                         {CONFIG['site_url'] + item['path'] + '#article' for item in articles})
+        for item in articles:
+            page = Page((ROOT / item['file']).read_text())
+            graph = page.schemas[0]['@graph']
+            article = next(node for node in graph if node['@type'] == 'BlogPosting')
+            self.assertEqual(article['headline'], item['article']['headline'])
+            self.assertEqual(article['datePublished'], '2026-10-24')
+            self.assertEqual(article['dateModified'], item['article']['date_modified'])
+            self.assertEqual(article['author']['@id'], CONFIG['site_url'] + '/#organization')
+            self.assertEqual(page.meta['og:type'], 'article')
+            self.assertEqual(page.meta['article:published_time'], article['datePublished'])
+            crumbs = next(node for node in graph if node['@type'] == 'BreadcrumbList')['itemListElement']
+            self.assertEqual(crumbs[1]['item'], CONFIG['site_url'] + '/blog')
+            source = (ROOT / item['file']).read_text()
+            self.assertIn('datetime="2026-10-24"', source)
+            self.assertIn('src="/chatbot.js"', source)
+            self.assertNotIn('src="Assets/', source)
 
     def test_sitemap_robots_image_and_api_indexing(self):
         sitemap = ET.parse(ROOT / 'sitemap.xml')
@@ -138,12 +162,13 @@ class SEOTests(unittest.TestCase):
             (target / 'scripts').mkdir()
             shutil.copy2(ROOT / 'scripts/update_seo.py', target / 'scripts/update_seo.py')
             for file in ['seo.config.json', 'sitemap.xml', 'robots.txt'] + [page['file'] for page in CONFIG['pages']]:
+                (target / file).parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(ROOT / file, target / file)
             verification = target / 'google-example.html'
             verification.write_text('google-site-verification: google-example.html')
             def digest():
-                return {file.name: hashlib.sha256(file.read_bytes()).hexdigest()
-                        for file in target.iterdir() if file.is_file()}
+                return {str(file.relative_to(target)): hashlib.sha256(file.read_bytes()).hexdigest()
+                        for file in target.rglob('*') if file.is_file()}
             before = digest()
             def run(*args):
                 return subprocess.run([sys.executable, str(target / 'scripts/update_seo.py'), *args],

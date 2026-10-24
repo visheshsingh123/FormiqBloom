@@ -37,6 +37,19 @@ test('maps all five fields and confirms only a recognized recorded-response page
   assert.ok(!JSON.stringify(result).includes('test@example.com'));
 });
 
+test('accepts and relays the four published Other solutions enquiries', async t => {
+  let sent;
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    sent = new URLSearchParams(options.body);
+    return { ok: true, text: async () => confirmation };
+  });
+  for (const service of ['Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards']) {
+    const result = await request({ body: { ...fixture, service } });
+    assert.equal(result.status, 200);
+    assert.equal(sent.get('entry.2086671607'), service);
+  }
+});
+
 test('allows an empty optional business field', async t => {
   t.mock.method(globalThis, 'fetch', async () => ({ ok: true, text: async () => confirmation }));
   assert.equal((await request({ body: { ...fixture, business: '' } })).body.ok, true);

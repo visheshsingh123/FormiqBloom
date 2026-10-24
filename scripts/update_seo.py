@@ -34,16 +34,36 @@ def business_graph(origin):
 def page_graph(page, origin, image):
     canonical = origin + page['path']
     graph = business_graph(origin)
+    if page.get('organization_description'):
+        graph[0]['description'] = page['organization_description']
     entity = {'@type': page['type'], '@id': canonical + '#webpage', 'url': canonical,
               'name': page['title'], 'description': page['description'], 'inLanguage': 'en',
               'isPartOf': {'@id': origin + '/#website'}, 'about': {'@id': origin + '/#organization'},
               'primaryImageOfPage': {'@type': 'ImageObject', 'url': image, 'width': 1200, 'height': 630}}
     if page['path'] != '/':
         entity['breadcrumb'] = {'@id': canonical + '#breadcrumb'}
-        graph.append({'@type': 'BreadcrumbList', '@id': canonical + '#breadcrumb', 'itemListElement': [
-            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': origin + '/'},
-            {'@type': 'ListItem', 'position': 2, 'name': page['name'], 'item': canonical}
-        ]})
+        crumbs = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': origin + '/'}]
+        if page.get('article'):
+            crumbs.append({'@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': origin + '/blog'})
+        crumbs.append({'@type': 'ListItem', 'position': len(crumbs) + 1, 'name': page['name'], 'item': canonical})
+        graph.append({'@type': 'BreadcrumbList', '@id': canonical + '#breadcrumb', 'itemListElement': crumbs})
+    if page.get('article'):
+        article = page['article']
+        graph.append({'@type': 'BlogPosting', '@id': canonical + '#article', 'url': canonical,
+                      'headline': article['headline'], 'description': page['description'],
+                      'datePublished': article['date_published'], 'dateModified': article['date_modified'],
+                      'articleSection': article['category'], 'wordCount': article['word_count'],
+                      'inLanguage': 'en', 'image': image, 'author': {'@id': origin + '/#organization'},
+                      'publisher': {'@id': origin + '/#organization'},
+                      'mainEntityOfPage': {'@id': canonical + '#webpage'},
+                      'isPartOf': {'@id': origin + '/blog#blog'}})
+        entity['mainEntity'] = {'@id': canonical + '#article'}
+    if page['path'] == '/blog':
+        graph.append({'@type': 'Blog', '@id': canonical + '#blog', 'url': canonical,
+                      'name': 'FormiqBloom Blog', 'publisher': {'@id': origin + '/#organization'},
+                      'blogPost': [{'@id': origin + article['path'] + '#article'}
+                                   for article in page.get('posts', [])]})
+        entity['mainEntity'] = {'@id': canonical + '#blog'}
     if page['path'] == '/team':
         entity['mainEntity'] = {'@id': origin + '/#founder'}
     if page['path'] == '/work':
@@ -62,9 +82,13 @@ def page_graph(page, origin, image):
         entity['mainEntity'] = {'@id': canonical + '#projects'}
     if page['path'] == '/':
         for name, slug, description in [
-            ('Website Design & Development', 'websites', 'Responsive business websites with clear navigation and enquiry flows.'),
+            ('Website Design & Development in Surat', 'websites', 'Website development in Surat, with responsive business websites, clear enquiry flows, and SEO setup included with every package.'),
             ('Managed Hosting & Maintenance', 'hosting', 'Deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan.'),
-            ('AI Assistants', 'assistants', 'Assistants grounded in approved business information that answer FAQs and guide enquiries.')
+            ('AI Assistants', 'assistants', 'Assistants grounded in approved business information that answer FAQs and guide enquiries.'),
+            ('Website Redesigns', 'redesigns', 'Responsive website redesigns with content and URL changes planned before launch.'),
+            ('Landing Pages', 'landing-pages', 'Focused pages for a service, launch, or campaign with a relevant enquiry or booking action.'),
+            ('Booking Integrations', 'booking-integrations', 'Booking platform integrations with availability and setup agreed around business requirements.'),
+            ('Business Dashboards', 'business-dashboards', 'Custom business dashboards with agreed data sources, access permissions, and reporting requirements.')
         ]:
             graph.append({'@type': 'Service', '@id': origin + '/#service-' + slug, 'name': name,
                           'description': description, 'url': origin + '/#' + slug,
@@ -81,10 +105,14 @@ def metadata(page, origin, social_path):
             '  <link rel="canonical" href="' + escape(canonical) + '">',
             '  <meta name="robots" content="index, follow, max-image-preview:large">',
             '  <meta name="author" content="FormiqBloom">']
-    properties = {'og:type': 'website', 'og:site_name': 'FormiqBloom', 'og:locale': 'en_IN',
+    properties = {'og:type': 'article' if page.get('article') else 'website', 'og:site_name': 'FormiqBloom', 'og:locale': 'en_IN',
                   'og:title': page['title'], 'og:description': page['description'], 'og:url': canonical,
                   'og:image': image, 'og:image:type': 'image/png', 'og:image:width': '1200',
                   'og:image:height': '630', 'og:image:alt': 'FormiqBloom — websites, hosting, and AI assistants. Based in Surat.'}
+    if page.get('article'):
+        properties.update({'article:published_time': page['article']['date_published'],
+                           'article:modified_time': page['article']['date_modified'],
+                           'article:section': page['article']['category']})
     tags.extend('  <meta property="' + key + '" content="' + escape(value) + '">' for key, value in properties.items())
     twitter = {'twitter:card': 'summary_large_image', 'twitter:title': page['title'],
                'twitter:description': page['description'], 'twitter:image': image,

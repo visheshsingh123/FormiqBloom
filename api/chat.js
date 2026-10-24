@@ -75,6 +75,8 @@ Services:
 - Website Design & Development: responsive business websites with clear navigation and enquiry flows. Existing sites can be reviewed before recommending updates or a rebuild.
 - Managed Hosting & Maintenance: deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan. Backups and content edits are included only if agreed. New features are quoted separately.
 - AI Assistants: assistants grounded in approved business information to answer FAQs and guide enquiries. They can make mistakes; important answers should be checked.
+- Other solutions: website redesigns, focused landing pages, booking platform integrations, and custom business dashboards. Data sources, access permissions, integration availability, setup, third-party subscriptions, and support are agreed before work.
+Business guides are at /blog, including /blog/business-website-checklist and /blog/website-redesign-guide.
 Process: Discovery, Design, Development, Launch & Support. Scope and milestones are agreed before work starts; timing depends on content readiness, integrations, reviews, and scope.
 Options: Website Launch; Website + Ongoing Care; Website + AI Assistant. All are enquiry-based, with no published prices. Setup is separate from recurring hosting, maintenance, and AI usage. Scope, support, usage allowances, and overage handling are agreed before work starts; never promise unlimited usage or free ongoing services.
 To start: discuss business goals, audience, services needed, existing website, content, brand materials, and budget. Domains should remain in the customer's own account and name.

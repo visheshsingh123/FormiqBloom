@@ -8,7 +8,8 @@
       "name": "Home",
       "type": "WebPage",
       "title": "FormiqBloom | Web Design & AI Solutions in Surat",
-      "description": "Need website development in Surat? FormiqBloom builds responsive business websites with SEO setup included in every package, plus managed hosting and AI assistants."
+      "description": "Need website development in Surat? FormiqBloom builds responsive business websites with SEO setup included in every package, plus managed hosting and AI assistants.",
+      "organization_description": "A founder-led agency in Surat offering website design and development, SEO setup included with every package, managed hosting, and custom AI assistants."
     },
     {
       "file": "about.html",
@@ -49,6 +50,52 @@
       "type": "WebPage",
       "title": "Terms of Service | FormiqBloom",
       "description": "Read the terms for using FormiqBloom’s website, enquiry form, and AI assistant, including project agreements, third-party services, and your rights."
+    },
+    {
+      "file": "blog.html",
+      "path": "/blog",
+      "name": "Blog",
+      "type": "CollectionPage",
+      "title": "Business Website Guides & Insights | FormiqBloom Blog",
+      "description": "Practical guides from FormiqBloom on planning a business website, choosing a redesign, and making informed decisions about your online presence.",
+      "posts": [
+        {
+          "path": "/blog/business-website-checklist"
+        },
+        {
+          "path": "/blog/website-redesign-guide"
+        }
+      ]
+    },
+    {
+      "file": "blog/business-website-checklist.html",
+      "path": "/blog/business-website-checklist",
+      "name": "Business website checklist",
+      "type": "WebPage",
+      "title": "Business Website Checklist: What to Plan | FormiqBloom",
+      "description": "Plan your business website with a practical checklist covering goals, content, enquiries, mobile design, SEO, ownership, hosting, and ongoing care.",
+      "article": {
+        "headline": "A practical checklist for your business website.",
+        "date_published": "2026-10-24",
+        "date_modified": "2026-10-24",
+        "category": "Website planning",
+        "word_count": 491
+      }
+    },
+    {
+      "file": "blog/website-redesign-guide.html",
+      "path": "/blog/website-redesign-guide",
+      "name": "Website redesign guide",
+      "type": "WebPage",
+      "title": "When Should You Redesign Your Business Website? | FormiqBloom",
+      "description": "Learn when a business website needs a redesign, when focused updates are enough, and how to plan content, enquiries, redirects, and launch checks.",
+      "article": {
+        "headline": "Does your business website need a redesign?",
+        "date_published": "2026-10-24",
+        "date_modified": "2026-10-24",
+        "category": "Website redesign",
+        "word_count": 522
+      }
     }
   ]
 }

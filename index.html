@@ -111,6 +111,46 @@
       }
     },
     {
+      "@type": "Service",
+      "@id": "https://formiqbloom.vercel.app/#service-redesigns",
+      "name": "Website Redesigns",
+      "description": "Responsive website redesigns with content and URL changes planned before launch.",
+      "url": "https://formiqbloom.vercel.app/#redesigns",
+      "provider": {
+        "@id": "https://formiqbloom.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://formiqbloom.vercel.app/#service-landing-pages",
+      "name": "Landing Pages",
+      "description": "Focused pages for a service, launch, or campaign with a relevant enquiry or booking action.",
+      "url": "https://formiqbloom.vercel.app/#landing-pages",
+      "provider": {
+        "@id": "https://formiqbloom.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://formiqbloom.vercel.app/#service-booking-integrations",
+      "name": "Booking Integrations",
+      "description": "Booking platform integrations with availability and setup agreed around business requirements.",
+      "url": "https://formiqbloom.vercel.app/#booking-integrations",
+      "provider": {
+        "@id": "https://formiqbloom.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://formiqbloom.vercel.app/#service-business-dashboards",
+      "name": "Business Dashboards",
+      "description": "Custom business dashboards with agreed data sources, access permissions, and reporting requirements.",
+      "url": "https://formiqbloom.vercel.app/#business-dashboards",
+      "provider": {
+        "@id": "https://formiqbloom.vercel.app/#organization"
+      }
+    },
+    {
       "@type": "WebPage",
       "@id": "https://formiqbloom.vercel.app/#webpage",
       "url": "https://formiqbloom.vercel.app/",
@@ -596,6 +636,18 @@
       .marquee-group { display: block; min-width: 0; padding: 0 1.25rem; white-space: normal; text-align: center; flex-shrink: 1; }
       .marquee-group[aria-hidden="true"] { display: none; }
     }
+    /* Focused business solutions, quoted around agreed requirements. */
+    .other-solutions { border-top: 1px solid var(--line); }
+    .solution-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .solution-card { min-width: 0; padding: clamp(1.5rem, 3vw, 2rem); border: 1px solid var(--line); display: flex; flex-direction: column; align-items: start; transition: border-color .25s; }
+    .solution-card:is(:hover, :focus-within) { border-color: #A78BCA; }
+    .solution-title { display: flex; align-items: center; gap: .85rem; }
+    .solution-title .icon { color: #C8A6FF; }
+    .solution-title h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
+    .solution-card p { margin-block: 1rem; font-size: .9rem; color: var(--muted); }
+    .solution-card .text-link { margin-top: auto; font-size: .8rem; }
+    .solutions-note { max-width: 44rem; margin-block: 1.5rem .5rem; font-size: .8rem; color: var(--muted); }
+    @media (max-width: 560px) { .solution-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body id="top">
@@ -637,10 +689,11 @@
             <a href="#websites">Website Design &amp; Development</a>
             <a href="#hosting">Managed Hosting &amp; Maintenance</a>
             <a href="#assistants">AI Assistants</a>
-            <a href="#contact">Other</a>
+            <a href="#other-solutions">Other</a>
           </div>
         </details>
         <a href="/work">Work</a>
+        <a href="/blog">Blog</a>
         <a href="#assistant-demo">AI Assistant</a>
         <a href="#options">Packages</a>
         <a href="/about">About</a>
@@ -720,6 +773,9 @@
         </div>
       </div>
     </section>
+
+    <!-- Other solutions / Scoped around a specific business need. -->
+    <section class="section other-solutions" id="other-solutions" aria-labelledby="other-solutions-title"><div class="container"><div class="section-heading"><div><div class="eyebrow">More ways to build</div><h2 id="other-solutions-title">Other solutions.</h2></div></div><div class="solution-grid"><article class="solution-card" id="redesigns"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 8a7 7 0 0 1 12-3L20 8M4 16l2.5 3a7 7 0 0 0 12-3"/></svg><h3>Website redesigns</h3></div><p>A clearer structure and refreshed responsive design for an existing website, with content and URL changes planned before launch.</p><a class="text-link" href="#contact" data-service="redesigns">Discuss website redesigns <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="landing-pages"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M7 13h10M7 16h6"/></svg><h3>Landing pages</h3></div><p>Focused pages for a service, launch, or campaign, with clear messaging and a relevant enquiry or booking action.</p><a class="text-link" href="#contact" data-service="landing-pages">Discuss landing pages <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="booking-integrations"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M7 3v4M17 3v4M3 10h18M8 15l3 3 5-5"/></svg><h3>Booking integrations</h3></div><p>Connect a suitable booking platform so visitors can request or schedule appointments, with availability and setup agreed together.</p><a class="text-link" href="#contact" data-service="booking-integrations">Discuss booking integrations <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="business-dashboards"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M7 16v-4M12 16V8M17 16v-6"/></svg><h3>Business dashboards</h3></div><p>Custom views for the business data and workflows you need, with agreed data sources, access permissions, and reporting requirements.</p><a class="text-link" href="#contact" data-service="business-dashboards">Discuss business dashboards <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article></div><p class="solutions-note">Each solution is quoted around your requirements. Third-party tools, subscriptions, and ongoing support are agreed separately.</p><a class="text-link" href="/blog">Explore the business website guides <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></div></section>
 
     <!-- 04 / Assistant entry point; shares the floating chat and its four saved answers. -->
     <section class="section demo-section" id="assistant-demo" aria-labelledby="demo-title">
@@ -805,7 +861,7 @@
               <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
               <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@yourbusiness.com"></div>
               <div class="field full"><label for="business">Business name <span>(optional)</span></label><input id="business" name="business" autocomplete="organization" maxlength="150" placeholder="What’s your business called?"></div>
-              <div class="field full"><label for="service">Service needed</label><select id="service" name="service" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
+              <div class="field full"><label for="service">Service needed</label><select id="service" name="service" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="Website redesigns" data-service-option="redesigns">Website redesigns</option><option value="Landing pages" data-service-option="landing-pages">Landing pages</option><option value="Booking integrations" data-service-option="booking-integrations">Booking integrations</option><option value="Business dashboards" data-service-option="business-dashboards">Business dashboards</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
               <div class="field full"><label for="details">Project details</label><textarea id="details" name="details" required maxlength="5000" placeholder="Tell us about your idea, goals, and anything you have in place already."></textarea></div>
             </div>
             <button class="button" type="submit"><span id="contact-submit-label">Request a Free Consultation</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -831,7 +887,7 @@
             <a href="mailto:visheshsingh29537@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> visheshsingh29537@gmail.com</span></a>
           </nav>
         </div>
-        <nav class="footer-nav" aria-label="Footer navigation"><a href="https://formiqbloom.vercel.app/">Home</a><a href="/work">Selected Work</a><a href="/about">About</a><a href="/team">Team</a><a href="#options">Packages</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">AI Assistant</a><a href="#contact">Contact</a></nav>
+        <nav class="footer-nav" aria-label="Footer navigation"><a href="https://formiqbloom.vercel.app/">Home</a><a href="/work">Selected Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="/team">Team</a><a href="#options">Packages</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#assistant-demo">AI Assistant</a><a href="#contact">Contact</a></nav>
       </div>
       <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/Assets/robot-model-attribution.txt">3D model credits</a></nav></div>
     </div>
