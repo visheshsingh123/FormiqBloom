@@ -288,10 +288,14 @@
 
     /* Assistant section and shared chat styling. */
     .demo-section { padding-block: var(--section-space); background: #17151D; border-block: 1px solid var(--line); }
-    .demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: clamp(2rem, 4vw, 4rem); }
+    .demo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(2rem, 4vw, 4rem); }
     .demo-copy h2 { max-width: 100%; font-size: clamp(2.3rem, 3.8vw, 3.7rem); }
     .demo-copy h2 span { display: block; text-wrap: balance; }
-    .demo-grid > .chat { margin-top: 2.25rem; }
+    .demo-grid > .chat { width: 100%; max-width: 35rem; justify-self: end; border-radius: 0; }
+    .demo-grid > .chat .chat-header { gap: .85rem; padding: 1.25rem; }
+    .demo-grid > .chat .chat-avatar { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 0; }
+    .demo-grid > .chat .chat-header strong { font-size: 1rem; line-height: 1.35; }
+    .demo-grid > .chat .chat-header small { margin-top: .3rem; line-height: 1.5; font-size: .72rem; }
     .demo-copy > p { max-width: 28rem; margin-block: 1.5rem; color: var(--muted); }
     .chat { min-width: 0; border: 1px solid #51435F; border-radius: 10px; background: var(--card); overflow: hidden; }
     .chat-header { display: flex; align-items: center; gap: .75rem; padding: 1.25rem; border-bottom: 1px solid var(--line); }
@@ -314,9 +318,14 @@
     .chat-input-row input { min-width: 0; width: 100%; }
     .chat-input-row button { min-width: 48px; padding: .75rem; }
     .chat-disclaimer { margin-top: .75rem; color: var(--muted); font-size: .65rem; }
-    .chat-teaser { padding: 1.5rem; }
-    .chat-teaser > p { color: var(--muted); font-size: .9rem; }
-    .chat-teaser .suggestions { display: grid; grid-template-columns: 1fr 1fr; margin-block: 1.5rem; }
+    .chat-teaser { padding: 1.25rem; }
+    .chat-teaser > p { max-width: 32rem; color: var(--muted); font-size: .85rem; line-height: 1.65; }
+    .chat-teaser .suggestions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin-block: 1.25rem; }
+    .chat-teaser .suggestions button { display: flex; justify-content: space-between; align-items: center; gap: .75rem; min-height: 58px; padding: .8rem; text-align: left; font-size: .75rem; line-height: 1.5; border-color: var(--line); transition: background .25s, border-color .25s; }
+    .chat-teaser .suggestions button::after { content: ""; width: .5rem; height: .5rem; flex-shrink: 0; border-top: 1px solid #C8A6FF; border-right: 1px solid #C8A6FF; transition: transform .25s; }
+    .chat-teaser .suggestions button:is(:hover, :focus-visible) { border-color: #9875C7; background: #282131; }
+    .chat-teaser .suggestions button:hover::after { transform: translate(2px, -2px); }
+    @media (max-width: 560px) { .chat-teaser .suggestions { grid-template-columns: 1fr; } }
     .chat-teaser .button { width: 100%; }
 
     /* Bottom-right assistant: square controls and room for the back-to-top link. */
@@ -466,7 +475,7 @@
       .service-card p { max-width: 35rem; }
       .demo-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .demo-copy h2, .demo-copy > p { max-width: 38rem; }
-      .demo-grid > .chat { margin-top: 0; }
+      .demo-grid > .chat { justify-self: start; max-width: none; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
       .options > .container { width: calc(100% - 3rem); }
       .options-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
@@ -721,12 +730,11 @@
           <a class="text-link" href="#contact" data-service="assistant">Request a custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="chat">
-          <div class="chat-header"><div class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div><div><strong>Meet your FormiqBloom assistant</strong><small>Four quick answers. AI for your other questions.</small></div></div>
+          <div class="chat-header"><div class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></div><div><strong>FormiqBloom AI</strong><small>Four quick answers. AI for your other questions.</small></div></div>
           <div class="chat-teaser">
             <p>Curious about a website, hosting, or a custom assistant? Start with a question below.</p>
             <div class="suggestions" data-widget-questions aria-label="Quick questions"></div>
             <button class="button" type="button" data-open-chat disabled>Open the chat <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button>
-            <p class="chat-disclaimer">Custom questions are sent to Groq. Don’t share sensitive information.</p>
           </div>
           <noscript><p>Enable JavaScript to use chat, or contact FormiqBloom through the WhatsApp links on this page.</p></noscript>
         </div>
