@@ -275,10 +275,10 @@
     .service-grid { display: grid; width: 85%; margin-inline: auto; zoom: .85; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .service-card { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 0; background: var(--card); transition: border-color .2s, transform .2s; }
     .service-card:hover { border-color: #736287; transform: translateY(-4px); }
-    .service-card-top { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 2.8rem; }
+    .service-card-top { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: .8rem; width: 100%; }
     .service-card-top > .icon { width: 2rem; height: 2rem; color: #BE9DFF; }
     .service-card-top span { color: var(--muted); font-size: .7rem; }
-    .service-card h3 { max-width: 16rem; }
+    .service-card h3 { min-width: 0; font-size: clamp(1.05rem, 1.4vw, 1.35rem); line-height: 1.2; }
     .service-card p { margin-block: 1rem 1.8rem; color: var(--muted); font-size: .9rem; }
     .service-card .text-link { margin-top: auto; }
 
@@ -462,7 +462,6 @@
       .hero-bottom { margin-top: 2rem; }
       .service-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
       .service-card { padding: 2rem; }
-      .service-card-top { margin-bottom: 1.5rem; }
       .service-card h3 { max-width: none; }
       .service-card p { max-width: 35rem; }
       .demo-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -694,20 +693,17 @@
         <div class="section-heading"><div><div class="eyebrow">01 / What we do</div><h2 id="services-title">Good ideas deserve<br>a great digital home.</h2></div></div>
         <div class="service-grid">
           <article class="service-card" id="websites">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><span>01</span></div>
-            <h3>Website Design<br>&amp; Development</h3>
+            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><h3>Website Design<br>&amp; Development</h3><span>01</span></div>
             <p>Responsive business websites with clear navigation, thoughtful design, enquiry flows, and SEO setup included with every package at no extra charge.</p>
             <a class="text-link" href="#contact" data-service="website">Let’s build your website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="service-card" id="hosting">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><span>02</span></div>
-            <h3>Managed Hosting<br>&amp; Maintenance</h3>
+            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><h3>Managed Hosting<br>&amp; Maintenance</h3><span>02</span></div>
             <p>A considered home for your website: deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan.</p>
             <a class="text-link" href="#contact" data-service="care">Talk about ongoing care <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="service-card" id="assistants">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>03</span></div>
-            <h3>Custom<br>AI Assistants</h3>
+            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><h3>Custom<br>AI Assistants</h3><span>03</span></div>
             <p>Assistants grounded in approved business information to answer FAQs and guide your visitors toward relevant enquiries.</p>
             <a class="text-link" href="#contact" data-service="assistant">Explore your assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </article>
