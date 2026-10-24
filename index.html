@@ -404,7 +404,8 @@
     .social-links a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; padding: .65rem .85rem; border: 1px solid #565060; font-size: .8rem; transition: background .2s, border-color .2s; }
     .social-links a:hover { background: var(--card); border-color: var(--lime); }
     .social-links .whatsapp-link { border-color: var(--violet); background: var(--violet); color: #fff; }
-    .social-links .whatsapp-link:hover { border-color: #6D28D9; background: #6D28D9; }
+    .social-links .whatsapp-link:is(:hover, :focus-visible) { border-color: var(--violet); background: var(--violet); }
+    .social-links .whatsapp-link:is(:hover, :focus-visible) .icon { transform: none; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .field { min-width: 0; }
     .field.full { grid-column: 1 / -1; }
@@ -792,7 +793,7 @@
           <p>Based in Surat. A new website, a better home for your existing one, or an assistant with useful answers. Start with what you have in mind.</p>
           <div class="contact-detail"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><p>A direct conversation with the founder.<br>A clear scope before any work begins.</p></div>
           <nav class="social-links" id="contact-socials" aria-label="Contact and social links">
-            <a class="whatsapp-link" href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp · +91 9054349785<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="button whatsapp-link" href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp · +91 9054349785<span class="sr-only"> (opens in a new tab)</span></a>
             <a href="https://www.instagram.com/formiqbloom/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>@formiqbloom<span class="sr-only"> on Instagram (opens in a new tab)</span></a>
             <a href="mailto:visheshsingh29537@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> visheshsingh29537@gmail.com</span></a>
           </nav>
