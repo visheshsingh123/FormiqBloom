@@ -79,7 +79,7 @@ class SEOTests(unittest.TestCase):
                 self.assertEqual(page.meta['og:image'], CONFIG['site_url'] + CONFIG['social_image'])
                 self.assertEqual(page.meta['twitter:image'], page.meta['og:image'])
                 self.assertTrue(page.meta['og:image:alt'])
-                self.assertEqual(page.home_links, [CONFIG['site_url'] + '/'] * 2)
+                self.assertEqual(page.home_links, ['#home'] * 2 if item['path'] == '/' else [CONFIG['site_url'] + '/'] * 2)
                 titles.add(page.title)
                 descriptions.add(page.meta['description'])
 
@@ -182,7 +182,7 @@ class SEOTests(unittest.TestCase):
                 source = (target / item['file']).read_text()
                 parsed = Page(source)
                 self.assertEqual(parsed.canonicals, ['https://example.in' + item['path']])
-                self.assertEqual(parsed.home_links, ['https://example.in/'] * 2)
+                self.assertEqual(parsed.home_links, ['#home'] * 2 if item['path'] == '/' else ['https://example.in/'] * 2)
                 self.assertEqual(parsed.meta['og:image'], 'https://example.in' + CONFIG['social_image'])
                 self.assertNotIn(CONFIG['site_url'], source)
                 original_body = (ROOT / item['file']).read_text().split('<body', 1)[1]

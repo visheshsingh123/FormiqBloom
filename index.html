@@ -684,7 +684,7 @@
   <!-- Sticky navigation. -->
   <header class="site-header">
     <div class="container nav-shell">
-      <a class="wordmark" href="https://formiqbloom.vercel.app/" aria-label="FormiqBloom home"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a>
+      <a class="wordmark" href="#home" aria-label="FormiqBloom home"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span id="menu-label">Menu</span><svg class="icon menu-icon" aria-hidden="true"><use href="#i-menu"/></svg><svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
@@ -730,7 +730,7 @@
             <div class="visual-caption" aria-hidden="true"><span>Your next chapter, online</span><span>Interactive preview</span></div>
             <div class="robot-stage" id="hero-robot" role="group" aria-label="A 3D humanoid robot whose head follows your cursor on desktop.">
               <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
-              <button class="robot-chat-trigger" type="button" data-open-chat data-chat-greeting="Hello there!" aria-label="Open FormiqBloom AI by clicking the robot" aria-controls="chat-widget" hidden></button>
+              <a class="robot-chat-trigger" href="#assistant-demo" aria-label="Explore the AI Assistant section"></a>
             </div>
           </div>
         </div>
@@ -886,7 +886,7 @@
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <a class="wordmark" href="https://formiqbloom.vercel.app/" aria-label="FormiqBloom home"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a>
+          <a class="wordmark" href="#home" aria-label="FormiqBloom home"><img class="brand-logo" src="Assets/logo.png" alt="FormiqBloom" width="1000" height="250" decoding="async"></a>
           <p>Thoughtful websites. Considered hosting.<br>Helpful AI. Built for your next stage.<br>Based in Surat.</p>
           <nav class="social-links" id="footer-socials" aria-label="Footer social links">
             <a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp<span class="sr-only"> +91 9054349785 (opens in a new tab)</span></a>
@@ -967,6 +967,9 @@
         } else if (mobile.matches && nav.classList.contains('open')) {
           setMenu(false, true);
         }
+      });
+      document.querySelectorAll('.wordmark[href="#home"]').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
       });
       nav.addEventListener('click', event => {
         const link = event.target.closest('a[href^="#"]');
