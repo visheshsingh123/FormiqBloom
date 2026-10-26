@@ -17,7 +17,7 @@
       animation.finished.then(() => active.delete(animation), () => active.delete(animation));
     }
   }, { threshold: .08 });
-  document.querySelectorAll('.section-heading, .service-grid, .website-services-heading, .website-options-grid, .project, .assistant-overview, .assistant-preview, .assistant-capabilities, .process-grid, .faq-grid, .contact-grid, .about-story, .principles, .about-cta-grid, .team-roles').forEach(element => observer.observe(element));
+  document.querySelectorAll('.section-heading, .service-grid, .website-services-heading, .website-options-grid, .project, .assistant-overview, .assistant-preview, .assistant-capabilities, .process-grid, .faq-grid, .contact-grid, .why-choose-heading, .why-choose-grid, .principles, .about-cta-grid, .team-roles').forEach(element => observer.observe(element));
   motion.addEventListener('change', () => {
     if (!motion.matches) return;
     observer.disconnect();

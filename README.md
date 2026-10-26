@@ -14,6 +14,8 @@ On mobile (up to 850px), every page uses a floating pill header and a five-link 
 
 The Pricing page (`/pricing`) compares all three tiers. Business and Custom include an AI assistant; Starter can add one for a separate quote. AI provider usage and recurring services remain separate. Pricing enquiries select a matching contact form option, including Starter + AI. The pricing page’s structured offers derive from the homepage tier configuration, and the saved/AI pricing answers reflect the same inclusion rules.
 
+Customer-facing copy should be concise and understandable to business owners: short benefits, familiar words, and clear costs. The About page’s Why choose us section follows this approach, covering secure connections, mobile usability, search setup, clear pricing, direct communication, and the confirmed support hours.
+
 ## SEO
 
 All eleven public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.

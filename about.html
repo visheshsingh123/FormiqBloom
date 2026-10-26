@@ -352,17 +352,13 @@
     .founder-caption h2 { font-size: 1.4rem; letter-spacing: -.03em; }
     .founder-caption p { margin-top: .25rem; color: var(--muted); font-size: .75rem; }
     .founder-caption .brand-icon { width: 32px; height: 32px; }
-    .about-story { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 5rem; }
-    .about-story h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); }
-    .story-copy > p { color: var(--muted); font-size: 1rem; }
-    .story-copy > p + p { margin-top: 1.4rem; }
     .about-cta { border-top: 1px solid var(--line); background: #19151F; }
     .about-cta-grid { display: flex; align-items: end; justify-content: space-between; gap: 3rem; }
     .about-cta h2 { max-width: 43rem; }
     .about-cta p { max-width: 33rem; margin-top: 1.5rem; color: var(--muted); }
     .about-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
     @media (max-width: 850px) {
-      .about-hero-grid, .about-story { grid-template-columns: 1fr; gap: 3rem; }
+      .about-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
       .founder-profile { width: min(460px, 100%); padding-top: 0; }
       .founder-visual { min-height: 300px; }
       .about-cta-grid { align-items: start; flex-direction: column; }
@@ -429,6 +425,20 @@
       .has-chat-widget .back-to-top { bottom: calc(var(--mobile-dock-offset) + 68px); }
       .chat-widget { bottom: calc(var(--mobile-dock-offset) + 68px); height: min(620px, calc(100svh - var(--mobile-dock-offset) - 170px)); height: min(620px, calc(100dvh - var(--mobile-dock-offset) - 170px)); }
     }
+
+    /* Short, customer-facing reasons to choose FormiqBloom. */
+    .why-choose-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: var(--heading-gap); }
+    .why-choose-heading h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); }
+    .why-choose-heading > p { max-width: 23rem; font-size: .9rem; color: var(--muted); }
+    .why-choose-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: 0; margin: 0; list-style: none; }
+    .why-choose-card { min-width: 0; padding: clamp(1.4rem, 2.6vw, 2rem); border: 1px solid var(--line); background: var(--card); transition: border-color .25s; }
+    .why-choose-card:hover { border-color: #9875C7; }
+    .why-choose-card > .icon { width: 26px; height: 26px; margin-bottom: 1.1rem; color: #C8A6FF; }
+    .why-choose-card:first-child > .icon { color: var(--lime); }
+    .why-choose-card h3 { font-size: 1.2rem; line-height: 1.3; }
+    .why-choose-card p { margin-top: .7rem; color: var(--muted); font-size: .88rem; line-height: 1.65; }
+    @media (max-width: 850px) { .why-choose-heading { align-items: start; flex-direction: column; gap: 1rem; } .why-choose-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .why-choose-grid { grid-template-columns: 1fr; } .why-choose-card { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: .9rem; } .why-choose-card > .icon { grid-row: 1 / 3; margin-top: .1rem; margin-bottom: 0; } .why-choose-card p { grid-column: 2; margin-top: .4rem; } }
   </style>
 </head>
 <body id="top">
@@ -501,11 +511,17 @@
       </div>
     </section>
 
-    <!-- Approach / Direct collaboration. -->
-    <section class="section" aria-labelledby="approach-title">
-      <div class="container about-story">
-        <div><div class="eyebrow">01 / A direct connection</div><h2 id="approach-title">One point of contact.<br>A shared direction.</h2></div>
-        <div class="story-copy"><p>FormiqBloom is built around a simple idea: thoughtful design and practical functionality belong together. A website should tell your story clearly, make sense on every screen, and give visitors a useful next step.</p><p>You work directly with the founder, the person shaping and building your project. That means direct communication, considered decisions, and a clear understanding of what we’re creating together.</p><p>Whether the starting point is a responsive website, managed hosting, or a custom AI assistant, the work begins with your goals and an agreed scope.</p></div>
+    <!-- Why choose us / Short benefits written for business owners. -->
+    <section class="section why-choose" id="why-choose-us" aria-labelledby="why-choose-title">
+      <div class="container"><div class="why-choose-heading"><div><div class="eyebrow">01 / Built around your business</div><h2 id="why-choose-title">Why choose us.</h2></div><p>Clear prices. Useful features. Someone you can reach.</p></div>
+        <ul class="why-choose-grid">
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></svg><h3>Security built in</h3><p>Secure connections and protected enquiry forms.</p></li>
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M10 5h4M11 19h2"/></svg><h3>Made for mobile</h3><p>Easy to read, use, and enquire on a phone.</p></li>
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L21 21M7 10l2 2 4-4"/></svg><h3>Set up for search</h3><p>Page titles and descriptions help Google understand your business.</p></li>
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1"/></svg><h3>Clear prices</h3><p>Know your website price and ongoing costs before we start.</p></li>
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-5 3V11a8 8 0 0 1 8-8h3a8 8 0 0 1 8 8zM7 10h9M7 14h6"/></svg><h3>Direct communication</h3><p>Speak directly with the person building your website.</p></li>
+          <li class="why-choose-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Support you can reach</h3><p>24-hour support. Replies within 6 hours.</p></li>
+        </ul>
       </div>
     </section>
 
