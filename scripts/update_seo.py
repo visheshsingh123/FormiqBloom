@@ -91,7 +91,7 @@ def page_graph(page, origin, image):
             ('Business Dashboards', 'business-dashboards', 'Custom business dashboards with agreed data sources, access permissions, and reporting requirements.')
         ]:
             graph.append({'@type': 'Service', '@id': origin + '/#service-' + slug, 'name': name,
-                          'description': description, 'url': origin + '/#' + slug,
+                          'description': description, 'url': origin + '/#' + {'hosting': 'contact', 'assistants': 'assistant-demo'}.get(slug, slug),
                           'provider': {'@id': origin + '/#organization'}})
     graph.append(entity)
     return {'@context': 'https://schema.org', '@graph': graph}
