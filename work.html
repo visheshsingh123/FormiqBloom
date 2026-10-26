@@ -439,6 +439,7 @@
     .project { transition: border-color .3s; }
     .project:is(:hover, :focus-within) { border-color: #75916F; }
     @media (max-width: 850px) {
+      .work-intro > p, .project-copy > p { display: none; }
       .project { zoom: 1; grid-template-columns: 1fr 1fr; }
       .project-art, .project-copy { padding: 1.5rem; }
     }
