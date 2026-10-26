@@ -9,7 +9,27 @@
       "type": "WebPage",
       "title": "FormiqBloom | Web Design & AI Solutions in Surat",
       "description": "Need website development in Surat? FormiqBloom builds responsive business websites with SEO setup included in every package, plus managed hosting and AI assistants.",
-      "organization_description": "A founder-led agency in Surat offering website design and development, SEO setup included with every package, managed hosting, and custom AI assistants."
+      "organization_description": "A founder-led agency in Surat offering website design and development, SEO setup included with every package, managed hosting, and custom AI assistants.",
+      "website_tiers": [
+        {
+          "name": "Starter Website",
+          "slug": "websites",
+          "price": 1999,
+          "delivery": "48 hours"
+        },
+        {
+          "name": "Business Website",
+          "slug": "business-website",
+          "price": 4999,
+          "delivery": "3–4 days"
+        },
+        {
+          "name": "Custom Website",
+          "slug": "custom-web-solutions",
+          "price": 11999,
+          "delivery": "7 days"
+        }
+      ]
     },
     {
       "file": "about.html",

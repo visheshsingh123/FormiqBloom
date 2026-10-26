@@ -2,7 +2,7 @@
 
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/18POKvXzJnQRRjndrHALXYd-v4fKwumVJHvg8Q6HvpDw/formResponse?hl=en';
 const ENTRY_IDS = { name: 'entry.772884676', email: 'entry.92953162', business: 'entry.257858045', service: 'entry.2086671607', details: 'entry.942640608' };
-const SERVICES = new Set(['Website Design & Development', 'Managed Hosting & Maintenance / Ongoing Care', 'AI Assistant / Website + AI Assistant', 'I’d like help choosing', 'Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards']);
+const SERVICES = new Set(['Website Design & Development', 'Managed Hosting & Maintenance / Ongoing Care', 'AI Assistant / Website + AI Assistant', 'I’d like help choosing', 'Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards', 'Starter Website — ₹1,999', 'Business Website — ₹4,999', 'Custom Website — ₹11,999']);
 const visitors = new Map();
 const MAX_BYTES = 32_768;
 

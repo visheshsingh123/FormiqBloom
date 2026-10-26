@@ -93,6 +93,12 @@ def page_graph(page, origin, image):
             graph.append({'@type': 'Service', '@id': origin + '/#service-' + slug, 'name': name,
                           'description': description, 'url': origin + '/#' + {'hosting': 'contact', 'assistants': 'assistant-demo'}.get(slug, slug),
                           'provider': {'@id': origin + '/#organization'}})
+    if page.get('website_tiers'):
+        website = next(node for node in graph if node.get('@id') == origin + '/#service-websites')
+        website['offers'] = [{'@type': 'Offer', 'name': tier['name'], 'price': str(tier['price']),
+                              'priceCurrency': 'INR', 'url': origin + '/#' + tier['slug'],
+                              'description': 'One-time website setup. Delivery in ' + tier['delivery'] + ' after scope confirmation and receipt of required content and access. Recurring services are separate.',
+                              'seller': {'@id': origin + '/#organization'}} for tier in page['website_tiers']]
     graph.append(entity)
     return {'@context': 'https://schema.org', '@graph': graph}
 

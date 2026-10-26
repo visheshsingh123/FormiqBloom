@@ -15,7 +15,7 @@
     {
       id: 'pricing',
       question: 'How much does it cost?',
-      answer: 'Every project is quoted around its scope. Setup is quoted separately from recurring hosting, maintenance, and AI usage. Scope, support responsibilities, and usage allowances are agreed before work starts. Message FormiqBloom on WhatsApp for a project-specific quote.'
+      answer: 'Our website tiers are Starter Website at ₹1,999 with 48-hour delivery, Business Website at ₹4,999 with 3–4-day delivery, and Custom Website at ₹11,999 with 7-day delivery. These are one-time website setup prices. Timings begin after scope confirmation and receipt of the required content and access. Hosting, maintenance, third-party subscriptions, and AI usage are separate. Contact FormiqBloom to confirm the right tier and scope.'
     },
     {
       id: 'contact',

@@ -133,6 +133,17 @@ class SEOTests(unittest.TestCase):
             self.assertIn('src="/chatbot.js"', source)
             self.assertNotIn('src="Assets/', source)
 
+    def test_published_website_tiers_have_matching_inr_offers(self):
+        page = Page((ROOT / 'index.html').read_text())
+        service = next(node for node in page.schemas[0]['@graph'] if node['@id'] == CONFIG['site_url'] + '/#service-websites')
+        offers = service['offers']
+        self.assertEqual([(o['name'], o['price'], o['priceCurrency']) for o in offers], [
+            ('Starter Website', '1999', 'INR'), ('Business Website', '4999', 'INR'), ('Custom Website', '11999', 'INR')])
+        for offer, tier in zip(offers, CONFIG['pages'][0]['website_tiers']):
+            self.assertEqual(offer['url'], CONFIG['site_url'] + '/#' + tier['slug'])
+            self.assertIn(tier['delivery'], offer['description'])
+            self.assertIn('Recurring services are separate', offer['description'])
+
     def test_sitemap_robots_image_and_api_indexing(self):
         sitemap = ET.parse(ROOT / 'sitemap.xml')
         locations = [node.text for node in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]

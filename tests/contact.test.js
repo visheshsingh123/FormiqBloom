@@ -37,13 +37,13 @@ test('maps all five fields and confirms only a recognized recorded-response page
   assert.ok(!JSON.stringify(result).includes('test@example.com'));
 });
 
-test('accepts and relays the four published Other solutions enquiries', async t => {
+test('accepts and relays published solution and priced website-tier enquiries', async t => {
   let sent;
   t.mock.method(globalThis, 'fetch', async (url, options) => {
     sent = new URLSearchParams(options.body);
     return { ok: true, text: async () => confirmation };
   });
-  for (const service of ['Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards']) {
+  for (const service of ['Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards', 'Starter Website — ₹1,999', 'Business Website — ₹4,999', 'Custom Website — ₹11,999']) {
     const result = await request({ body: { ...fixture, service } });
     assert.equal(result.status, 200);
     assert.equal(sent.get('entry.2086671607'), service);
