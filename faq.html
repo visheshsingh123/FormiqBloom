@@ -412,7 +412,7 @@
       .site-header .nav-links { padding: .4rem .2rem .8rem; }
       .site-header .nav-links .button { margin-top: .5rem; }
       .mobile-bottom-nav { position: fixed; z-index: 35; left: 50%; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .15rem; width: min(420px, calc(100% - 1.5rem)); padding: .35rem .5rem; border: 1px solid #45404F; border-radius: 999px; background: #19171FF5; box-shadow: 0 8px 32px #0006; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
-      .mobile-bottom-nav a { min-width: 0; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; border-radius: 999px; color: var(--muted); font-size: .65rem; line-height: 1.2; transition: color .2s, background .2s; }
+      .mobile-bottom-nav a { min-width: 0; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; text-align: center; border-radius: 999px; color: var(--muted); font-size: .65rem; line-height: 1.2; transition: color .2s, background .2s; }
       .mobile-bottom-nav .icon { width: 20px; height: 20px; stroke-width: 1.6; }
       .mobile-bottom-nav a[aria-current] { color: var(--lime); background: #312146; }
       .mobile-bottom-nav a:is(:hover, :focus-visible) { color: var(--text); background: #332641; }
@@ -544,8 +544,8 @@
     <a href="/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-7 9 7v11h-6v-7H9v7H3z"/></svg><span>Home</span></a>
     <a href="/about"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg><span>About</span></a>
     <a href="/work"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14"/><path d="M8 7V4h8v3M3 12l9 3 9-3M12 12v5"/></svg><span>Work</span></a>
-    <a href="/blog"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5zM14 3v5h5M9 12h6M9 16h6"/></svg><span>Blog</span></a>
-    <a href="/team"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 15a5 5 0 0 1 3 4v2"/></svg><span>Team</span></a>
+    <a href="/pricing"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span>Pricing</span></a>
+    <a href="/ai-assistant"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-5 3V11a8 8 0 0 1 8-8h3a8 8 0 0 1 8 8zM8 8l1 3 3 1-3 1-1 3-1-3-3-1 3-1zM16 7v6M13 10h6"/></svg><span>AI Assistant</span></a>
   </nav>
 
   <a class="back-to-top" id="back-to-top" href="#top" aria-label="Back to top" title="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a>
