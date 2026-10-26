@@ -10,6 +10,8 @@ The homepage hero uses the uploaded robot model with an independently tracking h
 
 The Other solutions section covers redesigns, landing pages, booking integrations, and business dashboards. The Blog (`/blog`) links two original, static business guides at `/blog/business-website-checklist` and `/blog/website-redesign-guide`. Their content and shared assets work without a build step; article metadata, publication dates, BlogPosting schema, breadcrumbs, and sitemap entries are managed through `seo.config.json`.
 
+On mobile (up to 850px), every page uses a floating pill header and a five-link bottom navigation bar for Home, About, Work, Blog, and Team. Current-page states, native links, safe-area spacing, and offsets for the chat and back-to-top controls are included; desktop navigation is unchanged.
+
 ## SEO
 
 All nine public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
