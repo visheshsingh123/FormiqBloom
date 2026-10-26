@@ -116,6 +116,14 @@
         "category": "Website redesign",
         "word_count": 522
       }
+    },
+    {
+      "file": "ai-assistant.html",
+      "path": "/ai-assistant",
+      "name": "AI Assistant",
+      "type": "WebPage",
+      "title": "Custom AI Assistants for Business | FormiqBloom, Surat",
+      "description": "Explore custom AI assistants from FormiqBloom in Surat. Answer business FAQs, guide enquiries, and try FormiqBloom AI with saved questions or your own."
     }
   ]
 }

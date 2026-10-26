@@ -64,6 +64,12 @@ def page_graph(page, origin, image):
                       'blogPost': [{'@id': origin + article['path'] + '#article'}
                                    for article in page.get('posts', [])]})
         entity['mainEntity'] = {'@id': canonical + '#blog'}
+    if page['path'] == '/ai-assistant':
+        graph.append({'@type': 'Service', '@id': origin + '/#service-assistants',
+                      'name': 'Custom AI Assistants', 'url': canonical,
+                      'description': 'Assistants grounded in approved business information that answer FAQs, guide enquiries, and direct visitors to human contact channels.',
+                      'provider': {'@id': origin + '/#organization'}})
+        entity['mainEntity'] = {'@id': origin + '/#service-assistants'}
     if page['path'] == '/team':
         entity['mainEntity'] = {'@id': origin + '/#founder'}
     if page['path'] == '/work':
@@ -91,7 +97,7 @@ def page_graph(page, origin, image):
             ('Business Dashboards', 'business-dashboards', 'Custom business dashboards with agreed data sources, access permissions, and reporting requirements.')
         ]:
             graph.append({'@type': 'Service', '@id': origin + '/#service-' + slug, 'name': name,
-                          'description': description, 'url': origin + '/#' + {'hosting': 'contact', 'assistants': 'assistant-demo'}.get(slug, slug),
+                          'description': description, 'url': origin + ('/ai-assistant' if slug == 'assistants' else '/#' + {'hosting': 'contact'}.get(slug, slug)),
                           'provider': {'@id': origin + '/#organization'}})
     if page.get('website_tiers'):
         website = next(node for node in graph if node.get('@id') == origin + '/#service-websites')
