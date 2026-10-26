@@ -136,6 +136,14 @@
       "title": "Website Pricing: ₹1,999, ₹4,999 & ₹11,999 | FormiqBloom",
       "description": "Compare FormiqBloom’s Starter, Business, and Custom website tiers, delivery times, AI assistant inclusion, optional add-ons, and ongoing costs.",
       "pricing_page": true
+    },
+    {
+      "file": "faq.html",
+      "path": "/faq",
+      "name": "FAQ",
+      "type": "WebPage",
+      "title": "Website Pricing, Delivery & Support FAQs | FormiqBloom",
+      "description": "Get clear answers to 10 common questions about FormiqBloom website tiers, delivery times, SEO, AI assistants, hosting, redesigns, payments, and support."
     }
   ]
 }

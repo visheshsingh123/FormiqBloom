@@ -18,7 +18,7 @@ Customer-facing copy should be concise and understandable to business owners: sh
 
 ## SEO
 
-All eleven public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
+All twelve public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
 
 `seo.config.json` is the source for page metadata and the production domain. Run `python3 scripts/update_seo.py` after editing it; generated HTML, `sitemap.xml`, and `robots.txt` are committed, so Vercel still needs no build step. API responses carry an `X-Robots-Tag: noindex` header. The uploaded Google verification file is preserved separately and is not added to the sitemap.
 
@@ -27,7 +27,7 @@ After deployment, verify the current property in Google Search Console and submi
 For the future `.in` move:
 
 1. Connect the real domain to this Vercel project and confirm it serves the website over HTTPS.
-2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all eleven pages. Commit and deploy the generated files and configuration together.
+2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all twelve pages. Commit and deploy the generated files and configuration together.
 3. Configure a permanent redirect from the old domain to the new one in Vercel, preserving each page path. Verify the new Search Console property, submit its sitemap, and use Change of Address where applicable. Google verification may require new verification details for the new property.
 
 Check the SEO files with `python3 -B -m unittest discover -s tests -p test_seo.py -v`.
@@ -114,3 +114,5 @@ node --test tests/*.test.js
 ```
 
 Tests use mocked Groq and Google responses; they do not need a real key or make provider calls. To run Vercel functions locally, use `vercel dev` with Vercel CLI and a securely configured local `api` variable. A plain static server can display the page and saved answers, but cannot execute `/api/chat` or `/api/contact`.
+
+The FAQ page (`/faq`, served from `faq.html`) contains ten client-focused answers using native expandable controls. Header and footer FAQ links across the site open this page; the homepage keeps its short FAQ preview and links to the full list. Page metadata and the sitemap entry are managed through `seo.config.json`.
