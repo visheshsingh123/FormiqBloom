@@ -16,21 +16,27 @@
           "slug": "websites",
           "price": 1999,
           "delivery": "48 hours",
-          "ai_assistant_included": false
+          "ai_assistant_included": false,
+          "pages": "1",
+          "revision_rounds": 1
         },
         {
           "name": "Business Website",
           "slug": "business-website",
           "price": 4999,
           "delivery": "3–4 days",
-          "ai_assistant_included": true
+          "ai_assistant_included": true,
+          "pages": "3–5",
+          "revision_rounds": 2
         },
         {
           "name": "Custom Website",
           "slug": "custom-web-solutions",
           "price": 11999,
           "delivery": "7 days",
-          "ai_assistant_included": true
+          "ai_assistant_included": true,
+          "pages": "8–10",
+          "revision_rounds": 3
         }
       ]
     },

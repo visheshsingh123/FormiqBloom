@@ -109,7 +109,7 @@ def page_graph(page, origin, image):
         website = next(node for node in graph if node.get('@id') == origin + '/#service-websites')
         website['offers'] = [{'@type': 'Offer', 'name': tier['name'], 'price': str(tier['price']),
                               'priceCurrency': 'INR', 'url': origin + '/#' + tier['slug'],
-                              'description': ('AI assistant included. ' if tier.get('ai_assistant_included') else 'AI assistant is a quoted optional add-on. ') + 'One-time website setup. Delivery in ' + tier['delivery'] + ' after scope confirmation and receipt of required content and access. AI provider usage is separate. Recurring services are separate.',
+                              'description': ('AI assistant included. ' if tier.get('ai_assistant_included') else 'AI assistant is a quoted optional add-on. ') + tier['pages'] + (' page. ' if tier['pages'] == '1' else ' pages. ') + str(tier['revision_rounds']) + (' revision round. ' if tier['revision_rounds'] == 1 else ' revision rounds. ') + 'One-time website setup. Delivery in ' + tier['delivery'] + ' after scope confirmation and receipt of required content and access. AI provider usage is separate. Recurring services are separate.',
                               'seller': {'@id': origin + '/#organization'}} for tier in page['website_tiers']]
     graph.append(entity)
     return {'@context': 'https://schema.org', '@graph': graph}

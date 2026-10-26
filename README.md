@@ -118,3 +118,5 @@ Tests use mocked Groq and Google responses; they do not need a real key or make 
 The FAQ page (`/faq`, served from `faq.html`) contains ten client-focused answers using native expandable controls. Header and footer FAQ links across the site open this page; the homepage keeps its short FAQ preview and links to the full list. Page metadata and the sitemap entry are managed through `seo.config.json`.
 
 The mobile bottom navigation links Home, About, Work, Pricing, and AI Assistant. Each destination highlights its current page; Blog and Team remain available from the main menu and footer.
+
+Published tier scope: Starter includes 1 page with essential business links and 1 revision round; Business includes 3–5 pages, 2 revision rounds, and AI assistant setup; Custom includes 8–10 pages, 3 revision rounds, AI assistant setup, and an admin dashboard with agreed features. Page counts and revision rounds are also recorded in `seo.config.json` and generated offer descriptions.
