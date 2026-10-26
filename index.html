@@ -319,16 +319,6 @@
     @keyframes marquee { to { transform: translateX(-50%); } }
 
     /* Services. */
-    .service-grid { display: grid; width: 85%; margin-inline: auto; zoom: .85; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .service-card { display: flex; flex-direction: column; align-items: start; padding: 2rem; border: 1px solid var(--line); border-radius: 0; background: var(--card); transition: border-color .2s, transform .2s; }
-    .service-card:hover { border-color: #736287; transform: translateY(-4px); }
-    .service-card-top { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: .8rem; width: 100%; }
-    .service-card-top > .icon { width: 2rem; height: 2rem; color: #BE9DFF; }
-    .service-card-top span { color: var(--muted); font-size: .7rem; }
-    .service-card h3 { min-width: 0; font-size: clamp(1.05rem, 1.4vw, 1.35rem); line-height: 1.2; }
-    .service-card p { margin-block: 1rem 1.8rem; color: var(--muted); font-size: .9rem; }
-    .service-card .text-link { margin-top: auto; }
-
     .check-list { list-style: none; margin: 1.5rem 0; padding: 0; }
     .check-list li { display: flex; align-items: start; gap: .65rem; padding-block: .45rem; font-size: .85rem; }
     .check-list .icon { width: 1rem; height: 1rem; margin-top: .25rem; color: var(--lime); }
@@ -492,7 +482,7 @@
       .nav-shell { gap: 1rem; } .nav-links { gap: 1rem; }
       .nav-links .button { padding-inline: .9rem; font-size: .8rem; }
       .hero-grid { gap: 2rem; } .hero h1 { font-size: clamp(2.9rem, 4.8vw, 4rem); }
-      .service-card, .option { padding: 1.5rem; }
+      .option { padding: 1.5rem; }
       .demo-grid, .faq-grid, .contact-grid { gap: 3rem; }
     }
     @media (max-width: 1200px) {
@@ -517,10 +507,6 @@
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
       .hero-visual { display: block; max-width: 28rem; }
       .hero-bottom { margin-top: 2rem; }
-      .service-grid { width: 100%; zoom: 1; grid-template-columns: 1fr; }
-      .service-card { padding: 2rem; }
-      .service-card h3 { max-width: none; }
-      .service-card p { max-width: 35rem; }
       .demo-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .demo-copy h2, .demo-copy > p { max-width: 38rem; }
       .demo-grid > .chat { justify-self: start; max-width: none; }
@@ -571,12 +557,6 @@
     .nav-links > a:not(.button)::after, .nav-dropdown summary::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(50% - .8em - 5px); height: 1px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .4s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
     .nav-links > a:not(.button):is(:hover, :focus-visible)::after, .nav-dropdown summary:is(:hover, :focus-visible)::after, .nav-dropdown[open] summary::after { transform: scaleX(1); }
 
-    .service-card { transition: border-color .25s, box-shadow .25s; }
-    .service-card:is(:hover, :focus-within) { border-color: #9B77C8; box-shadow: inset 0 -3px var(--violet); transform: none; }
-    .service-card-top > .icon { transition: transform .3s, color .3s; }
-    .service-card:is(:hover, :focus-within) .service-card-top > .icon { color: var(--lime); transform: rotate(-8deg); }
-    .service-card:nth-child(2):is(:hover, :focus-within) .service-card-top > .icon { transform: translateX(4px); }
-    .service-card:nth-child(3):is(:hover, :focus-within) .service-card-top > .icon { transform: scale(1.12); }
     .option { transition: border-color .25s, box-shadow .25s; }
     .option:is(:hover, :focus-within) { border-color: #9B77C8; box-shadow: inset 0 3px var(--lime); }
     .option-label { transition: color .25s; }
@@ -643,18 +623,49 @@
       .marquee-group { display: block; min-width: 0; padding: 0 1.25rem; white-space: normal; text-align: center; flex-shrink: 1; }
       .marquee-group[aria-hidden="true"] { display: none; }
     }
-    /* Focused business solutions, quoted around agreed requirements. */
-    .other-solutions { border-top: 1px solid var(--line); }
-    .solution-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-    .solution-card { min-width: 0; padding: clamp(1.5rem, 3vw, 2rem); border: 1px solid var(--line); display: flex; flex-direction: column; align-items: start; transition: border-color .25s; }
-    .solution-card:is(:hover, :focus-within) { border-color: #A78BCA; }
-    .solution-title { display: flex; align-items: center; gap: .85rem; }
-    .solution-title .icon { color: #C8A6FF; }
-    .solution-title h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
-    .solution-card p { margin-block: 1rem; font-size: .9rem; color: var(--muted); }
-    .solution-card .text-link { margin-top: auto; font-size: .8rem; }
-    .solutions-note { max-width: 44rem; margin-block: 1.5rem .5rem; font-size: .8rem; color: var(--muted); }
-    @media (max-width: 560px) { .solution-grid { grid-template-columns: 1fr; } }
+    /* Website options: a distinct route for each business starting point. */
+    .website-services-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: var(--heading-gap); }
+    .website-services-heading h2 { max-width: 42rem; }
+    .website-services-heading > p { max-width: 20rem; color: var(--muted); font-size: .9rem; }
+    .website-options-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .website-option { min-width: 0; display: flex; flex-direction: column; padding: clamp(1.4rem, 2.3vw, 2rem); border: 1px solid var(--line); border-top: 2px solid #A78BCA; background: var(--card); transition: border-color .25s, box-shadow .25s; }
+    .website-option:nth-child(2) { border-top-color: var(--violet); background: #211B2D; }
+    .website-option:nth-child(3) { border-top-color: var(--lime); }
+    .website-option:is(:hover, :focus-within) { border-color: #AE8DE0; box-shadow: inset 0 -3px var(--violet); }
+    .website-option-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .website-option-top .icon { width: 28px; height: 28px; color: #C8A6FF; transition: transform .25s; }
+    .website-option:hover .website-option-top .icon { transform: rotate(-6deg); }
+    .website-option-top > span { color: var(--muted); font-size: .7rem; }
+    .website-option-label { margin-bottom: .65rem; color: var(--muted); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+    .website-option h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); line-height: 1.2; }
+    .website-option-description { min-height: 5.25em; margin-top: 1rem; color: var(--muted); font-size: .85rem; line-height: 1.75; }
+    .website-option .check-list { margin-block: 1.25rem 1.5rem; }
+    .website-option .check-list li { font-size: .8rem; }
+    .website-option-bottom { margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+    .website-option-bottom > p { font-size: 1rem; font-weight: 600; }
+    .website-option-bottom > p > span { display: block; margin-top: .25rem; color: var(--muted); font-size: .7rem; font-weight: 400; }
+    .website-option-bottom .button { width: 100%; margin-top: 1rem; padding-inline: .75rem; font-size: .8rem; }
+    .website-services-note { margin-top: 1.25rem; max-width: 52rem; font-size: .75rem; color: var(--muted); }
+    .website-extras { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 2fr); gap: 2rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+    .website-extras-heading h3 { font-size: 1.35rem; line-height: 1.25; }
+    .website-extras-heading .text-link { margin-top: .75rem; font-size: .75rem; }
+    .website-extras-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .website-extra { min-width: 0; display: flex; flex-direction: column; align-items: start; }
+    .website-extra > .icon { color: #C8A6FF; margin-bottom: .75rem; }
+    .website-extra h4 { font: 600 1rem/1.4 var(--display); letter-spacing: -.025em; }
+    .website-extra p { margin-block: .6rem; color: var(--muted); font-size: .8rem; }
+    .website-extra .text-link { margin-top: auto; font-size: .7rem; }
+    @media (max-width: 1050px) { .website-extras { grid-template-columns: 1fr; } }
+    @media (max-width: 850px) {
+      .website-services-heading { align-items: start; flex-direction: column; gap: 1rem; }
+      .website-services-heading > p { max-width: 35rem; }
+      .website-options-grid { grid-template-columns: 1fr; }
+      .website-option { padding: 1.5rem; }
+      .website-option h3 { font-size: 1.6rem; }
+      .website-option-description { min-height: 0; }
+      .website-option-top { margin-bottom: 1.2rem; }
+    }
+    @media (max-width: 560px) { .website-extras-grid { grid-template-columns: 1fr; gap: 1.5rem; } .website-extra + .website-extra { padding-top: 1.5rem; border-top: 1px solid var(--line); } }
 
     /* Mobile navigation: floating pill header and five direct page links. */
     .mobile-bottom-nav { display: none; }
@@ -781,32 +792,44 @@
 
     </div><!-- / marquee-stack -->
 
-    <!-- 03 / Services. -->
-    <section class="section services" id="services" aria-labelledby="services-title">
+    <!-- Website services / Three clear starting points, scoped individually. -->
+    <section class="section services website-services" id="services" aria-labelledby="services-title">
       <div class="container">
-        <div class="section-heading"><div><div class="eyebrow">01 / What we do</div><h2 id="services-title">Good ideas deserve<br>a great digital home.</h2></div></div>
-        <div class="service-grid">
-          <article class="service-card" id="websites">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><h3>Website Design<br>&amp; Development</h3><span>01</span></div>
-            <p>Responsive business websites with clear navigation, thoughtful design, enquiry flows, and SEO setup included with every package at no extra charge.</p>
-            <a class="text-link" href="#contact" data-service="website">Let’s build your website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="website-services-heading"><div><div class="eyebrow">01 / Website services</div><h2 id="services-title">A website that fits<br>your next stage.</h2></div><p>Start fresh, add the functionality you need, or rethink what you already have.</p></div>
+        <div class="website-options-grid">
+          <article class="website-option" id="websites">
+            <div class="website-option-top"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><span aria-hidden="true">01</span></div>
+            <p class="website-option-label">For your first impression</p><h3>Business websites</h3>
+            <p class="website-option-description">A clear, responsive home for your business, built around your services and the next enquiry.</p>
+            <ul class="check-list"><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Responsive business pages</span></li><li id="landing-pages"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Focused landing pages</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Clear enquiry forms and navigation</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>SEO setup included</span></li></ul>
+            <div class="website-option-bottom"><p>Request a quote<span>Scope agreed before work begins</span></p><a class="button secondary" href="#contact" data-service="website">Plan your website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
           </article>
-          <article class="service-card" id="hosting">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><h3>Managed Hosting<br>&amp; Maintenance</h3><span>02</span></div>
-            <p>A considered home for your website: deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan.</p>
-            <a class="text-link" href="#contact" data-service="care">Talk about ongoing care <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <article class="website-option" id="custom-web-solutions">
+            <div class="website-option-top"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><span aria-hidden="true">02</span></div>
+            <p class="website-option-label">For the way you work</p><h3>Custom web solutions</h3>
+            <p class="website-option-description">Practical functionality for your workflows, with integrations and access planned around your needs.</p>
+            <ul class="check-list"><li id="business-dashboards"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Business dashboards</span></li><li id="booking-integrations"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Booking platform integrations</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Agreed data sources and permissions</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Responsive interfaces</span></li></ul>
+            <div class="website-option-bottom"><p>Request a quote<span>Scope agreed before work begins</span></p><a class="button" href="#contact" data-service="custom">Discuss your build <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
           </article>
-          <article class="service-card" id="assistants">
-            <div class="service-card-top"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><h3>Custom<br>AI Assistants</h3><span>03</span></div>
-            <p>Assistants grounded in approved business information to answer FAQs and guide your visitors toward relevant enquiries.</p>
-            <a class="text-link" href="#contact" data-service="assistant">Explore your assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <article class="website-option" id="redesigns">
+            <div class="website-option-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 8a7 7 0 0 1 12-3L20 8M4 16l2.5 3a7 7 0 0 0 12-3"/></svg><span aria-hidden="true">03</span></div>
+            <p class="website-option-label">For your next chapter</p><h3>Website redesigns</h3>
+            <p class="website-option-description">A considered refresh for an existing website, improving the structure, content, and mobile experience.</p>
+            <ul class="check-list"><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Content and navigation review</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Responsive layout refresh</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Enquiry flow improvements</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>SEO and URL change planning</span></li></ul>
+            <div class="website-option-bottom"><p>Request a quote<span>Scope agreed before work begins</span></p><a class="button secondary" href="#contact" data-service="redesigns">Refresh your website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
           </article>
+        </div>
+        <p class="website-services-note">Every project is quoted around its scope. Setup is separate from recurring hosting, maintenance, third-party subscriptions, and AI usage.</p>
+        <!-- Connected services keep existing service links and enquiry flows intact. -->
+        <div class="website-extras" id="other-solutions"><div class="website-extras-heading"><h3>Keep it supported.<br>Make it more useful.</h3><a class="text-link" href="/blog">Read the business guides <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></div>
+          <div class="website-extras-grid">
+            <article class="website-extra" id="hosting"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg><h4>Hosting &amp; maintenance</h4><p>Deployment, HTTPS, monitoring, and ongoing updates within an agreed care plan.</p><a class="text-link" href="#contact" data-service="care">Plan ongoing care <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
+            <article class="website-extra" id="seo-setup"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L21 21M7 10h6M10 7v6"/></svg><h4>SEO foundations</h4><p>SEO setup is included with every package, with clear page metadata and crawl-ready structure.</p><a class="text-link" href="#contact" data-service="website">Talk about your website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
+            <article class="website-extra" id="assistants"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><h4>Custom AI assistants</h4><p>Answers grounded in approved business information, with FAQ and enquiry guidance.</p><a class="text-link" href="#contact" data-service="assistant">Explore your assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- Other solutions / Scoped around a specific business need. -->
-    <section class="section other-solutions" id="other-solutions" aria-labelledby="other-solutions-title"><div class="container"><div class="section-heading"><div><div class="eyebrow">More ways to build</div><h2 id="other-solutions-title">Other solutions.</h2></div></div><div class="solution-grid"><article class="solution-card" id="redesigns"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M5.5 8a7 7 0 0 1 12-3L20 8M4 16l2.5 3a7 7 0 0 0 12-3"/></svg><h3>Website redesigns</h3></div><p>A clearer structure and refreshed responsive design for an existing website, with content and URL changes planned before launch.</p><a class="text-link" href="#contact" data-service="redesigns">Discuss website redesigns <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="landing-pages"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M7 13h10M7 16h6"/></svg><h3>Landing pages</h3></div><p>Focused pages for a service, launch, or campaign, with clear messaging and a relevant enquiry or booking action.</p><a class="text-link" href="#contact" data-service="landing-pages">Discuss landing pages <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="booking-integrations"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M7 3v4M17 3v4M3 10h18M8 15l3 3 5-5"/></svg><h3>Booking integrations</h3></div><p>Connect a suitable booking platform so visitors can request or schedule appointments, with availability and setup agreed together.</p><a class="text-link" href="#contact" data-service="booking-integrations">Discuss booking integrations <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article><article class="solution-card" id="business-dashboards"><div class="solution-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M7 16v-4M12 16V8M17 16v-6"/></svg><h3>Business dashboards</h3></div><p>Custom views for the business data and workflows you need, with agreed data sources, access permissions, and reporting requirements.</p><a class="text-link" href="#contact" data-service="business-dashboards">Discuss business dashboards <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></article></div><p class="solutions-note">Each solution is quoted around your requirements. Third-party tools, subscriptions, and ongoing support are agreed separately.</p><a class="text-link" href="/blog">Explore the business website guides <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a></div></section>
 
     <!-- 04 / Assistant entry point; shares the floating chat and its four saved answers. -->
     <section class="section demo-section" id="assistant-demo" aria-labelledby="demo-title">
@@ -892,7 +915,7 @@
               <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
               <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@yourbusiness.com"></div>
               <div class="field full"><label for="business">Business name <span>(optional)</span></label><input id="business" name="business" autocomplete="organization" maxlength="150" placeholder="What’s your business called?"></div>
-              <div class="field full"><label for="service">Service needed</label><select id="service" name="service" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="Website redesigns" data-service-option="redesigns">Website redesigns</option><option value="Landing pages" data-service-option="landing-pages">Landing pages</option><option value="Booking integrations" data-service-option="booking-integrations">Booking integrations</option><option value="Business dashboards" data-service-option="business-dashboards">Business dashboards</option><option value="I’d like help choosing">I’d like help choosing</option></select></div>
+              <div class="field full"><label for="service">Service needed</label><select id="service" name="service" required><option value="" disabled selected>Select a service</option><option value="Website Design &amp; Development" data-service-option="website">Website Design &amp; Development</option><option value="Managed Hosting &amp; Maintenance / Ongoing Care" data-service-option="care">Managed Hosting &amp; Maintenance / Ongoing Care</option><option value="AI Assistant / Website + AI Assistant" data-service-option="assistant">AI Assistant / Website + AI Assistant</option><option value="Website redesigns" data-service-option="redesigns">Website redesigns</option><option value="Landing pages" data-service-option="landing-pages">Landing pages</option><option value="Booking integrations" data-service-option="booking-integrations">Booking integrations</option><option value="Business dashboards" data-service-option="business-dashboards">Business dashboards</option><option value="I’d like help choosing" data-service-option="custom">I’d like help choosing</option></select></div>
               <div class="field full"><label for="details">Project details</label><textarea id="details" name="details" required maxlength="5000" placeholder="Tell us about your idea, goals, and anything you have in place already."></textarea></div>
             </div>
             <button class="button" type="submit"><span id="contact-submit-label">Request a Free Consultation</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
