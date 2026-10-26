@@ -111,7 +111,7 @@ class SEOTests(unittest.TestCase):
 
     def test_blog_articles_have_truthful_dates_authorship_and_linked_breadcrumbs(self):
         articles = [item for item in CONFIG['pages'] if item.get('article')]
-        self.assertEqual(len(articles), 2)
+        self.assertEqual(len(articles), 4)
         listing = Page((ROOT / 'blog.html').read_text())
         blog = next(node for node in listing.schemas[0]['@graph'] if node['@type'] == 'Blog')
         self.assertEqual({post['@id'] for post in blog['blogPost']},
@@ -121,7 +121,7 @@ class SEOTests(unittest.TestCase):
             graph = page.schemas[0]['@graph']
             article = next(node for node in graph if node['@type'] == 'BlogPosting')
             self.assertEqual(article['headline'], item['article']['headline'])
-            self.assertEqual(article['datePublished'], '2026-10-24')
+            self.assertEqual(article['datePublished'], item['article']['date_published'])
             self.assertEqual(article['dateModified'], item['article']['date_modified'])
             self.assertEqual(article['author']['@id'], CONFIG['site_url'] + '/#organization')
             self.assertEqual(page.meta['og:type'], 'article')
@@ -129,7 +129,7 @@ class SEOTests(unittest.TestCase):
             crumbs = next(node for node in graph if node['@type'] == 'BreadcrumbList')['itemListElement']
             self.assertEqual(crumbs[1]['item'], CONFIG['site_url'] + '/blog')
             source = (ROOT / item['file']).read_text()
-            self.assertIn('datetime="2026-10-24"', source)
+            self.assertIn('datetime="' + item['article']['date_published'] + '"', source)
             self.assertIn('src="/chatbot.js"', source)
             self.assertNotIn('src="Assets/', source)
 

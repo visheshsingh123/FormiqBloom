@@ -449,6 +449,11 @@
     .assistant-overview h1 { font-size: clamp(2.2rem, 4.3vw, 4rem); }
     .assistant-overview h1 span { color: var(--lime); }
     .assistant-overview p { max-width: 36rem; margin-top: 1.25rem; color: var(--muted); font-size: .95rem; }
+    .assistant-plain-benefits { display: grid; gap: .55rem; list-style: none; margin: 1.25rem 0 0; padding: 0; font-size: .9rem; }
+    .assistant-plain-benefits li { display: flex; gap: .6rem; align-items: baseline; }
+    .assistant-plain-benefits li::before { content: "✓"; color: var(--lime); }
+    .assistant-overview .assistant-example { max-width: 36rem; padding: .85rem 1rem; border-left: 2px solid var(--violet); background: var(--card); font-size: .85rem; }
+    .assistant-example strong { color: var(--text); }
     .assistant-overview > .text-link { flex-shrink: 0; font-size: .85rem; }
     .assistant-preview { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); border: 1px solid #5C447A; background: var(--card); }
     .assistant-preview-intro { padding: clamp(1.5rem, 3vw, 2rem); border-right: 1px solid var(--line); }
@@ -537,7 +542,7 @@
     <section class="section assistant-section" id="assistant-demo" aria-labelledby="assistant-title">
       <div class="container">
         <nav class="ai-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">AI Assistant</span></nav>
-        <div class="assistant-overview"><div><div class="eyebrow">AI assistants</div><h1 id="assistant-title">Your business.<br><span>A helpful first answer.</span></h1><p>Help visitors understand your services, find answers, and take the next step—with business information you approve.</p></div><a class="text-link" href="/?service=assistant#contact">Build your custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        <div class="assistant-overview"><div><div class="eyebrow">AI assistants</div><h1 id="assistant-title">Your business.<br><span>A helpful first answer.</span></h1><p>A helpful chat box on your website. It answers common customer questions using information you approve—even when you’re busy.</p><ul class="assistant-plain-benefits"><li>Explain your services and prices.</li><li>Share your opening hours, location, and contact details.</li><li>Help visitors enquire or reach you on WhatsApp.</li></ul><p class="assistant-example"><strong>For example:</strong> “Do you offer this service?” → A clear answer and a way to contact you.</p></div><a class="text-link" href="/?service=assistant#contact">Build your custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         <div class="assistant-preview" aria-labelledby="assistant-preview-title">
           <div class="assistant-preview-intro"><span class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></span><p class="assistant-kicker">Try it here</p><h3 id="assistant-preview-title">Meet FormiqBloom AI.</h3><p>Start with a quick question about our services, process, pricing, or enquiries.</p><span class="assistant-preview-note">Four saved answers. Room for your own questions.</span></div>
           <div class="assistant-preview-controls"><div class="assistant-questions suggestions" data-widget-questions aria-label="Ask FormiqBloom AI a quick question"></div><div class="assistant-open-row"><p>Something else in mind?</p><button class="button" type="button" data-open-chat disabled>Open FormiqBloom AI <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button></div></div>

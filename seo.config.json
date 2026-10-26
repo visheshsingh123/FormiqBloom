@@ -93,6 +93,12 @@
         },
         {
           "path": "/blog/website-redesign-guide"
+        },
+        {
+          "path": "/blog/choose-business-website-package"
+        },
+        {
+          "path": "/blog/ai-assistant-for-small-business"
         }
       ]
     },
@@ -150,6 +156,36 @@
       "type": "WebPage",
       "title": "Website Pricing, Delivery & Support FAQs | FormiqBloom",
       "description": "Get clear answers to 10 common questions about FormiqBloom website tiers, delivery times, SEO, AI assistants, hosting, redesigns, payments, and support."
+    },
+    {
+      "file": "blog/choose-business-website-package.html",
+      "path": "/blog/choose-business-website-package",
+      "name": "Choosing a website package",
+      "type": "WebPage",
+      "title": "Which Website Package Does Your Business Need? | FormiqBloom",
+      "description": "Compare one-page and multi-page business websites, revision rounds, AI assistants, admin dashboards, and ongoing costs before choosing a website package.",
+      "article": {
+        "headline": "Which website package does your business actually need?",
+        "date_published": "2026-10-26",
+        "date_modified": "2026-10-26",
+        "category": "Website pricing",
+        "word_count": 518
+      }
+    },
+    {
+      "file": "blog/ai-assistant-for-small-business.html",
+      "path": "/blog/ai-assistant-for-small-business",
+      "name": "AI assistants for small businesses",
+      "type": "WebPage",
+      "title": "How Can an AI Assistant Help Your Small Business? | FormiqBloom",
+      "description": "Learn how a website AI assistant can answer customer questions, explain services, guide enquiries, and keep human help available, with clear setup and usage costs.",
+      "article": {
+        "headline": "How can an AI assistant help your small business?",
+        "date_published": "2026-10-26",
+        "date_modified": "2026-10-26",
+        "category": "AI for business",
+        "word_count": 525
+      }
     }
   ]
 }
