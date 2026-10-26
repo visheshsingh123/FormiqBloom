@@ -120,3 +120,5 @@ The FAQ page (`/faq`, served from `faq.html`) contains ten client-focused answer
 The mobile bottom navigation links Home, About, Work, Pricing, and AI Assistant. Each destination highlights its current page; Blog and Team remain available from the main menu and footer.
 
 Published tier scope: Starter includes 1 page with essential business links and 1 revision round; Business includes 3–5 pages, 2 revision rounds, and AI assistant setup; Custom includes 8–10 pages, 3 revision rounds, AI assistant setup, and an admin dashboard with agreed features. Page counts and revision rounds are also recorded in `seo.config.json` and generated offer descriptions.
+
+Revision rounds may include layout changes; new pages or features cost extra. Custom dashboard scope covers content, enquiries, and booking records. All booking systems/integrations, payment features, and online stores are quoted separately, including for Custom. Clients may supply text/images or request help, with content agreed before work starts.
