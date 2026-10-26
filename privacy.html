@@ -449,15 +449,6 @@
       </button>
       <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
         <a href="https://formiqbloom.vercel.app/">Home</a>
-        <details class="nav-dropdown" id="services-dropdown">
-          <summary>Services <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="dropdown-panel">
-            <a href="/#websites">Website Design &amp; Development</a>
-            <a href="/#contact">Managed Hosting &amp; Maintenance</a>
-            <a href="/ai-assistant">AI Assistants</a>
-            <a href="/#custom-web-solutions">Custom Web Solutions</a>
-          </div>
-        </details>
         <a href="/pricing">Pricing</a>
         <a href="/work">Work</a>
         <a href="/blog">Blog</a>
@@ -544,40 +535,21 @@
       const menuButton = document.getElementById('menu-toggle');
       const menuLabel = document.getElementById('menu-label');
       const nav = document.getElementById('primary-nav');
-      const dropdown = document.getElementById('services-dropdown');
-      const summary = dropdown.querySelector('summary');
       const mobile = window.matchMedia('(max-width: 1200px)');
 
       function setMenu(open, restoreFocus = false) {
         nav.classList.toggle('open', open);
         menuButton.setAttribute('aria-expanded', String(open));
         menuLabel.textContent = open ? 'Close' : 'Menu';
-        if (!open) dropdown.open = false;
         if (restoreFocus) menuButton.focus();
       }
       menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
-      summary.setAttribute('aria-expanded', String(dropdown.open));
-      dropdown.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(dropdown.open)));
-      // Hover opens the native dropdown; touch and keyboard retain native controls.
-      dropdown.addEventListener('pointerenter', event => {
-        if (event.pointerType === 'mouse') dropdown.open = true;
-      });
-      dropdown.addEventListener('pointerleave', event => {
-        if (event.pointerType === 'mouse' && !dropdown.contains(document.activeElement)) dropdown.open = false;
-      });
-      dropdown.addEventListener('focusout', event => {
-        if (!dropdown.contains(event.relatedTarget)) dropdown.open = false;
-      });
       document.addEventListener('click', event => {
-        if (!dropdown.contains(event.target)) dropdown.open = false;
         if (mobile.matches && !event.target.closest('.nav-shell')) setMenu(false);
       });
       document.addEventListener('keydown', event => {
         if (event.key !== 'Escape') return;
-        if (dropdown.open) {
-          dropdown.open = false;
-          summary.focus();
-        } else if (mobile.matches && nav.classList.contains('open')) {
+        if (mobile.matches && nav.classList.contains('open')) {
           setMenu(false, true);
         }
       });
