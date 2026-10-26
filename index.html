@@ -610,6 +610,8 @@
     .website-services-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: var(--heading-gap); }
     .website-services-heading h2 { max-width: 42rem; }
     .website-services-heading > p { max-width: 20rem; color: var(--muted); font-size: .9rem; }
+    .website-tier-carousel { position: relative; }
+    .tier-carousel-control { display: none; }
     .website-options-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 88%; margin-inline: auto; zoom: .88; }
     .website-option { min-width: 0; display: flex; flex-direction: column; padding: clamp(1.4rem, 2.3vw, 2rem); border: 1px solid var(--line); border-top: 2px solid #A78BCA; background: var(--card); transition: border-color .25s, box-shadow .25s; }
     .website-option:nth-child(2) { border-top-color: var(--violet); background: #211B2D; }
@@ -638,7 +640,16 @@
     @media (max-width: 850px) {
       .website-services-heading { align-items: start; flex-direction: column; gap: 1rem; }
       .website-services-heading > p { max-width: 35rem; }
-      .website-options-grid { grid-template-columns: 1fr; }
+      .website-options-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+      .website-options-grid::-webkit-scrollbar { display: none; }
+      .website-option { scroll-snap-align: start; scroll-snap-stop: always; }
+      .js .tier-carousel-control { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 36px; height: 44px; padding: 0; border: 1px solid #66517D; background: var(--bg); color: var(--lime); cursor: pointer; }
+      .tier-carousel-control.previous { left: -8px; }
+      .tier-carousel-control.next { right: -8px; }
+      .tier-carousel-control .icon { width: 18px; height: 18px; }
+      .tier-carousel-control.previous .icon { transform: rotate(180deg); }
+      .tier-carousel-control:disabled { color: var(--muted); opacity: .4; cursor: default; }
+      .tier-carousel-control:not(:disabled):is(:hover, :focus-visible) { background: var(--violet); color: var(--text); }
       .website-option { padding: 1.5rem; }
       .website-option h3 { font-size: clamp(1rem, 4.6vw, 1.6rem); }
       .website-option-description { display: none; }
@@ -766,7 +777,9 @@
     <section class="section services website-services" id="services" aria-labelledby="services-title">
       <div class="container">
         <div class="website-services-heading"><div><div class="eyebrow">01 / Website services</div><h2 id="services-title">A website that fits<br>your next stage.</h2></div></div>
-        <div class="website-options-grid">
+        <div class="website-tier-carousel">
+          <button class="tier-carousel-control previous" type="button" aria-label="Previous website tier" aria-controls="website-tier-track" disabled><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <div class="website-options-grid" id="website-tier-track" role="region" aria-label="Website pricing tiers">
           <article class="website-option" id="websites">
             <div class="website-option-top"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><h3>Starter Website</h3><span aria-hidden="true">01</span></div>
             <div class="website-tier-price"><strong>₹1,999</strong><span>one-time setup</span></div>
@@ -788,6 +801,9 @@
             <p class="website-option-description">A website with functionality and integrations planned around your business workflow and agreed scope.</p><ul class="check-list"><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>8–10 website pages</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>3 revision rounds, including layout changes</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>AI assistant included</span></li><li id="business-dashboards"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Dashboard for content, enquiries and booking records</span></li><li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Mobile-friendly design and SEO setup</span></li></ul>
             <div class="website-option-bottom" id="booking-integrations"><a class="button secondary" href="#contact" data-service="custom-tier">Choose Custom <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
           </article>
+        </div>
+          <button class="tier-carousel-control next" type="button" aria-label="Next website tier" aria-controls="website-tier-track"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          <span class="sr-only" id="website-tier-status" role="status" aria-live="polite"></span>
         </div>
         <a class="button pricing-comparison-link" id="redesigns" href="/pricing">Compare all tiers and inclusions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
@@ -909,6 +925,7 @@
     <footer class="widget-footer"><p id="widget-disclosure">AI can make mistakes. Don’t share sensitive information. <a href="/privacy">Privacy Policy</a>.</p><a href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Talk to FormiqBloom on WhatsApp<span class="sr-only"> (opens in a new tab)</span></a></footer>
   </aside>
 
+  <script src="website-tier-carousel.js" defer></script>
   <script>
     (() => {
       'use strict';
