@@ -15,19 +15,22 @@
           "name": "Starter Website",
           "slug": "websites",
           "price": 1999,
-          "delivery": "48 hours"
+          "delivery": "48 hours",
+          "ai_assistant_included": false
         },
         {
           "name": "Business Website",
           "slug": "business-website",
           "price": 4999,
-          "delivery": "3–4 days"
+          "delivery": "3–4 days",
+          "ai_assistant_included": true
         },
         {
           "name": "Custom Website",
           "slug": "custom-web-solutions",
           "price": 11999,
-          "delivery": "7 days"
+          "delivery": "7 days",
+          "ai_assistant_included": true
         }
       ]
     },
@@ -124,6 +127,15 @@
       "type": "WebPage",
       "title": "Custom AI Assistants for Business | FormiqBloom, Surat",
       "description": "Explore custom AI assistants from FormiqBloom in Surat. Answer business FAQs, guide enquiries, and try FormiqBloom AI with saved questions or your own."
+    },
+    {
+      "file": "pricing.html",
+      "path": "/pricing",
+      "name": "Pricing",
+      "type": "WebPage",
+      "title": "Website Pricing: ₹1,999, ₹4,999 & ₹11,999 | FormiqBloom",
+      "description": "Compare FormiqBloom’s Starter, Business, and Custom website tiers, delivery times, AI assistant inclusion, optional add-ons, and ongoing costs.",
+      "pricing_page": true
     }
   ]
 }

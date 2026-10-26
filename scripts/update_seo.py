@@ -99,11 +99,17 @@ def page_graph(page, origin, image):
             graph.append({'@type': 'Service', '@id': origin + '/#service-' + slug, 'name': name,
                           'description': description, 'url': origin + ('/ai-assistant' if slug == 'assistants' else '/#' + {'hosting': 'contact'}.get(slug, slug)),
                           'provider': {'@id': origin + '/#organization'}})
+    if page.get('pricing_page'):
+        graph.append({'@type': 'Service', '@id': origin + '/#service-websites',
+                      'name': 'Website Design & Development in Surat', 'url': origin + '/#websites',
+                      'description': 'Responsive business websites with SEO setup. AI assistants are included in Business and Custom and available as a quoted Starter add-on.',
+                      'provider': {'@id': origin + '/#organization'}})
+        entity['mainEntity'] = {'@id': origin + '/#service-websites'}
     if page.get('website_tiers'):
         website = next(node for node in graph if node.get('@id') == origin + '/#service-websites')
         website['offers'] = [{'@type': 'Offer', 'name': tier['name'], 'price': str(tier['price']),
                               'priceCurrency': 'INR', 'url': origin + '/#' + tier['slug'],
-                              'description': 'One-time website setup. Delivery in ' + tier['delivery'] + ' after scope confirmation and receipt of required content and access. Recurring services are separate.',
+                              'description': ('AI assistant included. ' if tier.get('ai_assistant_included') else 'AI assistant is a quoted optional add-on. ') + 'One-time website setup. Delivery in ' + tier['delivery'] + ' after scope confirmation and receipt of required content and access. AI provider usage is separate. Recurring services are separate.',
                               'seller': {'@id': origin + '/#organization'}} for tier in page['website_tiers']]
     graph.append(entity)
     return {'@context': 'https://schema.org', '@graph': graph}
@@ -151,7 +157,10 @@ def main():
     for page in config['pages']:
         path = ROOT / page['file']
         source = path.read_text()
-        block = metadata(page, origin, config['social_image'])
+        metadata_page = dict(page)
+        if page.get('pricing_page'):
+            metadata_page['website_tiers'] = next(item['website_tiers'] for item in config['pages'] if item['path'] == '/')
+        block = metadata(metadata_page, origin, config['social_image'])
         if START in source:
             pattern = re.escape(START) + r'.*?' + re.escape(END)
             source, count = re.subn(pattern, lambda _: block, source, flags=re.S)

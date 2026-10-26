@@ -143,6 +143,18 @@ class SEOTests(unittest.TestCase):
             self.assertEqual(offer['url'], CONFIG['site_url'] + '/#' + tier['slug'])
             self.assertIn(tier['delivery'], offer['description'])
             self.assertIn('Recurring services are separate', offer['description'])
+            self.assertIn('AI assistant included.' if tier['ai_assistant_included'] else 'AI assistant is a quoted optional add-on.', offer['description'])
+
+    def test_pricing_page_offers_match_homepage_and_ai_inclusions(self):
+        home = Page((ROOT / 'index.html').read_text())
+        pricing = Page((ROOT / 'pricing.html').read_text())
+        def offers(page):
+            return next(node for node in page.schemas[0]['@graph'] if node['@id'] == CONFIG['site_url'] + '/#service-websites')['offers']
+        self.assertEqual(offers(home), offers(pricing))
+        page_node = next(node for node in pricing.schemas[0]['@graph'] if node['@id'].endswith('/pricing#webpage'))
+        self.assertEqual(page_node['mainEntity']['@id'], CONFIG['site_url'] + '/#service-websites')
+        self.assertIn('AI assistant included.', offers(pricing)[1]['description'])
+        self.assertIn('AI assistant included.', offers(pricing)[2]['description'])
 
     def test_sitemap_robots_image_and_api_indexing(self):
         sitemap = ET.parse(ROOT / 'sitemap.xml')

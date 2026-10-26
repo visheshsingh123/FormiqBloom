@@ -15,7 +15,7 @@
     {
       id: 'pricing',
       question: 'How much does it cost?',
-      answer: 'Our website tiers are Starter Website at ₹1,999 with 48-hour delivery, Business Website at ₹4,999 with 3–4-day delivery, and Custom Website at ₹11,999 with 7-day delivery. These are one-time website setup prices. Timings begin after scope confirmation and receipt of the required content and access. Hosting, maintenance, third-party subscriptions, and AI usage are separate. Contact FormiqBloom to confirm the right tier and scope.'
+      answer: 'Our website tiers are Starter Website at ₹1,999 with 48-hour delivery, Business Website at ₹4,999 with 3–4-day delivery, and Custom Website at ₹11,999 with 7-day delivery. AI assistants are included in Business and Custom. Starter can add an AI assistant for a separate quote. These are one-time website setup prices; AI provider usage is separate. Compare all tiers at /pricing. Timings begin after scope confirmation and receipt of the required content and access. Hosting, maintenance, third-party subscriptions, and AI usage are separate. Contact FormiqBloom to confirm the right tier and scope.'
     },
     {
       id: 'contact',

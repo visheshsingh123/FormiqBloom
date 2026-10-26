@@ -43,7 +43,7 @@ test('accepts and relays published solution and priced website-tier enquiries', 
     sent = new URLSearchParams(options.body);
     return { ok: true, text: async () => confirmation };
   });
-  for (const service of ['Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards', 'Starter Website — ₹1,999', 'Business Website — ₹4,999', 'Custom Website — ₹11,999']) {
+  for (const service of ['Website redesigns', 'Landing pages', 'Booking integrations', 'Business dashboards', 'Starter Website — ₹1,999', 'Business Website — ₹4,999', 'Custom Website — ₹11,999', 'Starter Website + AI Assistant add-on (quote required)']) {
     const result = await request({ body: { ...fixture, service } });
     assert.equal(result.status, 200);
     assert.equal(sent.get('entry.2086671607'), service);

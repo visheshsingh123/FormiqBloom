@@ -12,9 +12,11 @@ The Website services section presents Starter Website (₹1,999, 48 hours), Busi
 
 On mobile (up to 850px), every page uses a floating pill header and a five-link bottom navigation bar for Home, About, Work, Blog, and Team. Current-page states, native links, safe-area spacing, and offsets for the chat and back-to-top controls are included; desktop navigation is unchanged.
 
+The Pricing page (`/pricing`) compares all three tiers. Business and Custom include an AI assistant; Starter can add one for a separate quote. AI provider usage and recurring services remain separate. Pricing enquiries select a matching contact form option, including Starter + AI. The pricing page’s structured offers derive from the homepage tier configuration, and the saved/AI pricing answers reflect the same inclusion rules.
+
 ## SEO
 
-All ten public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
+All eleven public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
 
 `seo.config.json` is the source for page metadata and the production domain. Run `python3 scripts/update_seo.py` after editing it; generated HTML, `sitemap.xml`, and `robots.txt` are committed, so Vercel still needs no build step. API responses carry an `X-Robots-Tag: noindex` header. The uploaded Google verification file is preserved separately and is not added to the sitemap.
 
@@ -23,7 +25,7 @@ After deployment, verify the current property in Google Search Console and submi
 For the future `.in` move:
 
 1. Connect the real domain to this Vercel project and confirm it serves the website over HTTPS.
-2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all ten pages. Commit and deploy the generated files and configuration together.
+2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all eleven pages. Commit and deploy the generated files and configuration together.
 3. Configure a permanent redirect from the old domain to the new one in Vercel, preserving each page path. Verify the new Search Console property, submit its sitemap, and use Change of Address where applicable. Google verification may require new verification details for the new property.
 
 Check the SEO files with `python3 -B -m unittest discover -s tests -p test_seo.py -v`.
