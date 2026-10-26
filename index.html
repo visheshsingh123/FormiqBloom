@@ -611,11 +611,11 @@
     .website-services-heading h2 { max-width: 42rem; }
     .website-services-heading > p { max-width: 20rem; color: var(--muted); font-size: .9rem; }
     .website-tier-carousel { position: relative; }
-    .tier-carousel-control { display: none; }
+    .tier-carousel-control, .website-option[data-carousel-clone] { display: none; }
     .website-options-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 88%; margin-inline: auto; zoom: .88; }
     .website-option { min-width: 0; display: flex; flex-direction: column; padding: clamp(1.4rem, 2.3vw, 2rem); border: 1px solid var(--line); border-top: 2px solid #A78BCA; background: var(--card); transition: border-color .25s, box-shadow .25s; }
-    .website-option:nth-child(2) { border-top-color: var(--violet); background: #211B2D; }
-    .website-option:nth-child(3) { border-top-color: var(--lime); }
+    .website-option:is(#business-website, [data-tier="1"]) { border-top-color: var(--violet); background: #211B2D; }
+    .website-option:is(#custom-web-solutions, [data-tier="2"]) { border-top-color: var(--lime); }
     .website-option:is(:hover, :focus-within) { border-color: #AE8DE0; box-shadow: inset 0 -3px var(--violet); }
     .website-option-top { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: .5rem; }
     .website-option-top .icon { width: 24px; height: 24px; color: #C8A6FF; transition: transform .25s; }
@@ -640,18 +640,24 @@
     @media (max-width: 850px) {
       .website-services-heading { align-items: start; flex-direction: column; gap: 1rem; }
       .website-services-heading > p { max-width: 35rem; }
-      .website-options-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+      .website-options-grid { position: relative; width: 100%; zoom: 1; padding-inline: 13%; gap: .8rem; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
       .website-options-grid::-webkit-scrollbar { display: none; }
-      .website-option { scroll-snap-align: start; scroll-snap-stop: always; }
+      .website-option { scroll-snap-align: center; scroll-snap-stop: always; transition: transform .3s, opacity .3s, border-color .3s; }
+      .website-option[data-carousel-clone] { display: flex; }
+      .js .website-option:not(.is-current) { transform: scale(.9); opacity: .5; }
+      .website-option.is-current { border-color: var(--lime); }
+      @media (prefers-reduced-motion: reduce) { .website-option { transition: none; } }
       .js .tier-carousel-control { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; width: 36px; height: 44px; padding: 0; border: 1px solid #66517D; background: var(--bg); color: var(--lime); cursor: pointer; }
-      .tier-carousel-control.previous { left: -8px; }
-      .tier-carousel-control.next { right: -8px; }
+      .tier-carousel-control.previous { left: 0; }
+      .tier-carousel-control.next { right: 0; }
       .tier-carousel-control .icon { width: 18px; height: 18px; }
       .tier-carousel-control.previous .icon { transform: rotate(180deg); }
       .tier-carousel-control:disabled { color: var(--muted); opacity: .4; cursor: default; }
       .tier-carousel-control:not(:disabled):is(:hover, :focus-visible) { background: var(--violet); color: var(--text); }
-      .website-option { padding: 1.5rem; }
-      .website-option h3 { font-size: clamp(1rem, 4.6vw, 1.6rem); }
+      .website-option { padding: 1.2rem; }
+      .website-option-top { grid-template-columns: 20px minmax(0, 1fr) auto; gap: .4rem; }
+      .website-option-top .icon { width: 20px; height: 20px; }
+      .website-option h3 { font-size: clamp(.85rem, 3.5vw, 1.25rem); }
       .website-option-description { display: none; }
     }
 
