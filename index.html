@@ -724,6 +724,10 @@
     }
 
     #selected-work .work-carousel { position: relative; }
+    .work-carousel-play { display: none; }
+    @media (max-width: 850px) {
+      .js .work-carousel-play { display: block; margin: .75rem auto 0; min-height: 36px; padding: .3rem .75rem; border: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; font-size: .75rem; cursor: pointer; }
+    }
     #selected-work .tier-carousel-control { background: var(--lime); color: var(--bg); border-color: var(--lime); }
     #selected-work .tier-carousel-control:not(:disabled):is(:hover, :focus-visible) { background: #ECFCCB; color: var(--bg); border-color: #ECFCCB; }
     #selected-work .project[data-carousel-clone] { display: none; }
@@ -935,6 +939,7 @@
         </article>
         </div>
           <button class="tier-carousel-control next" type="button" aria-label="Next project" aria-controls="selected-work-track"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          <button class="work-carousel-play" type="button">Pause carousel</button>
           <span class="sr-only" id="selected-work-status" role="status" aria-live="polite"></span>
         </div>
       </div>
