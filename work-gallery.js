@@ -1,16 +1,7 @@
-/* Real screenshots, progressively enhanced: original image links work without JS. */
+/* Automatically cycle project previews; native card links work without JavaScript. */
 (() => {
   'use strict';
-  const dialog = document.getElementById('screenshot-lightbox');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
-  const modalImage = dialog.querySelector('.lightbox-image');
-  const caption = dialog.querySelector('.lightbox-caption');
-  const title = document.getElementById('lightbox-title');
-  const previous = dialog.querySelector('.lightbox-previous');
-  const next = dialog.querySelector('.lightbox-next');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let active = null;
-  let opener = null;
   document.querySelectorAll('[data-project-gallery]').forEach(gallery => {
     const openLink = gallery.querySelector('.screenshot-open');
     const image = openLink.querySelector('img');
@@ -28,7 +19,6 @@
       image.alt = item.alt;
       image.width = Number(item.width);
       image.height = Number(item.height);
-      openLink.href = item.src;
       label.textContent = item.label;
       picks.forEach((link, i) => {
         if (i === state.index) link.setAttribute('aria-current', 'true');
@@ -52,53 +42,9 @@
       updateToggle();
       gallery.append(toggle);
       window.setInterval(() => {
-        if (paused || document.hidden || dialog.open || gallery.matches(':hover, :focus-within')) return;
+        if (paused || document.hidden || gallery.matches(':hover, :focus-within')) return;
         state.select(state.index + 1);
       }, 4000);
     }
-    picks.forEach((link, index) => link.addEventListener('click', event => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
-      event.preventDefault();
-      state.select(index);
-    }));
-    openLink.addEventListener('click', event => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
-      event.preventDefault();
-      active = state;
-      opener = openLink;
-      updateDialog();
-      dialog.showModal();
-    });
-  });
-  function updateDialog() {
-    const item = active.items[active.index];
-    modalImage.src = item.src;
-    modalImage.alt = item.alt;
-    title.textContent = active.name;
-    caption.textContent = item.label + ' · ' + (active.index + 1) + ' of ' + active.items.length;
-    previous.hidden = next.hidden = active.items.length < 2;
-  }
-  function step(direction) {
-    if (!active) return;
-    active.select(active.index + direction);
-    updateDialog();
-  }
-  previous.addEventListener('click', () => step(-1));
-  next.addEventListener('click', () => step(1));
-  dialog.querySelector('.lightbox-close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('keydown', event => {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-      event.preventDefault();
-      step(event.key === 'ArrowRight' ? 1 : -1);
-    }
-  });
-  dialog.addEventListener('click', event => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
-  });
-  dialog.addEventListener('close', () => {
-    if (opener?.isConnected) opener.focus({ preventScroll: true });
-    active = null;
   });
 })();
