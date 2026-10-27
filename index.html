@@ -722,6 +722,18 @@
       #selected-work .tag-row { gap: .25rem; }
       #selected-work .tag { font-size: .55rem; padding: .2rem .3rem; }
     }
+
+    #selected-work .work-carousel { position: relative; }
+    #selected-work .project[data-carousel-clone] { display: none; }
+    @media (max-width: 850px) {
+      #selected-work .projects-grid { position: relative; width: 100%; padding-inline: 13%; gap: .8rem; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+      #selected-work .projects-grid::-webkit-scrollbar { display: none; }
+      #selected-work .project { scroll-snap-align: center; scroll-snap-stop: always; transition: transform .3s, opacity .3s, border-color .3s; }
+      #selected-work .project[data-carousel-clone] { display: flex; }
+      .js #selected-work .project:not(.is-current) { transform: scale(.9); opacity: .5; }
+      #selected-work .project.is-current { border-color: var(--lime); }
+    }
+    @media (prefers-reduced-motion: reduce) { #selected-work .project { transition: none; } }
   </style>
 </head>
 <body id="top">
@@ -866,7 +878,9 @@
     <section class="section" id="selected-work" aria-labelledby="selected-work-title">
       <div class="container">
         <div class="section-heading"><div><h2 id="selected-work-title">Selected work</h2></div><a class="text-link" href="/work">View all work <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-        <div class="projects-grid">
+        <div class="work-carousel">
+          <button class="tier-carousel-control previous" type="button" aria-label="Previous project" aria-controls="selected-work-track" disabled><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <div class="projects-grid" id="selected-work-track" role="region" aria-label="Selected projects">
         <article class="project" aria-labelledby="macromuse-title">
           <div class="project-art" data-project-gallery data-project-name="MacroMuse">
             <p class="preview-label">Product screenshots · Earlier branding</p>
@@ -917,6 +931,9 @@
             <div class="tag-row"><span class="tag">Solar energy</span><span class="tag">Demo website</span></div>
           </div>
         </article>
+        </div>
+          <button class="tier-carousel-control next" type="button" aria-label="Next project" aria-controls="selected-work-track"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          <span class="sr-only" id="selected-work-status" role="status" aria-live="polite"></span>
         </div>
       </div>
     </section>
