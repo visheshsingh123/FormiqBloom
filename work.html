@@ -510,6 +510,8 @@
       .has-chat-widget .back-to-top { bottom: calc(var(--mobile-dock-offset) + 68px); }
       .chat-widget { bottom: calc(var(--mobile-dock-offset) + 68px); height: min(620px, calc(100svh - var(--mobile-dock-offset) - 170px)); height: min(620px, calc(100dvh - var(--mobile-dock-offset) - 170px)); }
     }
+    h1.page-hero-heading { font-size: clamp(2.2rem, 4.3vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.045em; }
+    .page-heading-accent { color: var(--lime); }
   </style>
 </head>
 <body id="top">
@@ -560,7 +562,7 @@
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="https://formiqbloom.vercel.app/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Selected Work</span></nav>
         <div class="work-intro">
-          <h1 class="work-page-heading" id="work-title"><span class="hero-title-line"><span class="hero-title-text">An idea,</span></span><span class="hero-title-line"><span class="hero-title-text">brought to life.</span></span></h1>
+          <h1 class="work-page-heading page-hero-heading" id="work-title"><span class="hero-title-line"><span class="hero-title-text">An idea,</span></span><span class="hero-title-line page-heading-accent"><span class="hero-title-text">brought to life.</span></span></h1>
           <p>A closer look at products built by the founder of FormiqBloom.</p>
         </div>
         <article class="project" aria-labelledby="macromuse-title">
