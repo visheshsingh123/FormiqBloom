@@ -54,28 +54,17 @@
   // Auto-advance only the selected-work carousel; pricing stays manual.
   if (trackId === 'selected-work-track') {
     const carousel = track.closest(controlSelector);
-    const toggle = carousel.querySelector('.work-carousel-play');
     const hoveringPointer = window.matchMedia('(hover: hover)');
-    let paused = reducedMotion.matches;
     let touching = false;
     let resumeAt = 0;
-    const updatePlay = () => {
-      toggle.textContent = paused ? 'Play carousel' : 'Pause carousel';
-      toggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} selected work carousel`);
-      status.setAttribute('aria-live', paused ? 'polite' : 'off');
-    };
-    toggle.addEventListener('click', () => { paused = !paused; updatePlay(); });
-    reducedMotion.addEventListener('change', event => {
-      if (event.matches) { paused = true; updatePlay(); }
-    });
+    status.setAttribute('aria-live', 'off');
     carousel.addEventListener('pointerdown', () => { touching = true; });
     window.addEventListener('pointerup', () => { touching = false; resumeAt = performance.now() + 4000; });
     window.addEventListener('pointercancel', () => { touching = false; resumeAt = performance.now() + 4000; });
     carousel.addEventListener('keydown', () => { resumeAt = performance.now() + 4000; });
-    updatePlay();
     window.setInterval(() => {
       const rect = track.getBoundingClientRect();
-      if (!mobile.matches || paused || document.hidden || touching || performance.now() < resumeAt
+      if (!mobile.matches || reducedMotion.matches || document.hidden || touching || performance.now() < resumeAt
         || rect.bottom <= 0 || rect.top >= window.innerHeight || carousel.matches(':focus-within')
         || (hoveringPointer.matches && carousel.matches(':hover'))) return;
       move(1);

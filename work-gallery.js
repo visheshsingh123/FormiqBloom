@@ -4,7 +4,9 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('[data-project-gallery]').forEach(gallery => {
     const openLink = gallery.querySelector('.screenshot-open');
-    const image = openLink.querySelector('img');
+    let image = openLink.querySelector('img');
+    openLink.style.position = 'relative';
+    let sliding = false;
     const label = gallery.querySelector('[data-gallery-caption]');
     const picks = Array.from(gallery.querySelectorAll('[data-gallery-pick]'));
     const items = picks.length ? picks.map(link => ({
@@ -12,13 +14,38 @@
       width: link.dataset.imageWidth, height: link.dataset.imageHeight
     })) : [{ src: openLink.href, alt: image.alt, label: label.textContent, width: image.width, height: image.height }];
     const state = { name: gallery.dataset.projectName, items, index: 0 };
-    state.select = index => {
-      state.index = (index + items.length) % items.length;
-      const item = items[state.index];
-      image.src = item.src;
-      image.alt = item.alt;
-      image.width = Number(item.width);
-      image.height = Number(item.height);
+    state.select = async index => {
+      if (sliding) return;
+      const nextIndex = (index + items.length) % items.length;
+      if (nextIndex === state.index) return;
+      const item = items[nextIndex];
+      const incoming = image.cloneNode(false);
+      incoming.src = item.src;
+      incoming.alt = item.alt;
+      incoming.width = Number(item.width);
+      incoming.height = Number(item.height);
+      incoming.loading = 'eager';
+      sliding = true;
+      try { await incoming.decode(); } catch { sliding = false; return; }
+      const outgoing = image;
+      incoming.style.position = 'absolute';
+      incoming.style.inset = '0';
+      openLink.append(incoming);
+      if (!reducedMotion.matches) {
+        const options = { duration: 600, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both' };
+        const animations = [
+          outgoing.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }], options),
+          incoming.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], options)
+        ];
+        await Promise.all(animations.map(animation => animation.finished));
+        animations.forEach(animation => animation.cancel());
+      }
+      outgoing.remove();
+      incoming.style.position = '';
+      incoming.style.inset = '';
+      image = incoming;
+      state.index = nextIndex;
+      sliding = false;
       label.textContent = item.label;
       picks.forEach((link, i) => {
         if (i === state.index) link.setAttribute('aria-current', 'true');
