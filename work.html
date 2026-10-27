@@ -469,9 +469,14 @@
     }
     @media (max-width: 560px) {
       .work-page .container { width: calc(100% - 2.25rem); }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-art { padding: 1.75rem; }
-      .project-copy { padding: 2rem 1.5rem; }
+      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+      .project-art, .project-copy { padding: .65rem; }
+      .project-copy h2 { font-size: clamp(1rem, 4.5vw, 1.5rem); }
+      .project-copy .text-link { font-size: .75rem; flex-wrap: wrap; }
+      .preview-label { font-size: .55rem; margin-bottom: .6rem; }
+      .tag-row { gap: .25rem; margin-bottom: .75rem; }
+      .tag { font-size: .55rem; padding: .2rem .3rem; }
+      .project-screenshot figcaption { font-size: .6rem; }
     }
 
     /* Each project keeps its compact layout and its own visual palette. */
@@ -481,6 +486,7 @@
     .relay-project:is(:hover, :focus-within) { border-color: #9B77C8; }
 
     /* Actual screenshots stay compact; click to inspect at a comfortable size. */
+    .gallery-toggle { align-self: flex-start; margin-top: .5rem; min-height: 32px; padding: .25rem .5rem; border: 1px solid var(--line); background: transparent; color: var(--muted); font: inherit; font-size: .65rem; cursor: pointer; }
     .project-screenshot { margin: 0; min-width: 0; }
     .screenshot-open { display: block; overflow: hidden; border: 1px solid #647065; border-radius: 0; background: #EEF7F3; }
     .screenshot-open img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; transition: transform .4s; }
@@ -592,6 +598,12 @@
           <div class="project-art" data-project-gallery data-project-name="MacroMuse">
             <p class="preview-label">Product screenshots · Earlier branding</p>
             <figure class="project-screenshot"><a class="screenshot-open" href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_24%20AM.png" target="_blank" rel="noopener noreferrer" aria-label="Enlarge MacroMuse screenshot"><img src="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_24%20AM.png" alt="MacroMuse landing page with its nutrition tracking introduction and food illustration." width="1615" height="761" loading="lazy" decoding="async"></a><figcaption><span data-gallery-caption>Landing page</span><span class="screenshot-hint">Click to enlarge <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></figcaption></figure>
+            <div hidden>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_24%20AM.png" data-gallery-pick data-image-alt="MacroMuse — Landing page." data-image-width="1615" data-image-height="761">Landing page</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_16%20AM.png" data-gallery-pick data-image-alt="MacroMuse — Progress tracker." data-image-width="1639" data-image-height="825">Progress tracker</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_21%20AM.png" data-gallery-pick data-image-alt="MacroMuse — AI Chef." data-image-width="1276" data-image-height="692">AI Chef</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_34_27%20AM.png" data-gallery-pick data-image-alt="MacroMuse — Plans page." data-image-width="1172" data-image-height="535">Plans page</a>
+            </div>
           </div>
           <div class="project-copy">
             <h2 id="macromuse-title">MacroMuse</h2>
@@ -605,6 +617,13 @@
           <div class="project-art relay-art" data-project-gallery data-project-name="RelayChatting">
             <p class="preview-label">Product screenshots</p>
             <figure class="project-screenshot"><a class="screenshot-open" href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_38%20AM.png" target="_blank" rel="noopener noreferrer" aria-label="Enlarge RelayChatting screenshot"><img src="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_38%20AM.png" alt="RelayChatting landing page showing its messaging introduction and sample conversation." width="1706" height="884" loading="lazy" decoding="async"></a><figcaption><span data-gallery-caption>Landing page</span><span class="screenshot-hint">Click to enlarge <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></figcaption></figure>
+            <div hidden>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_38%20AM.png" data-gallery-pick data-image-alt="RelayChatting — Landing page." data-image-width="1706" data-image-height="884">Landing page</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_42%20AM.png" data-gallery-pick data-image-alt="RelayChatting — Messaging preview 2." data-image-width="1900" data-image-height="887">Messaging preview 2</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_46%20AM.png" data-gallery-pick data-image-alt="RelayChatting — Messaging preview 3." data-image-width="1875" data-image-height="868">Messaging preview 3</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_48%20AM.png" data-gallery-pick data-image-alt="RelayChatting — Messaging preview 4." data-image-width="1706" data-image-height="775">Messaging preview 4</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2023%2C%202026%2C%2008_35_51%20AM.png" data-gallery-pick data-image-alt="RelayChatting — Messaging preview 5." data-image-width="1606" data-image-height="796">Messaging preview 5</a>
+            </div>
           </div>
           <div class="project-copy">
             <h2 id="relaychatting-title">RelayChatting</h2>

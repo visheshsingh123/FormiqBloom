@@ -8,6 +8,7 @@
   const title = document.getElementById('lightbox-title');
   const previous = dialog.querySelector('.lightbox-previous');
   const next = dialog.querySelector('.lightbox-next');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let active = null;
   let opener = null;
   document.querySelectorAll('[data-project-gallery]').forEach(gallery => {
@@ -34,6 +35,27 @@
         else link.removeAttribute('aria-current');
       });
     };
+    // Keep the preview still while it is being inspected or the page is hidden.
+    if (items.length > 1) {
+      let paused = reducedMotion.matches;
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'gallery-toggle';
+      const updateToggle = () => {
+        toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
+        toggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} ${state.name} screenshot slideshow`);
+      };
+      toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
+      reducedMotion.addEventListener('change', event => {
+        if (event.matches) { paused = true; updateToggle(); }
+      });
+      updateToggle();
+      gallery.append(toggle);
+      window.setInterval(() => {
+        if (paused || document.hidden || dialog.open || gallery.matches(':hover, :focus-within')) return;
+        state.select(state.index + 1);
+      }, 4000);
+    }
     picks.forEach((link, index) => link.addEventListener('click', event => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
       event.preventDefault();
