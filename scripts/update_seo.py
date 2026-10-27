@@ -79,7 +79,10 @@ def page_graph(page, origin, image):
              'description': 'AI-assisted nutrition tracking with meal logging, progress dashboards, and a responsive web and PWA experience.'},
             {'@type': 'WebApplication', '@id': canonical + '#relaychatting', 'name': 'RelayChatting',
              'url': 'https://relaychatting.vercel.app/', 'creator': {'@id': origin + '/#founder'},
-             'description': 'A live text messaging web application with usernames and user accounts.'}
+             'description': 'A live text messaging web application with usernames and user accounts.'},
+            {'@type': 'WebSite', '@id': canonical + '#solara-surat', 'name': 'Solara Surat',
+             'url': 'https://solarasurat.vercel.app/',
+             'description': 'The Solara Surat website.'}
         ]
         graph.extend(projects)
         graph.append({'@type': 'ItemList', '@id': canonical + '#projects', 'name': 'Selected work',
