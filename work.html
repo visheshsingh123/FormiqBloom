@@ -476,10 +476,6 @@
 
     /* Each project keeps its compact layout and its own visual palette. */
     .woven-art { background: #302A27; }
-    .woven-preview { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; aspect-ratio: 16 / 9; padding: 1rem; border: 1px solid #84776D; background: #EEE8DE; color: #382D28; text-decoration: none; }
-    .woven-preview strong { font-family: Georgia, serif; font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 400; text-align: center; }
-    .woven-preview span { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; }
-    .woven-preview:is(:hover, :focus-visible) { background: #FFF5E7; }
     .solara-art { background: #163E30; }
     .relay-art { background: #282136; }
     .relay-project:is(:hover, :focus-within) { border-color: #9B77C8; }
@@ -634,9 +630,14 @@
           </div>
         </article>
         <article class="project woven-project" aria-labelledby="woven-title">
-          <div class="project-art woven-art">
+          <div class="project-art woven-art" data-project-gallery data-project-name="Woven Hours">
             <p class="preview-label">Demo clothing ecommerce site</p>
-            <a class="woven-preview" href="https://wovenhours.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Woven Hours demo (opens in a new tab)"><strong>Woven Hours</strong><span>Clothing · Demo store</span></a>
+            <figure class="project-screenshot"><a class="screenshot-open" href="/Assets/w1.jpeg" target="_blank" rel="noopener noreferrer" aria-label="Enlarge Woven Hours screenshot"><img src="/Assets/w1.jpeg" alt="Woven Hours demo clothing store homepage with the headline Your day. Your rhythm." width="1600" height="735" loading="lazy" decoding="async"></a><figcaption><span data-gallery-caption>Homepage</span><span class="screenshot-hint">Click to enlarge <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></figcaption></figure>
+            <div hidden>
+              <a href="/Assets/w1.jpeg" data-gallery-pick data-image-alt="Woven Hours demo clothing store homepage with the headline Your day. Your rhythm." data-image-width="1600" data-image-height="735" aria-current="true">Homepage</a>
+              <a href="/Assets/w2.jpeg" data-gallery-pick data-image-alt="Woven Hours demo brand story, newsletter signup, and footer." data-image-width="1600" data-image-height="756">Our story</a>
+              <a href="/Assets/w3.jpeg" data-gallery-pick data-image-alt="Woven Hours demo clothing collection with product cards and category filters." data-image-width="1600" data-image-height="749">Clothing collection</a>
+            </div>
           </div>
           <div class="project-copy">
             <h2 id="woven-title">Woven Hours</h2>
