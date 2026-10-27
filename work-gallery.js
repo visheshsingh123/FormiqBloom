@@ -54,22 +54,8 @@
     };
     // Keep the preview still while it is being inspected or the page is hidden.
     if (items.length > 1) {
-      let paused = reducedMotion.matches;
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'gallery-toggle';
-      const updateToggle = () => {
-        toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
-        toggle.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} ${state.name} screenshot slideshow`);
-      };
-      toggle.addEventListener('click', () => { paused = !paused; updateToggle(); });
-      reducedMotion.addEventListener('change', event => {
-        if (event.matches) { paused = true; updateToggle(); }
-      });
-      updateToggle();
-      gallery.append(toggle);
       window.setInterval(() => {
-        if (paused || document.hidden || gallery.matches(':hover, :focus-within')) return;
+        if (reducedMotion.matches || document.hidden || gallery.matches(':hover, :focus-within')) return;
         state.select(state.index + 1);
       }, 4000);
     }
