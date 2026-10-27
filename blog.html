@@ -357,7 +357,7 @@
     .about-hero { padding-block: var(--page-start) var(--section-space); border-bottom: 1px solid var(--line); }
     .about-hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 5rem; align-items: center; }
     .breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 0; color: var(--muted); font-size: .75rem; }
-    .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+    .breadcrumb a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
     .breadcrumb a:hover { color: var(--lime); }
     .breadcrumb span { align-self: center; }
     .about-heading { font-size: clamp(3.2rem, 6vw, 5.5rem); }
@@ -437,7 +437,7 @@
     .resource-hero h1 { max-width: 58rem; font-size: clamp(2.5rem, 5vw, 4.8rem); text-wrap: balance; }
     .resource-lead { max-width: 40rem; margin-top: 1.5rem; color: var(--muted); }
     .resource-breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; color: var(--muted); font-size: .8rem; }
-    .resource-breadcrumb a { text-decoration: underline; text-underline-offset: 4px; }
+    .resource-breadcrumb a { text-decoration: none; }
     .resource-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding-bottom: var(--section-space); }
     .resource-card { position: relative; min-width: 0; padding: clamp(1.5rem, 3vw, 2.25rem); border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; align-items: start; transition: border-color .25s, box-shadow .25s; }
     .resource-card:is(:hover, :focus-within) { border-color: #A78BCA; box-shadow: inset 0 -3px var(--violet); }
