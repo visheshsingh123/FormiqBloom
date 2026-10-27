@@ -330,7 +330,7 @@
     /* About page: a founder introduction and a clear next step. */
     .about-hero { padding-block: var(--page-start) var(--section-space); border-bottom: 1px solid var(--line); }
     .about-hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 5rem; align-items: center; }
-    .breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: var(--heading-gap); color: var(--muted); font-size: .75rem; }
+    .breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 0; color: var(--muted); font-size: .75rem; }
     .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
     .breadcrumb a:hover { color: var(--lime); }
     .breadcrumb span { align-self: center; }
@@ -437,7 +437,7 @@
     @media (max-width: 560px) { .why-choose-grid { grid-template-columns: 1fr; } .why-choose-card { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: .9rem; } .why-choose-card > .icon { grid-row: 1 / 3; margin-top: .1rem; margin-bottom: 0; } .why-choose-card p { grid-column: 2; margin-top: .4rem; } }
 
     .faq-page { padding-top: 2rem; }
-    .faq-page-heading { max-width: 48rem; margin-block: 2.5rem 3rem; }
+    .faq-page-heading { max-width: 48rem; margin-block: 0 3rem; }
     .faq-page-heading h1 { font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: 1.08; }
     .faq-page-heading h1 span { color: var(--lime); }
     .faq-page-heading p { margin-top: 1.25rem; color: var(--muted); }
@@ -453,7 +453,7 @@
     .answer-item summary:hover { color: var(--lime); }
     .answer-item p { max-width: 48rem; padding: 0 2.5rem 1.5rem; color: var(--muted); font-size: .95rem; line-height: 1.8; }
     @media (max-width: 560px) {
-      .faq-page-heading { margin-block: 1.75rem 2rem; }
+      .faq-page-heading { margin-block: 0 2rem; }
       .answer-item summary { gap: .65rem; padding-block: 1.25rem; font-size: .95rem; }
       .answer-item p { padding: 0 0 1.25rem 2.15rem; font-size: .9rem; }
     }
