@@ -481,10 +481,6 @@
     .woven-preview span { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; }
     .woven-preview:is(:hover, :focus-visible) { background: #FFF5E7; }
     .solara-art { background: #163E30; }
-    .solara-preview { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .75rem; aspect-ratio: 16 / 9; border: 1px solid #517762; background: #F6F7EF; color: #174D38; text-decoration: none; }
-    .solara-preview strong { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; letter-spacing: .12em; }
-    .solara-preview span { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; }
-    .solara-preview:is(:hover, :focus-visible) { background: #E0F2AE; }
     .relay-art { background: #282136; }
     .relay-project:is(:hover, :focus-within) { border-color: #9B77C8; }
 
@@ -622,9 +618,14 @@
         </article>
 
         <article class="project solara-project" aria-labelledby="solara-title">
-          <div class="project-art solara-art">
+          <div class="project-art solara-art" data-project-gallery data-project-name="Solara Surat">
             <p class="preview-label">Demo solar panel website</p>
-            <a class="solara-preview" href="https://solarasurat.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Solara Surat (opens in a new tab)"><strong>SOLARA</strong><span>Solar energy · Demo</span></a>
+            <figure class="project-screenshot"><a class="screenshot-open" href="/Assets/ChatGPT%20Image%20Oct%2028%2C%202026%2C%2001_39_15%20AM.png" target="_blank" rel="noopener noreferrer" aria-label="Enlarge Solara Surat screenshot"><img src="/Assets/ChatGPT%20Image%20Oct%2028%2C%202026%2C%2001_39_15%20AM.png" alt="Solara demo homepage with rooftop solar panels and the headline Good for your home. Better for the planet." width="1913" height="889" loading="lazy" decoding="async"></a><figcaption><span data-gallery-caption>Homepage</span><span class="screenshot-hint">Click to enlarge <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></figcaption></figure>
+            <div hidden>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2028%2C%202026%2C%2001_39_15%20AM.png" data-gallery-pick data-image-alt="Solara demo homepage with rooftop solar panels and the headline Good for your home. Better for the planet." data-image-width="1913" data-image-height="889" aria-current="true">Homepage</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2028%2C%202026%2C%2001_39_52%20AM.png" data-gallery-pick data-image-alt="Solara demo solar savings calculator with monthly electricity bill, suggested system size, and estimated yearly savings." data-image-width="1882" data-image-height="897">Savings calculator</a>
+              <a href="/Assets/ChatGPT%20Image%20Oct%2028%2C%202026%2C%2001_39_57%20AM.png" data-gallery-pick data-image-alt="Solara demo solutions section showing residential solar, commercial and industrial solar, and maintenance services." data-image-width="1465" data-image-height="669">Solar solutions</a>
+            </div>
           </div>
           <div class="project-copy">
             <h2 id="solara-title">Solara Surat</h2>
