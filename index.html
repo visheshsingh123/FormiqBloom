@@ -724,6 +724,8 @@
     }
 
     #selected-work .work-carousel { position: relative; }
+    #selected-work .tier-carousel-control { background: var(--lime); color: var(--bg); border-color: var(--lime); }
+    #selected-work .tier-carousel-control:not(:disabled):is(:hover, :focus-visible) { background: #ECFCCB; color: var(--bg); border-color: #ECFCCB; }
     #selected-work .project[data-carousel-clone] { display: none; }
     @media (max-width: 850px) {
       #selected-work .projects-grid { position: relative; width: 100%; padding-inline: 13%; gap: .8rem; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
