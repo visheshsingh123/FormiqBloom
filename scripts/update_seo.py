@@ -82,7 +82,7 @@ def page_graph(page, origin, image):
              'description': 'A live text messaging web application with usernames and user accounts.'},
             {'@type': 'WebSite', '@id': canonical + '#solara-surat', 'name': 'Solara Surat',
              'url': 'https://solarasurat.vercel.app/',
-             'description': 'The Solara Surat website.'}
+             'description': 'A demo solar panel website showcasing rooftop solar solutions, energy savings, and a cleaner future.'}
         ]
         graph.extend(projects)
         graph.append({'@type': 'ItemList', '@id': canonical + '#projects', 'name': 'Selected work',
