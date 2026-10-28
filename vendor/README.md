@@ -25,3 +25,7 @@ to this model's upright axis and mechanical neck, rather than a general rigging 
 `vanilla-tilt.min.js` is the locally hosted Vanilla Tilt 1.8.1 distribution (MIT).
 Its license is in `vanilla-tilt-LICENSE.txt`. `team-tilt.js` enables a subtle tilt
 only for precise hover pointers without a reduced-motion preference.
+
+## WhatsApp brand icon
+
+`/Assets/whatsapp.svg` uses the WhatsApp glyph from Simple Icons 14.0.0 (CC0), with a white fill for the green mobile contact button. Source: https://cdn.jsdelivr.net/npm/simple-icons@14.0.0/icons/whatsapp.svg. The WhatsApp name and logo belong to their respective owner.
