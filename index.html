@@ -766,6 +766,11 @@
       .mobile-whatsapp .whatsapp-brand { display: block; width: 28px; height: 28px; }
       .chat-is-open .mobile-whatsapp { visibility: hidden; pointer-events: none; }
     }
+
+    .contact-map { margin-top: 1.5rem; max-width: 100%; border: 1px solid var(--line); background: var(--bg); overflow: hidden; }
+    .contact-map iframe { display: block; width: 100%; height: 230px; border: 0; }
+    .contact-map > a { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .65rem .85rem; color: var(--muted); font-size: .8rem; }
+    .contact-map > a:is(:hover, :focus-visible) { color: var(--lime); }
   </style>
 </head>
 <body id="top">
@@ -1015,6 +1020,10 @@
             <a href="https://www.instagram.com/formiqbloom/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>@formiqbloom<span class="sr-only"> on Instagram (opens in a new tab)</span></a>
             <a href="mailto:visheshsingh29537@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email<span class="sr-only"> visheshsingh29537@gmail.com</span></a>
           </nav>
+          <div class="contact-map">
+            <iframe title="Map of Surat, Gujarat, India" src="https://www.google.com/maps?q=Surat%2C%20Gujarat%2C%20India&amp;z=11&amp;output=embed" width="600" height="230" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Surat%2C%20Gujarat%2C%20India" target="_blank" rel="noopener noreferrer">Surat, Gujarat <span class="sr-only">— open map in a new tab</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
         <form class="consultation-form" id="consultation-form" action="/api/contact" method="post">
           <fieldset id="contact-fields" disabled>
