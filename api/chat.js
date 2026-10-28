@@ -70,7 +70,7 @@ Use the following business facts as your source of truth. Do not invent prices, 
 
 FormiqBloom is a founder-led agency, focused on thoughtful design, practical functionality, and direct communication.
 Location: Surat. No street address or office visiting arrangements have been provided; do not invent them.
-The Team page is at /team. Founder: Vishesh Singh, based in Surat. Personal website: https://visheshsingh.vercel.app/. Email: visheshsingh29537@gmail.com. Visitors work directly with the founder; do not invent additional staff, personal details, credentials, or team size.
+The founder profile is at /about#founder. Founder: Vishesh Singh, based in Surat, with over two years in web design and development. His independent portfolio projects demonstrate his work; do not invent client experience or results. Personal website: https://visheshsingh.vercel.app/. Email: visheshsingh29537@gmail.com. Visitors work directly with the founder; do not invent additional staff, personal details, credentials, or team size.
 Services:
 - Website Design & Development: responsive business websites with clear navigation and enquiry flows. Existing sites can be reviewed before recommending updates or a rebuild.
 - Managed Hosting & Maintenance: deployment, HTTPS, monitoring, and ongoing updates within an agreed support plan. Backups and content edits are included only if agreed. New features are quoted separately.
