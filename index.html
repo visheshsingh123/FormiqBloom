@@ -343,7 +343,7 @@
     .hero-bottom span:last-child { display: flex; align-items: center; gap: .7rem; }
 
     /* Two identical groups make one seamless loop. */
-    .marquee { overflow: hidden; background: var(--lime); color: var(--bg); padding-block: 1.15rem; }
+    .marquee { overflow: hidden; background: var(--lime); color: var(--bg); padding-block: 1.6rem; }
     .marquee-track { display: flex; width: max-content; animation: marquee 16s linear infinite; }
     .marquee-group { display: flex; align-items: center; justify-content: space-around; gap: var(--marquee-gap, 1.2rem); min-width: 100vw; flex-shrink: 0; padding-right: var(--marquee-gap, 1.2rem); white-space: nowrap; font: 700 clamp(.85rem, 1.7vw, 1.2rem)/1.4 var(--display); letter-spacing: .025em; }
     .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
@@ -543,7 +543,7 @@
 
     .marquee-stack { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(1.5rem, 3vw, 3rem) clamp(2.5rem, 4vw, 4rem); }
     .marquee-stack > #marquee { --marquee-gap: clamp(2rem, 3vw, 3rem); position: relative; z-index: 2; box-shadow: 0 7px 18px #0004; }
-    .tools-marquee { position: absolute; z-index: 1; top: 50%; left: -2%; width: 104%; margin-top: .8rem; transform: translateY(-50%) rotate(-5deg); background: #C8B5E8; color: #241831; padding-block: .85rem; border-block: 1px solid #E0D3F3; box-shadow: 0 8px 20px #0005; }
+    .tools-marquee { position: absolute; z-index: 1; top: 50%; left: -2%; width: 104%; margin-top: .8rem; transform: translateY(-50%) rotate(-5deg); background: #C8B5E8; color: #241831; padding-block: 1.25rem; border-block: 1px solid #E0D3F3; box-shadow: 0 8px 20px #0005; }
     .marquee-stack .marquee:focus-visible { outline-offset: -4px; }
     .tools-marquee .marquee-track { animation-duration: 24s; animation-direction: reverse; }
     .tools-marquee .marquee-group { font-size: clamp(.8rem, 1.4vw, 1rem); letter-spacing: .1em; }
