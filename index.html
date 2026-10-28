@@ -724,6 +724,7 @@
     }
 
     #selected-work .work-carousel { position: relative; }
+    .case-study-hint { margin-bottom: 1rem; color: var(--muted); font-size: .85rem; }
     #selected-work .tier-carousel-control { background: var(--lime); color: var(--bg); border-color: var(--lime); }
     #selected-work .tier-carousel-control:not(:disabled):is(:hover, :focus-visible) { background: #ECFCCB; color: var(--bg); border-color: #ECFCCB; }
     #selected-work .project[data-carousel-clone] { display: none; }
@@ -757,6 +758,14 @@
       .business-website-card { padding: 1rem; }
     }
     @media (max-width: 360px) { .business-websites-grid { grid-template-columns: 1fr; } }
+
+    .mobile-whatsapp { display: none; }
+    @media (max-width: 850px) {
+      .back-to-top { display: none; }
+      .mobile-whatsapp { position: fixed; z-index: 25; right: clamp(1rem, 3vw, 2rem); bottom: calc(var(--mobile-dock-offset, 100px) + 68px); display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid #25D366; border-radius: 50%; background: #25D366; color: #082E18; box-shadow: 0 4px 20px #0005; }
+      .mobile-whatsapp .icon { width: 26px; height: 26px; }
+      .chat-is-open .mobile-whatsapp { visibility: hidden; pointer-events: none; }
+    }
   </style>
 </head>
 <body id="top">
@@ -918,6 +927,7 @@
         <div class="section-heading"><div><h2 id="selected-work-title">Selected work</h2></div><a class="text-link" href="/work">View all work <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         <div class="work-carousel">
           <button class="tier-carousel-control previous" type="button" aria-label="Previous project" aria-controls="selected-work-track" disabled><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <p class="case-study-hint">Select a project to see its features and screenshots.</p>
         <div class="projects-grid" id="selected-work-track" role="region" aria-label="Selected projects">
         <article class="project" aria-labelledby="macromuse-title">
           <div class="project-art" data-project-gallery data-project-name="MacroMuse">
@@ -931,7 +941,7 @@
             </div>
           </div>
           <div class="project-copy">
-            <h2 id="macromuse-title"><a class="project-link" href="https://macromuse.vercel.app/" target="_blank" rel="noopener noreferrer">MacroMuse<span class="sr-only"> (opens in a new tab)</span></a></h2>
+            <h2 id="macromuse-title"><a class="project-link" href="/case-studies/macromuse">MacroMuse</a></h2>
             <div class="tag-row"><span class="tag">Product design</span><span class="tag">Development</span><span class="tag">AI integration</span></div>
           </div>
         </article>
@@ -949,7 +959,7 @@
             </div>
           </div>
           <div class="project-copy">
-            <h2 id="relaychatting-title"><a class="project-link" href="https://relaychatting.vercel.app/" target="_blank" rel="noopener noreferrer">RelayChatting<span class="sr-only"> (opens in a new tab)</span></a></h2>
+            <h2 id="relaychatting-title"><a class="project-link" href="/case-studies/relaychatting">RelayChatting</a></h2>
             <div class="tag-row"><span class="tag">Live messaging</span><span class="tag">Usernames</span><span class="tag">Accounts</span></div>
           </div>
         </article>
@@ -965,7 +975,7 @@
             </div>
           </div>
           <div class="project-copy">
-            <h2 id="solara-title"><a class="project-link" href="https://solarasurat.vercel.app/" target="_blank" rel="noopener noreferrer">Solara Surat<span class="sr-only"> (opens in a new tab)</span></a></h2>
+            <h2 id="solara-title"><a class="project-link" href="/case-studies/solara">Solara Surat</a></h2>
             <div class="tag-row"><span class="tag">Solar energy</span><span class="tag">Demo website</span></div>
           </div>
         </article>
@@ -1055,6 +1065,7 @@
   </nav>
 
   <a class="back-to-top" id="back-to-top" href="#top" aria-label="Back to top" title="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></a>
+  <a class="mobile-whatsapp" href="https://wa.me/919054349785" target="_blank" rel="noopener noreferrer" aria-label="Contact FormiqBloom on WhatsApp (opens in a new tab)"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
 
   <!-- Nonmodal assistant. The key stays on the server; recent chat lives only in memory. -->
   <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open FormiqBloom AI" aria-controls="chat-widget" aria-expanded="false" hidden><svg class="icon open-icon" aria-hidden="true"><use href="#i-chat"/></svg><svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg></button>

@@ -178,6 +178,30 @@
         "category": "AI for business",
         "word_count": 525
       }
+    },
+    {
+      "file": "case-studies/macromuse.html",
+      "path": "/case-studies/macromuse",
+      "name": "MacroMuse case study",
+      "type": "WebPage",
+      "title": "MacroMuse Case Study | FormiqBloom",
+      "description": "Nutrition tracking, meal habits, and recipe ideas in one web experience."
+    },
+    {
+      "file": "case-studies/relaychatting.html",
+      "path": "/case-studies/relaychatting",
+      "name": "RelayChatting case study",
+      "type": "WebPage",
+      "title": "RelayChatting Case Study | FormiqBloom",
+      "description": "A messaging web app with conversations, user profiles, and AI assistance."
+    },
+    {
+      "file": "case-studies/solara.html",
+      "path": "/case-studies/solara",
+      "name": "Solara Surat case study",
+      "type": "WebPage",
+      "title": "Solara Surat Case Study | FormiqBloom",
+      "description": "A solar business website that introduces services and makes potential savings easier to explore."
     }
   ]
 }
