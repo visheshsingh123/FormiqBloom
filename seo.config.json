@@ -57,14 +57,6 @@
       "description": "Explore MacroMuse, RelayChatting, Solara Surat, and Woven Hours in FormiqBloom’s selected work. View project previews and visit the live websites."
     },
     {
-      "file": "team.html",
-      "path": "/team",
-      "name": "Team",
-      "type": "AboutPage",
-      "title": "Vishesh Singh, Founder | FormiqBloom, Surat",
-      "description": "Meet Vishesh Singh, founder of FormiqBloom in Surat. Learn about his approach to websites, hosting, and AI assistants, and find his website and email."
-    },
-    {
       "file": "privacy.html",
       "path": "/privacy",
       "name": "Privacy Policy",

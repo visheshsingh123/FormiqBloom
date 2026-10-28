@@ -25,6 +25,16 @@
       "source": "/index",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/about#founder",
+      "permanent": true
+    },
+    {
+      "source": "/team.html",
+      "destination": "/about#founder",
+      "permanent": true
     }
   ]
 }

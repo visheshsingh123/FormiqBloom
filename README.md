@@ -2,7 +2,7 @@
 
 Responsive agency website with a homepage (`index.html`), dedicated About (`/about`, served from `about.html`) and Work (`/work`, served from `work.html`) pages, and a floating chatbot. No build step or runtime npm dependencies are required.
 
-The Team page (`/team`, served from `team.html`) presents Vishesh Singh’s approved founder profile, Surat location, personal website, and email contact.
+The About page (`/about#founder`) includes Vishesh Singh’s founder card, Surat location, and personal website. The former Team page redirects here.
 
 The Work page uses selected uploaded product screenshots. `work-gallery.js` adds image selection and a keyboard-accessible enlargement dialog; image links also work without JavaScript.
 
@@ -10,7 +10,7 @@ The homepage hero uses the uploaded robot model with an independently tracking h
 
 The Website services section presents Starter Website (₹1,999, 48 hours), Business Website (₹4,999, 3–4 days), and Custom Website (₹11,999, 7 days). Delivery begins after scope confirmation and receipt of required content and access; recurring services are separate. Tier buttons select the corresponding enquiry option. Landing pages, booking integrations, and dashboards are covered within those options. The dedicated AI Assistant page (`/ai-assistant`, served from `ai-assistant.html`) provides four saved questions and access to the floating chat. Its enquiry link preselects AI Assistant on the homepage form. The robot and all AI navigation links lead to this page. The previous support row and project packages section are removed; navigation and structured service links follow the current sections. The Blog (`/blog`) links four original, static business guides at `/blog/business-website-checklist`, `/blog/website-redesign-guide`, `/blog/choose-business-website-package`, and `/blog/ai-assistant-for-small-business`. Their content and shared assets work without a build step; article metadata, publication dates, BlogPosting schema, breadcrumbs, and sitemap entries are managed through `seo.config.json`.
 
-On mobile (up to 850px), every page uses a floating pill header and a five-link bottom navigation bar for Home, About, Work, Blog, and Team. Current-page states, native links, safe-area spacing, and offsets for the chat and back-to-top controls are included; desktop navigation is unchanged.
+On mobile (up to 850px), every page uses a floating pill header and a five-link bottom navigation bar for Home, About, Work, Pricing, and AI Assistant. Current-page states, native links, safe-area spacing, and offsets for the chat and back-to-top controls are included; desktop navigation is unchanged.
 
 The Pricing page (`/pricing`) compares all three tiers. Business and Custom include an AI assistant; Starter can add one for a separate quote. AI provider usage and recurring services remain separate. Pricing enquiries select a matching contact form option, including Starter + AI. The pricing page’s structured offers derive from the homepage tier configuration, and the saved/AI pricing answers reflect the same inclusion rules.
 
@@ -18,7 +18,7 @@ Customer-facing copy should be concise and understandable to business owners: sh
 
 ## SEO
 
-All fourteen public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
+All thirteen public pages have unique titles and descriptions, canonical URLs, Open Graph and Twitter sharing tags, and JSON-LD for the confirmed business, founder, and page content. The Work page also describes both applications. A 1200 × 630 sharing image is stored at `Assets/social-preview.png`, with its editable vector source alongside it.
 
 `seo.config.json` is the source for page metadata and the production domain. Run `python3 scripts/update_seo.py` after editing it; generated HTML, `sitemap.xml`, and `robots.txt` are committed, so Vercel still needs no build step. API responses carry an `X-Robots-Tag: noindex` header. The uploaded Google verification file is preserved separately and is not added to the sitemap.
 
@@ -27,7 +27,7 @@ After deployment, verify the current property in Google Search Console and submi
 For the future `.in` move:
 
 1. Connect the real domain to this Vercel project and confirm it serves the website over HTTPS.
-2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all fourteen pages. Commit and deploy the generated files and configuration together.
+2. Run `python3 scripts/update_seo.py --site-url https://your-domain.in`, replacing the example with the real domain. This updates canonical and sharing URLs, structured data, sitemap, robots, and absolute Home/logo links on all thirteen pages. Commit and deploy the generated files and configuration together.
 3. Configure a permanent redirect from the old domain to the new one in Vercel, preserving each page path. Verify the new Search Console property, submit its sitemap, and use Change of Address where applicable. Google verification may require new verification details for the new property.
 
 Check the SEO files with `python3 -B -m unittest discover -s tests -p test_seo.py -v`.
@@ -36,7 +36,7 @@ Check the SEO files with `python3 -B -m unittest discover -s tests -p test_seo.p
 
 The concise website policies are at `/privacy` (`privacy.html`) and `/terms` (`terms.html`). Keep these updated when data handling or service arrangements change.
 
-`vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about`, `/team`, and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
+`vercel.json` enables clean URLs and removes trailing slashes. Use `/`, `/about` and `/work` for navigation; the source files remain plain HTML. Vercel redirects `.html` page URLs to their clean equivalents.
 
 - Deploy this repository with Vercel's **Other** framework preset and no build command. Keep the project root at the repository root so the chat and contact functions become `/api/chat` and `/api/contact`.
 - Add the Groq key as a server environment variable named **`api`** (lowercase, matching the existing Vercel setting). The endpoint also accepts `GROQ_API_KEY` or `API`, in that order after `api`, and ignores blank values. Enable the variable for the deployment environments you use, such as Production and Preview. Never put its value in HTML, browser JavaScript, Git, or a public-prefixed variable.
@@ -117,7 +117,7 @@ Tests use mocked Groq and Google responses; they do not need a real key or make 
 
 The FAQ page (`/faq`, served from `faq.html`) contains ten client-focused answers using native expandable controls. Header and footer FAQ links across the site open this page; the homepage keeps its short FAQ preview and links to the full list. Page metadata and the sitemap entry are managed through `seo.config.json`.
 
-The mobile bottom navigation links Home, About, Work, Pricing, and AI Assistant. Each destination highlights its current page; Blog and Team remain available from the main menu and footer.
+The mobile bottom navigation links Home, About, Work, Pricing, and AI Assistant. Each destination highlights its current page; Blog and About remain available from the main menu and footer.
 
 Published tier scope: Starter includes 1 page with essential business links and 1 revision round; Business includes 3–5 pages, 2 revision rounds, and AI assistant setup; Custom includes 8–10 pages, 3 revision rounds, AI assistant setup, and an admin dashboard with agreed features. Page counts and revision rounds are also recorded in `seo.config.json` and generated offer descriptions.
 

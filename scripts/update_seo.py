@@ -70,7 +70,7 @@ def page_graph(page, origin, image):
                       'description': 'Assistants grounded in approved business information that answer FAQs, guide enquiries, and direct visitors to human contact channels.',
                       'provider': {'@id': origin + '/#organization'}})
         entity['mainEntity'] = {'@id': origin + '/#service-assistants'}
-    if page['path'] == '/team':
+    if page['path'] == '/about':
         entity['mainEntity'] = {'@id': origin + '/#founder'}
     if page['path'] == '/work':
         projects = [
