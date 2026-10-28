@@ -412,15 +412,16 @@
     .process-step p { margin-top: 1rem; color: var(--muted); font-size: .85rem; }
 
     /* Native accessible FAQ accordion. */
-    .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 5rem; }
+    .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+    .faq-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; }
     .faq-intro > p { max-width: 22rem; margin-top: 1.5rem; color: var(--muted); }
-    .faq-intro .text-link { margin-top: 1rem; }
+    .faq-intro .text-link { margin-top: 0; flex-shrink: 0; }
     .faq-list { border-top: 1px solid var(--line); }
     .faq-item { border-bottom: 1px solid var(--line); }
-    .faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; min-height: 76px; padding-block: 1.25rem; list-style: none; font-weight: 500; font-size: .95rem; }
+    .faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; min-height: 64px; padding-block: 1rem; list-style: none; font-weight: 500; font-size: .95rem; }
     .faq-item summary::-webkit-details-marker { display: none; }
     .faq-item summary:hover { color: var(--lime); }
-    .faq-item summary .icon { width: 1.1rem; height: 1.1rem; color: var(--muted); transition: transform .2s; }
+    .faq-item summary .icon { flex-shrink: 0; width: 1.1rem; height: 1.1rem; color: var(--muted); transition: transform .2s; }
     .faq-item[open] summary .icon { transform: rotate(45deg); color: var(--lime); }
     .faq-item p { max-width: 38rem; padding-bottom: 1.5rem; color: var(--muted); font-size: .9rem; }
 
@@ -477,7 +478,7 @@
       .nav-shell { gap: 1rem; } .nav-links { gap: 1rem; }
       .nav-links .button { padding-inline: .9rem; font-size: .8rem; }
       .hero-grid { gap: 2rem; } .hero h1 { font-size: clamp(2.9rem, 4.8vw, 4rem); }
-      .faq-grid, .contact-grid { gap: 3rem; }
+      .contact-grid { gap: 3rem; }
     }
     @media (max-width: 1200px) {
       .site-header { position: relative; } .js .site-header { position: sticky; }
@@ -501,7 +502,9 @@
       .hero h1 { max-width: 690px; font-size: clamp(3.1rem, 9vw, 5.5rem); }
       .hero-visual { display: block; max-width: 28rem; }
       .hero-bottom { margin-top: 2rem; }
-      .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .faq-grid { gap: 1.5rem; }
+      .faq-intro { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
       .section-heading { align-items: start; flex-direction: column; gap: 1.2rem; }
       .section-heading > p { max-width: 34rem; }
