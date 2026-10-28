@@ -742,7 +742,14 @@
     .business-websites .section-heading { margin-bottom: 1.5rem; }
     .business-websites .section-heading h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
     .business-websites-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .business-website-card { padding: 1.25rem; border: 1px solid var(--line); background: var(--card); }
+    .business-website-card { padding: 1.25rem; border: 1px solid var(--line); background: var(--card); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background-color .25s ease; }
+    @media (hover: hover) and (pointer: fine) {
+      .business-website-card:hover { transform: translateY(-4px); border-color: var(--lime); background: #20231C; box-shadow: 0 10px 28px #D9F99D12; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .business-website-card { transition: none; }
+      .business-website-card:hover { transform: none; }
+    }
     .business-website-number { display: block; margin-bottom: .75rem; color: var(--lime); font-size: .75rem; }
     .business-website-card h3 { font-size: 1.05rem; line-height: 1.4; }
     .business-website-card p { margin-top: .65rem; color: var(--muted); font-size: .9rem; }
