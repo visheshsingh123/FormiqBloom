@@ -750,7 +750,8 @@
       .business-website-card { transition: none; }
       .business-website-card:hover { transform: none; }
     }
-    .business-website-heading { display: flex; align-items: baseline; gap: .65rem; }
+    .business-website-heading { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: .65rem; }
+    .business-website-heading .business-website-icon { align-self: start; width: 22px; height: 22px; color: var(--lime); }
     .business-website-number { flex-shrink: 0; color: var(--lime); font-size: .75rem; }
     .business-website-card h3 { font-size: 1.05rem; line-height: 1.4; }
     .business-website-card p { margin-top: .65rem; color: var(--muted); font-size: .9rem; }
@@ -859,12 +860,12 @@
       <div class="container">
         <div class="section-heading"><div><h2 id="website-types-title">A website for your<br>kind of business.</h2></div></div>
         <div class="business-websites-grid">
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">01</span><h3>Shops &amp; clothing brands</h3></div><p>Show your products through a catalogue or an online store.</p></article>
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">02</span><h3>Restaurants &amp; cafés</h3></div><p>Share your menu, opening hours, location, and reservation options.</p></article>
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">03</span><h3>Salons &amp; local services</h3></div><p>Present your services and make enquiries or booking requests easier.</p></article>
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">04</span><h3>Manufacturers &amp; wholesalers</h3></div><p>Share products, specifications, and catalogues with quotation enquiries.</p></article>
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">05</span><h3>Professionals &amp; consultants</h3></div><p>Showcase your expertise, services, and a clear way to contact you.</p></article>
-          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">06</span><h3>Custom business websites</h3></div><p>Plan dashboards and integrations around the way your business works.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">01</span><h3>Shops &amp; clothing brands</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9l2-6h14l2 6M3 9v2a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0V9M5 14v7h14v-7M10 21v-6h4v6"/></svg></div><p>Show your products through a catalogue or an online store.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">02</span><h3>Restaurants &amp; cafés</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3v7m3-7v7M5 7h3M6.5 10v11M17 21V3c-3 2-4 5-4 9h4"/></svg></div><p>Share your menu, opening hours, location, and reservation options.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">03</span><h3>Salons &amp; local services</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="m8 8 13 13M8 16 21 3"/></svg></div><p>Present your services and make enquiries or booking requests easier.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">04</span><h3>Manufacturers &amp; wholesalers</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 21V10l6 3V8l6 3V3h4l2 18H3ZM7 17h1m4 0h1m4 0h1"/></svg></div><p>Share products, specifications, and catalogues with quotation enquiries.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">05</span><h3>Professionals &amp; consultants</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12a24 24 0 0 0 18 0M12 11v4"/></svg></div><p>Showcase your expertise, services, and a clear way to contact you.</p></article>
+          <article class="business-website-card"><div class="business-website-heading"><span class="business-website-number" aria-hidden="true">06</span><h3>Custom business websites</h3><svg class="icon business-website-icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12M6 6h.01M9 6h.01M12 6h.01m0 7h6m-6 4h4"/></svg></div><p>Plan dashboards and integrations around the way your business works.</p></article>
         </div>
         <div class="business-websites-footer"><p>Don’t see your business here? Tell us what you need.<br><span>Booking systems, payments, and online stores are quoted separately.</span></p><a class="text-link" href="#contact">Discuss my website <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
       </div>
