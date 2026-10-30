@@ -1,0 +1,35 @@
+/* Shared glass navigation; the solid fallback stays readable without backdrop blur. */
+.site-header, .mobile-bottom-nav {
+  background: #19171FF2;
+  border-color: #FFFFFF24;
+  box-shadow: inset 0 1px 0 #FFFFFF24, inset 0 -1px 0 #FFFFFF08, 0 8px 28px #00000026;
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header, .mobile-bottom-nav {
+    background: linear-gradient(135deg, #FFFFFF0F, #FFFFFF03 45%, #C8A6FF0A), #14121C94;
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+  }
+}
+.site-header .menu-toggle {
+  background: #FFFFFF08;
+  border-color: #FFFFFF24;
+  box-shadow: inset 0 1px 0 #FFFFFF12;
+}
+.site-header .menu-toggle:is(:hover, :focus-visible) { background: #FFFFFF12; }
+.mobile-bottom-nav a[aria-current] {
+  color: var(--lime);
+  background: #7C3AED30;
+  box-shadow: inset 0 1px 0 #FFFFFF1C, inset 0 0 0 1px #D9F99D18;
+}
+.mobile-bottom-nav a:is(:hover, :focus-visible) { background: #FFFFFF10; }
+@media (max-width: 1200px) {
+  .site-header:has(.nav-links.open) { background-color: #19171FEB; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header, .mobile-bottom-nav {
+    background: #19171F;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
