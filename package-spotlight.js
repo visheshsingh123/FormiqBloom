@@ -1,7 +1,7 @@
-/* One pointer listener and one scheduled frame for all three package spotlights. */
+/* One pointer listener and one scheduled frame for shared card spotlights. */
 (() => {
   'use strict';
-  const cards = [...document.querySelectorAll('.website-option:not([data-carousel-clone])')];
+  const cards = [...document.querySelectorAll('.website-option:not([data-carousel-clone]), [data-spotlight-card]')];
   if (!cards.length) return;
   const enabled = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   let frame = 0;
