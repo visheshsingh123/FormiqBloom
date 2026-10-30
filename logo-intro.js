@@ -15,8 +15,6 @@
   overlay.setAttribute('aria-hidden', 'true');
   const backdrop = document.createElement('div');
   backdrop.className = 'logo-intro-backdrop';
-  const glass = document.createElement('div');
-  glass.className = 'logo-intro-glass';
   const mark = document.createElement('div');
   mark.className = 'wordmark logo-intro-mark';
   const copy = image.cloneNode();
@@ -25,7 +23,7 @@
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
   svg.innerHTML = '<defs><filter id="intro-liquid" x="-20%" y="-50%" width="140%" height="200%"><feTurbulence type="fractalNoise" baseFrequency=".018 .035" numOctaves="2" seed="8" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="18;9;0" dur="1.1s" fill="freeze"/></feDisplacementMap></filter></defs>';
-  overlay.append(backdrop, glass, mark, svg);
+  overlay.append(backdrop, mark, svg);
   let finished = false;
   let animations = [];
   let timeout;
@@ -59,22 +57,12 @@
     const startX = (innerWidth - rect.width * scale) / 2;
     const startY = (innerHeight - rect.height * scale) / 2;
     const start = `translate(${startX}px, ${startY}px) scale(${scale})`;
-    const glassWidth = Math.min(innerWidth - 32, rect.width * scale + 80);
-    const glassHeight = rect.height * scale + 96;
-    const glassLeft = (innerWidth - glassWidth) / 2;
-    const glassTop = (innerHeight - glassHeight) / 2;
-    Object.assign(glass.style, { width: `${glassWidth}px`, height: `${glassHeight}px`, left: `${glassLeft}px`, top: `${glassTop}px` });
     mark.style.width = `${rect.width}px`;
     mark.style.height = `${rect.height}px`;
     mark.style.transform = start;
     target.setAttribute('data-logo-intro', '');
     document.body.append(overlay);
     root.classList.remove('logo-intro-pending');
-    const glassReveal = glass.animate([
-      { opacity: 0, transform: 'scale(.86) rotate(-3deg)', filter: 'blur(8px)' },
-      { opacity: 1, transform: 'scale(1) rotate(0deg)', filter: 'blur(0px)' }
-    ], { duration: 1000, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' });
-    animations.push(glassReveal);
     const reveal = mark.animate([
       { opacity: 0, filter: 'url(#intro-liquid) blur(7px)', transform: `${start} scale(.92)` },
       { opacity: 1, filter: 'url(#intro-liquid) blur(0px)', transform: start }
@@ -91,11 +79,7 @@
       { transform: `translate(${destination.left}px, ${destination.top}px) scale(1)` }
     ], { duration: 1100, easing: 'cubic-bezier(.76,0,.24,1)', fill: 'forwards' });
     const fade = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1000, easing: 'ease-in-out', fill: 'forwards' });
-    const glassExit = glass.animate([
-      { opacity: 1, transform: 'translate(0, 0) scale(1)' },
-      { opacity: 0, transform: `translate(${destination.left + destination.width / 2 - innerWidth / 2}px, ${destination.top + destination.height / 2 - innerHeight / 2}px) scale(${destination.width / glassWidth})` }
-    ], { duration: 1100, easing: 'cubic-bezier(.76,0,.24,1)', fill: 'forwards' });
-    animations.push(fly, fade, glassExit);
+    animations.push(fly, fade);
     await fly.finished;
     finish();
   } catch { finish(); }
