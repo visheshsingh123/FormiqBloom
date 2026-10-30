@@ -5,6 +5,10 @@
   margins.className = 'margin-background';
   margins.setAttribute('aria-hidden', 'true');
   document.body.prepend(margins);
+  const borders = document.createElement('div');
+  borders.className = 'margin-border-lines';
+  borders.setAttribute('aria-hidden', 'true');
+  document.body.prepend(borders);
   const wide = matchMedia('(min-width: 1307px)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let canvas, gl, program, buffer, uniforms;
