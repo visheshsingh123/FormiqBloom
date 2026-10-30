@@ -26,4 +26,4 @@
   .redesign-label.before { left: .5rem; } .redesign-label.after { right: .5rem; }
 }
 
-@media (min-width: 851px) { #makeover-title { font-size: clamp(1.9rem, 3vw, 2.5rem); } }
+@media (min-width: 851px) { .redesign-comparison { width: 68%; } }
