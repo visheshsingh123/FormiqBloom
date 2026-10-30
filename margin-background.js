@@ -35,7 +35,7 @@
       previous = now;
       last = now;
       gl.uniform4f(uniforms.u_scene, canvas.width, canvas.height, time, 4);
-      const rail = innerWidth <= 850 ? 8 : Math.max(0, (innerWidth - 1200) / 2 - 53);
+      const rail = innerWidth <= 850 ? 12 : Math.max(0, (innerWidth - 1200) / 2 - 53);
       const pixels = Math.ceil(rail * canvas.width / innerWidth);
       gl.enable(gl.SCISSOR_TEST);
       for (const x of [0, canvas.width - pixels]) {

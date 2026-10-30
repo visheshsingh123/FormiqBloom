@@ -30,8 +30,8 @@
 }
 
 @media (max-width: 850px) {
-  .margin-background { display: block; --rail: 8px; opacity: .07; }
-  .margin-border-lines { display: block; left: 8px; right: 8px; border-color: #FFFFFF18; }
+  .margin-background { display: block; --rail: 12px; opacity: .07; }
+  .margin-border-lines { display: block; left: 12px; right: 12px; border-color: #FFFFFF18; }
 }
 @media (forced-colors: active) {
   .margin-background, .margin-border-lines { display: none; }
