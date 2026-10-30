@@ -1,0 +1,39 @@
+/* Cursor spotlight adapted from the supplied GlowCard concept, without framework dependencies. */
+.website-option {
+  position: relative;
+  isolation: isolate;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-opacity: 0;
+  --spot-color: 124 58 237;
+}
+.website-option:is(#custom-web-solutions, [data-tier="2"]) { --spot-color: 217 249 157; }
+.website-option > * { position: relative; z-index: 1; }
+.website-option::before, .website-option::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 0;
+  opacity: var(--spot-opacity);
+  transition: opacity .2s;
+}
+.website-option::before {
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(230px circle at var(--spot-x) var(--spot-y), rgb(var(--spot-color) / .16), transparent 75%);
+}
+.website-option::after {
+  inset: -1px;
+  padding: 2px;
+  z-index: 2;
+  background: radial-gradient(180px circle at var(--spot-x) var(--spot-y), #F5F3FF, rgb(var(--spot-color)) 30%, transparent 78%);
+  -webkit-mask: linear-gradient(#FFF 0 0) content-box, linear-gradient(#FFF 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#FFF 0 0) content-box, linear-gradient(#FFF 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 6px rgb(var(--spot-color) / .45));
+}
+.website-option:focus-within::before, .website-option:focus-within::after { opacity: .8; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .website-option::before, .website-option::after { display: none; }
+}
