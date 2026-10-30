@@ -6,3 +6,27 @@ html.logo-intro-pending::after {
 .logo-intro-overlay .logo-intro-mark { position: absolute; left: 0; top: 0; margin: 0; transform-origin: 0 0; pointer-events: none; }
 .site-header .wordmark[data-logo-intro] { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) { html.logo-intro-pending::after, .logo-intro-overlay { display: none; } }
+
+.logo-intro-glass {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid #FFFFFF38;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #FFFFFF1C, #FFFFFF04 48%, #7C3AED15);
+  box-shadow: inset 1px 1px 0 #FFFFFF40, inset -1px -1px 0 #FFFFFF12, 0 18px 65px #0008, -12px -8px 35px #7C3AED18, 12px 8px 35px #D9F99D0C;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  transform-origin: center;
+}
+.logo-intro-glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(115deg, transparent 20%, #FFFFFF22 45%, #D9F99D24 49%, transparent 55%);
+  transform: translateX(-120%);
+  animation: intro-glass-sheen 1.8s .2s ease-in-out both;
+}
+.logo-intro-glass::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  box-shadow: inset 0 2px 5px #D9F99D20, inset 0 -2px 5px #7C3AED38;
+}
+@keyframes intro-glass-sheen { to { transform: translateX(120%); } }

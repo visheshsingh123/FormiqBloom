@@ -784,7 +784,7 @@
     try {
       if (['', '#home', '#top'].includes(location.hash) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('logo-intro-pending');
-        setTimeout(() => document.documentElement.classList.remove('logo-intro-pending'), 3500);
+        setTimeout(() => document.documentElement.classList.remove('logo-intro-pending'), 5500);
       }
     } catch {}
   </script>
