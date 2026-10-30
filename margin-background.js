@@ -5,7 +5,7 @@
   margins.className = 'margin-background';
   margins.setAttribute('aria-hidden', 'true');
   document.body.prepend(margins);
-  const wide = matchMedia('(min-width: 851px)');
+  const wide = matchMedia('(min-width: 1297px)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let canvas, gl, program, buffer, uniforms;
   let loading = false;
@@ -31,7 +31,7 @@
       previous = now;
       last = now;
       gl.uniform4f(uniforms.u_scene, canvas.width, canvas.height, time, 4);
-      const rail = Math.max(24, (innerWidth - 1200) / 2);
+      const rail = Math.max(0, (innerWidth - 1200) / 2 - 48);
       const pixels = Math.ceil(rail * canvas.width / innerWidth);
       gl.enable(gl.SCISSOR_TEST);
       for (const x of [0, canvas.width - pixels]) {
