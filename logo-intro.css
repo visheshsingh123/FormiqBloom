@@ -1,0 +1,8 @@
+html.logo-intro-pending::after {
+  content: ""; position: fixed; inset: 0; z-index: 1000; background: #101014; pointer-events: none;
+}
+.logo-intro-overlay { position: fixed; inset: 0; z-index: 1001; pointer-events: none; }
+.logo-intro-backdrop { position: absolute; inset: 0; background: #101014; }
+.logo-intro-overlay .logo-intro-mark { position: absolute; left: 0; top: 0; margin: 0; transform-origin: 0 0; pointer-events: none; }
+.site-header .wordmark[data-logo-intro] { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { html.logo-intro-pending::after, .logo-intro-overlay { display: none; } }

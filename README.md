@@ -128,3 +128,5 @@ On screens up to 850px, homepage website tiers use a native horizontal scroll-sn
 The AI Assistant introduction uses a plain-language explanation, three practical uses, and an example customer question. Work project cards, screenshot frames, and tags use square corners.
 
 Shared margin decoration: `margin-background.js` renders the supplied Halftone WebGL1 shader from `Assets/margin-halftone.frag`, with theme colors and subtle opacity. `margin-background.css` masks out the central 1200px content area. Rendering uses a fullscreen triangle, scissored margin strips, capped pixel density and 30fps; it pauses in hidden tabs, renders a static frame for reduced motion/data-saving, and is hidden on mobile. A CSS dot pattern remains if WebGL is unavailable.
+
+Homepage logo intro: `logo-intro.js` briefly reveals a liquid-distorted copy of the real wordmark, then animates it into the measured navbar logo rectangle. It runs once per browser session, skips deep links and reduced-motion settings, supports click/key skip, and fails open on a short timeout. The illustration and all page content remain independent of the intro.

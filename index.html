@@ -779,6 +779,16 @@
   <script src="/margin-background.js" defer></script>
   <link rel="stylesheet" href="/package-spotlight.css">
   <script src="/package-spotlight.js" defer></script>
+  <link rel="stylesheet" href="/logo-intro.css">
+  <script>
+    try {
+      if (!location.hash && !matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('formiqbloom-logo-intro')) {
+        document.documentElement.classList.add('logo-intro-pending');
+        setTimeout(() => document.documentElement.classList.remove('logo-intro-pending'), 3500);
+      }
+    } catch {}
+  </script>
+  <script src="/logo-intro.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
