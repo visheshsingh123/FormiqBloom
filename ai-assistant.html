@@ -501,6 +501,17 @@
       .mobile-whatsapp .whatsapp-brand { display: block; width: 28px; height: 28px; }
       .chat-is-open .mobile-whatsapp { visibility: hidden; pointer-events: none; }
     }
+    .assistant-chat-section { border-top: 1px solid var(--line); }
+    #page-chat-title span { color: var(--lime); }
+    .assistant-chat-section .section-heading p { margin-top: 1rem; color: var(--muted); }
+    #inline-chat-host .chat-widget { position: static; width: 100%; max-width: 960px; height: auto; max-height: none; margin-inline: auto; box-shadow: none; overflow: visible; }
+    #inline-chat-host .widget-close { display: none; }
+    #inline-chat-host .chat-log { flex: none; height: clamp(300px, 42vh, 460px); padding: clamp(1rem, 3vw, 2rem); }
+    #inline-chat-host .chat-message { max-width: 80%; }
+    #inline-chat-host .widget-questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #inline-chat-host .widget-questions button { text-align: left; }
+    #inline-chat-host .widget-form { padding: 1rem clamp(1rem, 3vw, 2rem); }
+    @media (max-width: 560px) { #inline-chat-host .chat-message { max-width: 94%; } #inline-chat-host .widget-questions { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body id="top">
@@ -565,6 +576,26 @@
       </div>
     </section>
 
+    <section class="section assistant-chat-section" id="chat-with-ai" aria-labelledby="page-chat-title"><div class="container"><div class="section-heading"><div><h2 id="page-chat-title">Let’s talk about<br><span>your business.</span></h2><p>Ask about websites, pricing, or your next project.</p></div></div><div id="inline-chat-host">  <aside class="chat-widget" id="chat-widget" role="region" aria-labelledby="widget-title">
+    <header class="widget-header">
+      <span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500"></span>
+      <div><h2 id="widget-title">FormiqBloom AI</h2></div>
+      <button class="widget-close" id="widget-close" type="button" aria-label="Close chat"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="chat-log" id="widget-log" role="log" aria-label="Chat conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
+      <div class="chat-message"><strong>FormiqBloom</strong><p>Hi! Choose a quick question for a saved answer, or ask me something about your project.</p></div>
+    </div>
+    <div class="suggestions widget-questions" data-widget-questions aria-label="Saved questions"></div>
+    <form class="widget-form" id="widget-form">
+      <fieldset id="widget-fields" disabled>
+        <legend class="sr-only">Ask FormiqBloom</legend>
+        <label class="chat-label" for="widget-input">Your question</label>
+        <div class="chat-input-row"><input id="widget-input" name="question" type="text" placeholder="Ask about your project…" maxlength="1000" required autocomplete="off" aria-describedby="widget-disclosure"><button class="button" type="submit" aria-label="Send chat question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button></div>
+      </fieldset>
+      <p class="widget-status" id="widget-status" role="status"></p>
+    </form>
+    <footer class="widget-footer"><p id="widget-disclosure">AI can make mistakes. Don’t share sensitive information. <a href="/privacy">Privacy Policy</a>.</p></footer>
+  </aside></div></div></section>
   </main>
 
   <footer class="site-footer">
@@ -599,26 +630,7 @@
 
   <!-- Nonmodal assistant. The key stays on the server; recent chat lives only in memory. -->
   <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open FormiqBloom AI" aria-controls="chat-widget" aria-expanded="false" hidden><svg class="icon open-icon" aria-hidden="true"><use href="#i-chat"/></svg><svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg></button>
-  <aside class="chat-widget" id="chat-widget" role="dialog" aria-modal="false" aria-labelledby="widget-title" hidden>
-    <header class="widget-header">
-      <span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500"></span>
-      <div><h2 id="widget-title">FormiqBloom AI</h2></div>
-      <button class="widget-close" id="widget-close" type="button" aria-label="Close chat"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
-    </header>
-    <div class="chat-log" id="widget-log" role="log" aria-label="Chat conversation" aria-live="polite" aria-relevant="additions" tabindex="0">
-      <div class="chat-message"><strong>FormiqBloom</strong><p>Hi! Choose a quick question for a saved answer, or ask me something about your project.</p></div>
-    </div>
-    <div class="suggestions widget-questions" data-widget-questions aria-label="Saved questions"></div>
-    <form class="widget-form" id="widget-form">
-      <fieldset id="widget-fields" disabled>
-        <legend class="sr-only">Ask FormiqBloom</legend>
-        <label class="chat-label" for="widget-input">Your question</label>
-        <div class="chat-input-row"><input id="widget-input" name="question" type="text" placeholder="Ask about your project…" maxlength="1000" required autocomplete="off" aria-describedby="widget-disclosure"><button class="button" type="submit" aria-label="Send chat question"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></button></div>
-      </fieldset>
-      <p class="widget-status" id="widget-status" role="status"></p>
-    </form>
-    <footer class="widget-footer"><p id="widget-disclosure">AI can make mistakes. Don’t share sensitive information. <a href="/privacy">Privacy Policy</a>.</p></footer>
-  </aside>
+
 
   <script>
     (() => {

@@ -32,11 +32,19 @@
   const input = document.getElementById('widget-input');
   const log = document.getElementById('widget-log');
   const status = document.getElementById('widget-status');
+  const inlineHost = document.getElementById('inline-chat-host');
   const history = [];
   let busy = false;
   let returnFocus = launcher;
 
   function setOpen(open) {
+    if (inlineHost) {
+      if (open) {
+        document.getElementById('chat-with-ai').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+        input.focus({ preventScroll: true });
+      }
+      return;
+    }
     if (open && panel.hidden) returnFocus = document.activeElement;
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', String(open));
@@ -153,10 +161,10 @@
     button.disabled = false;
     button.hidden = false;
   });
-  launcher.addEventListener('click', () => setOpen(panel.hidden));
+  launcher.addEventListener('click', () => setOpen(inlineHost ? true : panel.hidden));
   closeButton.addEventListener('click', () => setOpen(false));
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !panel.hidden) { event.preventDefault(); setOpen(false); }
+    if (event.key === 'Escape' && !inlineHost && !panel.hidden) { event.preventDefault(); setOpen(false); }
   });
   form.addEventListener('submit', event => {
     event.preventDefault();
