@@ -9,7 +9,7 @@
   borders.className = 'margin-border-lines';
   borders.setAttribute('aria-hidden', 'true');
   document.body.prepend(borders);
-  const wide = matchMedia('(min-width: 1307px)');
+  const wide = matchMedia('(min-width: 1307px), (max-width: 850px)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let canvas, gl, program, buffer, uniforms;
   let loading = false;
@@ -35,7 +35,7 @@
       previous = now;
       last = now;
       gl.uniform4f(uniforms.u_scene, canvas.width, canvas.height, time, 4);
-      const rail = Math.max(0, (innerWidth - 1200) / 2 - 53);
+      const rail = innerWidth <= 850 ? 8 : Math.max(0, (innerWidth - 1200) / 2 - 53);
       const pixels = Math.ceil(rail * canvas.width / innerWidth);
       gl.enable(gl.SCISSOR_TEST);
       for (const x of [0, canvas.width - pixels]) {
@@ -49,7 +49,7 @@
   function sync() {
     stop();
     if (!gl || lost || !wide.matches || document.hidden) return;
-    const ratio = Math.min(devicePixelRatio || 1, 1.5);
+    const ratio = Math.min(devicePixelRatio || 1, innerWidth <= 850 ? 1 : 1.5);
     canvas.width = Math.round(innerWidth * ratio);
     canvas.height = Math.round(innerHeight * ratio);
     gl.viewport(0, 0, canvas.width, canvas.height);
