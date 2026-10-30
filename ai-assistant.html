@@ -504,14 +504,16 @@
     .assistant-chat-section { border-top: 1px solid var(--line); }
     #page-chat-title span { color: var(--lime); }
     .assistant-chat-section .section-heading p { margin-top: 1rem; color: var(--muted); }
-    #inline-chat-host .chat-widget { position: static; width: 100%; max-width: 960px; height: auto; max-height: none; margin-inline: auto; box-shadow: none; overflow: visible; }
+    #inline-chat-host .chat-widget { position: static; width: 100%; max-width: none; height: auto; max-height: none; margin-inline: auto; box-shadow: none; overflow: visible; }
     #inline-chat-host .widget-close { display: none; }
-    #inline-chat-host .chat-log { flex: none; height: clamp(300px, 42vh, 460px); padding: clamp(1rem, 3vw, 2rem); }
+    #inline-chat-host .chat-log { flex: none; height: 210px; padding: 1rem; }
     #inline-chat-host .chat-message { max-width: 80%; }
-    #inline-chat-host .widget-questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #inline-chat-host .widget-questions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
     #inline-chat-host .widget-questions button { text-align: left; }
     #inline-chat-host .widget-form { padding: 1rem clamp(1rem, 3vw, 2rem); }
-    @media (max-width: 560px) { #inline-chat-host .chat-message { max-width: 94%; } #inline-chat-host .widget-questions { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { #inline-chat-host .chat-message { max-width: 94%; } #inline-chat-host .widget-questions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    #inline-chat-host .widget-footer a { min-height: 0; }
+    #inline-chat-host .widget-status:empty { display: none; }
   </style>
 </head>
 <body id="top">
@@ -562,21 +564,7 @@
       <div class="container">
         <nav class="ai-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">AI Assistant</span></nav>
         <div class="assistant-overview"><div><h1 id="assistant-title">Your business.<br><span>A helpful first answer.</span></h1><p>A helpful chat box on your website. It answers common customer questions using information you approve—even when you’re busy.</p><ul class="assistant-plain-benefits"><li>Explain your services and prices.</li><li>Share your opening hours, location, and contact details.</li><li>Help visitors enquire or reach you on WhatsApp.</li></ul><p class="assistant-example"><strong>For example:</strong> “Do you offer this service?” → A clear answer and a way to contact you.</p></div><a class="text-link" href="/?service=assistant#contact">Build your custom assistant <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-        <div class="assistant-preview" aria-labelledby="assistant-preview-title">
-          <div class="assistant-preview-intro"><span class="chat-avatar"><span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500" decoding="async"></span></span><p class="assistant-kicker">Try it here</p><h3 id="assistant-preview-title">Meet FormiqBloom AI.</h3><p>Start with a quick question about our services, process, pricing, or enquiries.</p><span class="assistant-preview-note">Four saved answers. Room for your own questions.</span></div>
-          <div class="assistant-preview-controls"><div class="assistant-questions suggestions" data-widget-questions aria-label="Ask FormiqBloom AI a quick question"></div><div class="assistant-open-row"><p>Something else in mind?</p><button class="button" type="button" data-open-chat disabled>Open FormiqBloom AI <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button></div></div>
-          <noscript><p>Enable JavaScript to use the assistant, or <a href="/?service=assistant#contact">contact FormiqBloom</a> about your project.</p></noscript>
-        </div>
-        <p class="assistant-pricing-note">AI assistants are included in the Business and Custom website tiers, with a quoted add-on available for Starter. <a href="/pricing">Compare pricing and AI inclusion</a>.</p>
-        <div class="assistant-capabilities" aria-label="What a custom assistant can help with">
-          <article><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><div><h3>Answer business FAQs</h3><p>Explain your services, process, and policies using approved information.</p></div></article>
-          <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg><div><h3>Guide the next enquiry</h3><p>Help visitors find a relevant service and understand how to get started.</p></div></article>
-          <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M17 8h5M19 5l3 3-3 3"/></svg><div><h3>Keep a human within reach</h3><p>Point visitors toward your agreed contact and support channels.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section assistant-chat-section" id="chat-with-ai" aria-labelledby="page-chat-title"><div class="container"><div class="section-heading"><div><h2 id="page-chat-title">Let’s talk about<br><span>your business.</span></h2><p>Ask about websites, pricing, or your next project.</p></div></div><div id="inline-chat-host">  <aside class="chat-widget" id="chat-widget" role="region" aria-labelledby="widget-title">
+<div id="chat-with-ai" aria-label="Chat with FormiqBloom AI"><div id="inline-chat-host">  <aside class="chat-widget" id="chat-widget" role="region" aria-labelledby="widget-title">
     <header class="widget-header">
       <span class="brand-icon" aria-hidden="true"><img src="Assets/fav.png" alt="" width="500" height="500"></span>
       <div><h2 id="widget-title">FormiqBloom AI</h2></div>
@@ -595,7 +583,16 @@
       <p class="widget-status" id="widget-status" role="status"></p>
     </form>
     <footer class="widget-footer"><p id="widget-disclosure">AI can make mistakes. Don’t share sensitive information. <a href="/privacy">Privacy Policy</a>.</p></footer>
-  </aside></div></div></section>
+  </aside></div></div>
+        <p class="assistant-pricing-note">AI assistants are included in the Business and Custom website tiers, with a quoted add-on available for Starter. <a href="/pricing">Compare pricing and AI inclusion</a>.</p>
+        <div class="assistant-capabilities" aria-label="What a custom assistant can help with">
+          <article><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><div><h3>Answer business FAQs</h3><p>Explain your services, process, and policies using approved information.</p></div></article>
+          <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h4"/></svg><div><h3>Guide the next enquiry</h3><p>Help visitors find a relevant service and understand how to get started.</p></div></article>
+          <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M17 8h5M19 5l3 3-3 3"/></svg><div><h3>Keep a human within reach</h3><p>Point visitors toward your agreed contact and support channels.</p></div></article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
