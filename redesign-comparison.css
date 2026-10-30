@@ -1,8 +1,7 @@
 .redesign-section { padding-block: clamp(2rem, 4vw, 4rem); }
 .redesign-section + .website-services { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 .redesign-heading { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.5rem; }
-.redesign-heading h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
-.redesign-heading h2 span { color: var(--lime); }
+.redesign-heading h2 { max-width: 42rem; }
 .redesign-heading p { color: var(--muted); font-size: .9rem; max-width: 23rem; }
 .redesign-comparison { --split: 50%; position: relative; width: 80%; margin-inline: auto; margin-block: 0; border: 1px solid var(--line); background: #101827; aspect-ratio: 1600 / 845; isolation: isolate; overflow: hidden; }
 .redesign-comparison > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; user-select: none; pointer-events: none; }
