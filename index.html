@@ -782,7 +782,7 @@
   <link rel="stylesheet" href="/logo-intro.css">
   <script>
     try {
-      if (!location.hash && !matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('formiqbloom-logo-intro')) {
+      if (['', '#home', '#top'].includes(location.hash) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('logo-intro-pending');
         setTimeout(() => document.documentElement.classList.remove('logo-intro-pending'), 3500);
       }

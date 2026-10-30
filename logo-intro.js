@@ -35,7 +35,6 @@
     target.removeAttribute('data-logo-intro');
     root.classList.remove('logo-intro-pending');
     overlay.remove();
-    try { sessionStorage.setItem('formiqbloom-logo-intro', 'shown'); } catch {}
     removeEventListener('resize', finish);
     removeEventListener('pointerdown', finish);
     document.removeEventListener('keydown', finish);
