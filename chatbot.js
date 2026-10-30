@@ -15,12 +15,12 @@
     {
       id: 'pricing',
       question: 'How much does it cost?',
-      answer: 'Our website tiers are Starter Website at ₹1,999 with 1 page, essential business links, 1 revision round, and 48-hour delivery; Business Website at ₹4,999 with 3–5 pages, 2 revision rounds, and 3–4-day delivery; Custom Website at ₹11,999 with 8–10 pages, 3 revision rounds, an admin dashboard for content, enquiries and booking records, and 7-day delivery. Revisions can include layout changes; extra pages and new features cost extra. Booking systems, payments, and online stores are quoted separately. AI assistants are included in Business and Custom. Starter can add an AI assistant for a separate quote. These are one-time website setup prices; AI provider usage is separate. Compare all tiers at /pricing. Timings begin after scope confirmation and receipt of the required content and access. Hosting, maintenance, third-party subscriptions, and AI usage are separate. After full payment, you receive the finished website files and custom code; third-party licences apply. Your domain and hosting stay in your own accounts. You keep the paid-for website if maintenance ends, while provider renewals remain your responsibility. Payment stages and maintenance charges are agreed in writing before work starts. See /pricing#ownership-and-costs. Contact FormiqBloom to confirm the right tier and scope.'
+      answer: 'Starter is ₹1,999 for 1 page and 1 revision round. Business is ₹4,999 for 3–5 pages, an AI assistant, and 2 revision rounds. Custom is ₹11,999 for 8–10 pages, an AI assistant, an admin dashboard, and 3 revision rounds. These are one-time setup prices; domain, hosting, maintenance, and AI usage are separate. What would you like your website to help customers do?'
     },
     {
       id: 'contact',
       question: 'How can I contact you?',
-      answer: 'FormiqBloom is based in Surat. Message FormiqBloom on WhatsApp at +91 9054349785 using the link below, email visheshsingh29537@gmail.com, find @formiqbloom on Instagram, or use the website enquiry form. It submits in the background and shows its result here without leaving the website. Share your business goals, services needed, and any existing website or content.'
+      answer: 'You can message FormiqBloom on WhatsApp at https://wa.me/919054349785 or email visheshsingh29537@gmail.com.'
     }
   ];
 
