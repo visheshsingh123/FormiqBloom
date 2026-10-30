@@ -620,10 +620,8 @@
     .website-option { min-width: 0; display: flex; flex-direction: column; padding: clamp(1.4rem, 2.3vw, 2rem); border: 1px solid var(--line); border-top: 2px solid #A78BCA; background: var(--card); transition: border-color .25s, box-shadow .25s; }
     .website-option:is(#business-website, [data-tier="1"]) { border-top-color: var(--violet); background: #211B2D; }
     .website-option:is(#custom-web-solutions, [data-tier="2"]) { border-top-color: var(--lime); }
-    .website-option:is(:hover, :focus-within) { border-color: #AE8DE0; box-shadow: inset 0 -3px var(--violet); }
     .website-option-top { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: .5rem; }
     .website-option-top .icon { width: 24px; height: 24px; color: #C8A6FF; transition: transform .25s; }
-    .website-option:hover .website-option-top .icon { transform: rotate(-6deg); }
     .website-option-top > span { color: var(--muted); font-size: .7rem; }
     .website-option h3 { font-size: clamp(1rem, 1.5vw, 1.35rem); line-height: 1.2; white-space: nowrap; }
     .website-tier-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
@@ -779,8 +777,6 @@
   <link rel="stylesheet" href="/liquid-nav.css">
   <link rel="stylesheet" href="/margin-background.css">
   <script src="/margin-background.js" defer></script>
-  <link rel="stylesheet" href="/package-spotlight.css">
-  <script src="/package-spotlight.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main-content">Skip to content</a>
