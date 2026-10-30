@@ -36,6 +36,42 @@
   const history = [];
   let busy = false;
   let returnFocus = launcher;
+  const storageKey = 'formiqbloom-chat-v1';
+  const clearChat = document.createElement('button');
+  clearChat.type = 'button';
+  clearChat.className = 'chat-clear';
+  clearChat.textContent = 'Clear chat';
+  clearChat.style.cssText = 'margin-left:auto;min-height:44px;padding:.4rem .65rem;border:1px solid #565060;background:transparent;color:inherit;font-size:.75rem;cursor:pointer';
+  panel.querySelector('.widget-header').insertBefore(clearChat, closeButton);
+  function persist() {
+    try {
+      const messages = [...log.querySelectorAll('.chat-message')].slice(-40).map(bubble => ({
+        speaker: bubble.querySelector('strong').textContent,
+        text: bubble.querySelector('p').textContent,
+        user: bubble.classList.contains('user')
+      }));
+      localStorage.setItem(storageKey, JSON.stringify({ savedAt: Date.now(), messages, history }));
+    } catch { /* Chat remains usable when browser storage is unavailable. */ }
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (saved && Date.now() - saved.savedAt < 7 * 86400000 && Array.isArray(saved.messages) && Array.isArray(saved.history)) {
+      const messages = saved.messages.slice(-40).filter(m => typeof m.speaker === 'string' && typeof m.text === 'string');
+      if (messages.length) {
+        log.replaceChildren();
+        messages.forEach(m => addMessage(m.speaker.slice(0, 80), m.text.slice(0, 12000), m.user === true));
+        history.push(...saved.history.slice(-6).filter(m => ['user', 'assistant'].includes(m.role) && typeof m.content === 'string').map(m => ({ role: m.role, content: m.content.slice(0, 1200) })));
+      }
+    } else localStorage.removeItem(storageKey);
+  } catch { /* Ignore invalid or inaccessible cached data. */ }
+  clearChat.addEventListener('click', () => {
+    if (busy) return;
+    history.length = 0;
+    log.replaceChildren();
+    addMessage('FormiqBloom AI', 'Hello! Ask me about your business or next project.');
+    try { localStorage.removeItem(storageKey); } catch {}
+    input.focus({ preventScroll: true });
+  });
 
   function setOpen(open) {
     if (inlineHost) {
@@ -96,10 +132,12 @@
   function remember(question, answer) {
     history.push({ role: 'user', content: question.slice(0, 1200) }, { role: 'assistant', content: answer.slice(0, 1200) });
     if (history.length > 6) history.splice(0, history.length - 6);
+    persist();
   }
 
   function setBusy(value) {
     busy = value;
+    clearChat.disabled = value;
     fields.disabled = value;
     document.querySelectorAll('[data-quick-answer]').forEach(button => { button.disabled = value; });
     status.textContent = value ? 'Thinking…' : '';
