@@ -1,0 +1,6 @@
+Purple webdesign animation
+Creator: zarifkabir (as shown on the LottieFiles download page supplied by the site owner).
+Source: LottieFiles, uploaded by the site owner.
+The download page identifies the Lottie Simple License: https://lottiefiles.com/page/license
+Original uploaded JSON is preserved in Assets/hero-webdesign.json.
+Player: lottie-web 5.13.0, MIT; license in vendor/lottie-LICENSE.md.

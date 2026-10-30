@@ -216,7 +216,8 @@
   <script src="chatbot.js" defer></script>
   <script src="enhancements.js" defer></script>
   <script src="work-gallery.js" defer></script>
-  <script src="hero-robot.js" defer></script>
+  <script src="vendor/lottie-light.min.js" defer></script>
+  <script src="hero-animation.js" defer></script>
   <style>
     :root {
       color-scheme: dark;
@@ -774,6 +775,12 @@
     .contact-map iframe { display: block; width: 100%; height: 230px; border: 0; }
     .contact-map > a { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .65rem .85rem; color: var(--muted); font-size: .8rem; }
     .contact-map > a:is(:hover, :focus-visible) { color: var(--lime); }
+    .hero-webdesign { width: 100%; aspect-ratio: 1; }
+    .hero-webdesign svg { display: block; width: 100%; height: 100%; }
+    @media (max-width: 850px) {
+      .hero-grid > .hero-visual { top: 0; right: -25%; width: min(110vw, 520px); height: auto; opacity: .25; filter: none; }
+      .hero-visual::after { display: none; }
+    }
   </style>
 </head>
 <body id="top">
@@ -826,7 +833,6 @@
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container">
         <div class="hero-grid">
-          <button class="robot-invite" type="button" data-open-chat data-chat-greeting="Hello there!" aria-label="Open FormiqBloom AI and say hello" aria-controls="chat-widget" hidden>Click on me</button>
           <div class="hero-copy">
             <div class="eyebrow">Based in Surat. Built for what’s next.</div>
             <h1 id="hero-title"><span class="hero-title-line"><span class="hero-title-text">Your website.</span></span><span class="hero-title-line"><span class="hero-title-text keep-together">Your AI assistant.</span></span><span class="hero-title-line hero-line-accent"><span class="hero-title-text keep-together">Your next stage.</span></span></h1>
@@ -837,10 +843,7 @@
             </div>
           </div>
           <div class="hero-visual">
-            <div class="robot-stage" id="hero-robot" role="group" aria-label="A 3D humanoid robot whose head follows your cursor on desktop.">
-              <span class="robot-orbit robot-orbit-square" aria-hidden="true"></span><span class="robot-orbit robot-orbit-plus" aria-hidden="true"></span>
-              <a class="robot-chat-trigger" href="/ai-assistant" aria-label="Explore the AI Assistant page"></a>
-            </div>
+            <div class="hero-webdesign" id="hero-webdesign" role="img" aria-label="Animated illustration of people designing a website."></div>
           </div>
         </div>
         <div class="hero-bottom"><span>Your next chapter, online</span><span>Scroll to discover <svg class="icon" aria-hidden="true" style="transform:rotate(90deg)"><use href="#i-right"/></svg></span></div>
@@ -1062,7 +1065,7 @@
         </div>
         <nav class="footer-nav" aria-label="Footer navigation"><a href="#home">Home</a><a href="/work">Selected Work</a><a href="/blog">Blog</a><a href="/about">About</a><a href="#services">Services</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/ai-assistant">AI Assistant</a><a href="#contact">Contact</a></nav>
       </div>
-      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/Assets/robot-model-attribution.txt">3D model credits</a></nav></div>
+      <div class="footer-bottom"><p>© <span id="year">2026</span> FormiqBloom. All rights reserved.</p><nav class="footer-legal" aria-label="Legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="/Assets/hero-animation-attribution.txt">Animation credits</a></nav></div>
     </div>
   </footer>
 
