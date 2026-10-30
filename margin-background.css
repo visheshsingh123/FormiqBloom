@@ -1,6 +1,6 @@
 /* Decorative margins only: no effect or overlay over the central content. */
 .margin-background {
-  --rail: max(0px, calc((100vw - 1200px) / 2 - 48px));
+  --rail: max(0px, calc((100vw - 1200px) / 2 - 10px));
   --fade: max(0px, calc(var(--rail) - 24px));
   position: fixed;
   inset: 0;
@@ -12,5 +12,5 @@
   mask-image: linear-gradient(to right, #000 var(--fade), transparent var(--rail), transparent calc(100% - var(--rail)), #000 calc(100% - var(--fade)));
 }
 .margin-background canvas { display: block; width: 100%; height: 100%; }
-@media (max-width: 1296px) { .margin-background { display: none; } }
+@media (max-width: 1220px) { .margin-background { display: none; } }
 @media (forced-colors: active) { .margin-background { display: none; } }
