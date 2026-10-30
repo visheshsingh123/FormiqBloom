@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const stage = document.getElementById('hero-robot');
-  const hero = document.getElementById('home');
+  const hero = document.getElementById('home') || document.getElementById('assistant-demo');
   const invite = document.querySelector('.robot-invite');
   if (!stage || !hero) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
