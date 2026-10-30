@@ -70,6 +70,27 @@
     // Keep long sessions bounded without persisting personal chat data.
     while (log.children.length > 41) log.firstElementChild.remove();
     log.scrollTop = log.scrollHeight;
+    return paragraph;
+  }
+
+  async function revealAnswer(speaker, text) {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motion.matches || document.hidden) { addMessage(speaker, text); return; }
+    log.setAttribute('aria-busy', 'true');
+    const paragraph = addMessage(speaker, '');
+    status.textContent = 'Replying…';
+    try {
+      const words = text.match(/\S+\s*|\s+/g) || [text];
+      let visible = '';
+      for (let i = 0; i < words.length; i++) {
+        if (motion.matches || document.hidden) { paragraph.textContent = text; break; }
+        const follow = log.scrollHeight - log.scrollTop - log.clientHeight < 80;
+        visible += words[i];
+        paragraph.textContent = visible;
+        if (follow) log.scrollTop = log.scrollHeight;
+        if (i < words.length - 1) await new Promise(resolve => window.setTimeout(resolve, 45));
+      }
+    } finally { log.setAttribute('aria-busy', 'false'); }
   }
 
   function remember(question, answer) {
@@ -94,8 +115,11 @@
     addMessage('You', text, true);
     if (fromInput) input.value = '';
     if (saved) {
-      addMessage('FormiqBloom · saved answer', saved.answer);
-      remember(text, saved.answer);
+      setBusy(true);
+      try {
+        await revealAnswer('FormiqBloom · saved answer', saved.answer);
+        remember(text, saved.answer);
+      } finally { setBusy(false); }
       return;
     }
 
@@ -118,7 +142,7 @@
         throw new Error(message + reference);
       }
       if (typeof data?.answer !== 'string' || !data.answer.trim()) throw new Error('The assistant could not produce an answer. Please try again or use WhatsApp.');
-      addMessage('FormiqBloom · AI', data.answer);
+      await revealAnswer('FormiqBloom · AI', data.answer);
       remember(text, data.answer);
     } catch (error) {
       const message = error.name === 'AbortError'
