@@ -26,8 +26,8 @@
   function draw(now = 0) {
     frame = 0;
     if (!gl || lost || !wide.matches || document.hidden) return;
-    if (now - last >= 50 || !animated()) {
-      if (previous) time += Math.min((now - previous) / 1000, .1) * .22;
+    if (now - last >= 33 || !animated()) {
+      if (previous) time += ((now - previous) / 1000) * 1.43;
       previous = now;
       last = now;
       gl.uniform4f(uniforms.u_scene, canvas.width, canvas.height, time, 4);
@@ -79,7 +79,7 @@
       uniforms = Object.fromEntries(['u_scene', 'u_shape', 'u_surface', 'u_finish', 'u_transform', 'u_space', 'u_cursor'].map(name => [name, gl.getUniformLocation(program, name)]));
       const colors = ['101014', '7C3AED', 'B18CFF', 'D9F99D', 'D9F99D', 'D9F99D', 'D9F99D', 'D9F99D'].flatMap(hex => [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16) / 255));
       gl.uniform3fv(gl.getUniformLocation(program, 'u_colors[0]'), new Float32Array(colors));
-      gl.uniform4f(uniforms.u_shape, 1.48, .88, .5, 0);
+      gl.uniform4f(uniforms.u_shape, 3.25, .88, .5, 0);
       gl.uniform4f(uniforms.u_surface, 2.4, .91, 0, 1);
       gl.uniform4f(uniforms.u_finish, 0, 0, 0, .025);
       gl.uniform4f(uniforms.u_transform, 2926, 0, 0, 0);
