@@ -17,7 +17,7 @@
       animation.finished.then(() => active.delete(animation), () => active.delete(animation));
     }
   }, { threshold: .08 });
-  document.querySelectorAll('.section-heading, .service-grid, .website-services-heading, .website-options-grid, .project, .assistant-overview, .assistant-preview, .assistant-capabilities, .process-grid, .faq-grid, .contact-grid, .why-choose-heading, .why-choose-grid, .team-roles, .resource-card, .article-body > section, .answer-item, .pricing-comparison tbody tr, .pricing-cost-notes article, .pricing-faq .faq-item, .legal-section').forEach(element => { if (!element.querySelector('[data-cinematic-heading]')) observer.observe(element); });
+  document.querySelectorAll('.section-heading, .service-grid, .website-services-heading, .website-options-grid, .project, .assistant-overview, .assistant-preview, .assistant-capabilities, .process-grid, .faq-grid, .contact-grid, .why-choose-heading, .why-choose-grid, .team-roles, .resource-card, .article-body > section, .answer-item, .pricing-comparison tbody tr, .pricing-cost-notes article, .pricing-faq .faq-item, .legal-section').forEach(element => observer.observe(element));
   motion.addEventListener('change', () => {
     if (!motion.matches) return;
     observer.disconnect();

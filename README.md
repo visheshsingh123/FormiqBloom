@@ -135,4 +135,3 @@ Homepage before/after comparison: `#website-makeover` follows `#website-types`. 
 
 Pricing leads with six essentials: pages, delivery, revisions, AI, admin dashboard, and ongoing costs. The remaining comparison details are available in a native expandable section. Browser-tab titles use short, consistent page names and FormiqBloom branding.
 
-Homepage section headings marked `data-cinematic-heading` use a staggered letter reveal with blur and slight upward motion as they scroll into view. Word wrappers preserve natural wrapping, headings keep accessible labels, and reduced motion skips the animation. The main hero headline keeps its original styling and is not part of this effect.
