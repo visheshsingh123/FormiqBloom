@@ -1,4 +1,2 @@
-#hero-title .hero-title-text { animation: none; }
-#hero-title.cinematic-waiting { opacity: 0; }
-#hero-title .cinematic-glyph { display: inline-block; white-space: pre; transform-origin: 50% 90%; }
-@media (prefers-reduced-motion: reduce) { #hero-title.cinematic-waiting { opacity: 1; } }
+[data-cinematic-heading] .cinematic-word { display: inline-block; white-space: nowrap; }
+[data-cinematic-heading] .cinematic-glyph { display: inline-block; transform-origin: 50% 90%; }

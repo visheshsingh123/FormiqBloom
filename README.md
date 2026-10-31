@@ -135,4 +135,4 @@ Homepage before/after comparison: `#website-makeover` follows `#website-types`. 
 
 Pricing leads with six essentials: pages, delivery, revisions, AI, admin dashboard, and ongoing costs. The remaining comparison details are available in a native expandable section. Browser-tab titles use short, consistent page names and FormiqBloom branding.
 
-The homepage hero headline uses `cinematic-headline.js` and `cinematic-headline.css` for a one-time, staggered letter reveal with blur and a small upward movement. It waits for the optional logo intro completion event, has a fail-open timer, and skips animation for reduced motion. An accessible heading label preserves the complete phrase.
+Homepage section headings marked `data-cinematic-heading` use a staggered letter reveal with blur and slight upward motion as they scroll into view. Word wrappers preserve natural wrapping, headings keep accessible labels, and reduced motion skips the animation. The main hero headline keeps its original styling and is not part of this effect.
