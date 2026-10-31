@@ -134,3 +134,5 @@ Homepage logo intro: `logo-intro.js` briefly reveals a liquid-distorted copy of 
 Homepage before/after comparison: `#website-makeover` follows `#website-types`. Before is the owner-supplied `Assets/c2.png`; After is `Assets/c1.jpeg`. `redesign-comparison.js` controls a native range input and CSS clipping, with mouse/touch dragging, keyboard controls, and original-image links as the no-JavaScript fallback. No automated animation or invented redesign results are added.
 
 Pricing leads with six essentials: pages, delivery, revisions, AI, admin dashboard, and ongoing costs. The remaining comparison details are available in a native expandable section. Browser-tab titles use short, consistent page names and FormiqBloom branding.
+
+The homepage hero headline uses `cinematic-headline.js` and `cinematic-headline.css` for a one-time, staggered letter reveal with blur and a small upward movement. It waits for the optional logo intro completion event, has a fail-open timer, and skips animation for reduced motion. An accessible heading label preserves the complete phrase.
