@@ -7,7 +7,7 @@
       "path": "/",
       "name": "Home",
       "type": "WebPage",
-      "title": "FormiqBloom | Web Design, SEO & AI Assistants",
+      "title": "FormiqBloom | Web Solutions",
       "description": "Need website development in Surat? FormiqBloom builds responsive business websites with SEO setup included in every package, plus managed hosting and AI assistants.",
       "organization_description": "A founder-led agency in Surat offering website design and development, SEO setup included with every package, managed hosting, and custom AI assistants.",
       "website_tiers": [
@@ -45,7 +45,7 @@
       "path": "/about",
       "name": "About",
       "type": "AboutPage",
-      "title": "About Us | FormiqBloom",
+      "title": "About | FormiqBloom",
       "description": "Meet Vishesh Singh, founder of FormiqBloom Digital in Surat, with over two years in web design and development. Explore his approach and get in touch."
     },
     {
@@ -53,7 +53,7 @@
       "path": "/work",
       "name": "Selected Work",
       "type": "CollectionPage",
-      "title": "Our Work: Websites & Web Apps | FormiqBloom",
+      "title": "Work | FormiqBloom",
       "description": "Explore MacroMuse, RelayChatting, Solara Surat, and Woven Hours in FormiqBloom’s selected work. View project previews and visit the live websites."
     },
     {
@@ -61,7 +61,7 @@
       "path": "/privacy",
       "name": "Privacy Policy",
       "type": "WebPage",
-      "title": "Privacy Policy | FormiqBloom",
+      "title": "Privacy | FormiqBloom",
       "description": "Read how FormiqBloom handles enquiry details, chatbot messages, and technical information, including its use of Google Forms, Groq, and Vercel."
     },
     {
@@ -69,7 +69,7 @@
       "path": "/terms",
       "name": "Terms of Service",
       "type": "WebPage",
-      "title": "Terms of Service | FormiqBloom",
+      "title": "Terms | FormiqBloom",
       "description": "Read the terms for using FormiqBloom’s website, enquiry form, and AI assistant, including project agreements, third-party services, and your rights."
     },
     {
@@ -77,7 +77,7 @@
       "path": "/blog",
       "name": "Blog",
       "type": "CollectionPage",
-      "title": "Business Website & AI Guides | FormiqBloom Blog",
+      "title": "Blog | FormiqBloom",
       "description": "Practical guides from FormiqBloom on planning a business website, choosing a redesign, and making informed decisions about your online presence.",
       "posts": [
         {
@@ -99,7 +99,7 @@
       "path": "/blog/business-website-checklist",
       "name": "Business website checklist",
       "type": "WebPage",
-      "title": "Business Website Planning Checklist | FormiqBloom",
+      "title": "Website Checklist | FormiqBloom",
       "description": "Plan your business website with a practical checklist covering goals, content, enquiries, mobile design, SEO, ownership, hosting, and ongoing care.",
       "article": {
         "headline": "A practical checklist for your business website.",
@@ -114,7 +114,7 @@
       "path": "/blog/website-redesign-guide",
       "name": "Website redesign guide",
       "type": "WebPage",
-      "title": "When to Redesign Your Business Website | FormiqBloom",
+      "title": "Website Redesign | FormiqBloom",
       "description": "Learn when a business website needs a redesign, when focused updates are enough, and how to plan content, enquiries, redirects, and launch checks.",
       "article": {
         "headline": "Does your business website need a redesign?",
@@ -129,7 +129,7 @@
       "path": "/ai-assistant",
       "name": "AI Assistant",
       "type": "WebPage",
-      "title": "AI Assistant for Your Business | FormiqBloom",
+      "title": "AI Assistant | FormiqBloom",
       "description": "Explore custom AI assistants from FormiqBloom in Surat. Answer business FAQs, guide enquiries, and try FormiqBloom AI with saved questions or your own."
     },
     {
@@ -137,7 +137,7 @@
       "path": "/pricing",
       "name": "Pricing",
       "type": "WebPage",
-      "title": "Website Pricing & Plans from ₹1,999 | FormiqBloom",
+      "title": "Pricing | FormiqBloom",
       "description": "Compare FormiqBloom’s Starter, Business, and Custom website tiers, delivery times, AI assistant inclusion, optional add-ons, and ongoing costs.",
       "pricing_page": true
     },
@@ -146,7 +146,7 @@
       "path": "/faq",
       "name": "FAQ",
       "type": "WebPage",
-      "title": "Website & AI FAQs | FormiqBloom",
+      "title": "FAQ | FormiqBloom",
       "description": "Get clear answers to 10 common questions about FormiqBloom website tiers, delivery times, SEO, AI assistants, hosting, redesigns, payments, and support."
     },
     {
@@ -154,7 +154,7 @@
       "path": "/blog/choose-business-website-package",
       "name": "Choosing a website package",
       "type": "WebPage",
-      "title": "Choosing a Business Website Package | FormiqBloom",
+      "title": "Website Packages | FormiqBloom",
       "description": "Compare one-page and multi-page business websites, revision rounds, AI assistants, admin dashboards, and ongoing costs before choosing a website package.",
       "article": {
         "headline": "Which website package does your business actually need?",
@@ -169,7 +169,7 @@
       "path": "/blog/ai-assistant-for-small-business",
       "name": "AI assistants for small businesses",
       "type": "WebPage",
-      "title": "AI Assistants for Small Businesses | FormiqBloom",
+      "title": "Business AI | FormiqBloom",
       "description": "Learn how a website AI assistant can answer customer questions, explain services, guide enquiries, and keep human help available, with clear setup and usage costs.",
       "article": {
         "headline": "How can an AI assistant help your small business?",
@@ -184,7 +184,7 @@
       "path": "/case-studies/macromuse",
       "name": "MacroMuse case study",
       "type": "WebPage",
-      "title": "MacroMuse Case Study | FormiqBloom",
+      "title": "MacroMuse | FormiqBloom",
       "description": "Nutrition tracking, meal habits, and recipe ideas in one web experience."
     },
     {
@@ -192,7 +192,7 @@
       "path": "/case-studies/relaychatting",
       "name": "RelayChatting case study",
       "type": "WebPage",
-      "title": "RelayChatting Case Study | FormiqBloom",
+      "title": "RelayChatting | FormiqBloom",
       "description": "A messaging web app with conversations, user profiles, and AI assistance."
     },
     {
@@ -200,7 +200,7 @@
       "path": "/case-studies/solara",
       "name": "Solara Surat case study",
       "type": "WebPage",
-      "title": "Solara Surat Case Study | FormiqBloom",
+      "title": "Solara Surat | FormiqBloom",
       "description": "A solar business website that introduces services and makes potential savings easier to explore."
     }
   ]

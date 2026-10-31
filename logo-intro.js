@@ -22,7 +22,7 @@
   mark.append(copy);
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
-  svg.innerHTML = '<defs><filter id="intro-liquid" x="-20%" y="-50%" width="140%" height="200%"><feTurbulence type="fractalNoise" baseFrequency=".018 .035" numOctaves="2" seed="8" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="18;9;0" dur="1.1s" fill="freeze"/></feDisplacementMap></filter></defs>';
+  svg.innerHTML = '<defs><filter id="intro-liquid" x="-20%" y="-50%" width="140%" height="200%"><feTurbulence type="fractalNoise" baseFrequency=".018 .035" numOctaves="2" seed="8" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="18;9;0" dur=".85s" fill="freeze"/></feDisplacementMap></filter></defs>';
   overlay.append(backdrop, mark, svg);
   let finished = false;
   let animations = [];
@@ -62,23 +62,24 @@
     mark.style.transform = start;
     target.setAttribute('data-logo-intro', '');
     document.body.append(overlay);
+    try { sessionStorage.setItem('formiqbloom-intro-seen', '1'); } catch {}
     root.classList.remove('logo-intro-pending');
     const reveal = mark.animate([
       { opacity: 0, filter: 'url(#intro-liquid) blur(7px)', transform: `${start} scale(.92)` },
       { opacity: 1, filter: 'url(#intro-liquid) blur(0px)', transform: start }
-    ], { duration: 1100, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' });
+    ], { duration: 850, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' });
     animations.push(reveal);
     await reveal.finished;
     if (finished) return;
-    await new Promise(resolve => setTimeout(resolve, 350));
+    await new Promise(resolve => setTimeout(resolve, 200));
     if (finished) return;
     reveal.cancel();
     const destination = target.getBoundingClientRect();
     const fly = mark.animate([
       { transform: start },
       { transform: `translate(${destination.left}px, ${destination.top}px) scale(1)` }
-    ], { duration: 1100, easing: 'cubic-bezier(.76,0,.24,1)', fill: 'forwards' });
-    const fade = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1000, easing: 'ease-in-out', fill: 'forwards' });
+    ], { duration: 900, easing: 'cubic-bezier(.76,0,.24,1)', fill: 'forwards' });
+    const fade = backdrop.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 850, easing: 'ease-in-out', fill: 'forwards' });
     animations.push(fly, fade);
     await fly.finished;
     finish();
