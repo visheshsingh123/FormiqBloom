@@ -187,7 +187,7 @@
     .section-heading h2 { max-width: 42rem; }
     .button { display: inline-flex; min-height: 50px; justify-content: center; align-items: center; gap: .85rem; padding: .85rem 1.4rem; border: 1px solid transparent; border-radius: 0; background: var(--violet); color: #fff; font-size: .9rem; font-weight: 600; line-height: 1.4; position: relative; isolation: isolate; overflow: hidden; transition: color .25s, background .2s, border-color .2s; }
     /* Primary buttons fill with a lime circle, without moving the button. */
-    .button:not(.secondary)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--lime); clip-path: circle(0% at 50% 100%); transition: clip-path .8s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
+    .button:not(.secondary)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--lime); clip-path: circle(0% at 50% 100%); transition: clip-path 1.3s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
     .button:not(.secondary):not(:disabled):is(:hover, :focus-visible) { color: var(--bg); }
     .button:not(.secondary):not(:disabled):is(:hover, :focus-visible)::before { clip-path: circle(150% at 50% 100%); }
     .button.secondary { border-color: #514C62; background: transparent; color: var(--text); }
